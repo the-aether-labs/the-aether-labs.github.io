@@ -3,148 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aether Labs — Autonomous Intelligence & Systems Research</title>
-    <meta name="description" content="An independent research studio engineering autonomous agentic architectures, cognitive knowledge vaults, and zero-leak automation systems.">
-    <meta name="keywords" content="The Aether Labs, Autonomous AI, Systems Engineering, Cognitive Architecture">
-
-    <!-- OpenGraph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://the-aether-labs.github.io/">
-    <meta property="og:title" content="The Aether Labs — Autonomous Intelligence">
-    <meta property="og:description" content="Exploring infinite possibilities through pure technology and autonomous systems engineering.">
+    <title>The Aether Labs</title>
+    <meta name="description" content="Autonomous AI Research & Systems Studio.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 
-    <!-- Premium Clean Typography -->
+    <!-- Inter Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Ultra-Minimalist Monochrome Palette (Apple / Vercel / Linear Aesthetic) */
-            --bg-base: #000000;
-            --bg-subtle: #080808;
-            --bg-surface: #0E0E0E;
-            --bg-card: #121212;
-            --bg-card-hover: #181818;
-            --bg-input: #161616;
+            /* Deep Midnight Sapphire & Slate Palette (Rich, Non-Tiring, Luxury Tech) */
+            --bg-deep: #060911;
+            --bg-surface: #0B1120;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --bg-card-hover: rgba(20, 30, 55, 0.85);
 
-            --border-hairline: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(255, 255, 255, 0.22);
-            --border-active: rgba(255, 255, 255, 0.35);
+            --border-line: rgba(148, 163, 184, 0.12);
+            --border-hover: rgba(59, 130, 246, 0.4);
 
-            --text-lead: #FFFFFF;
-            --text-body: #A1A1AA;
-            --text-muted: #71717A;
-            --text-dark: #3F3F46;
+            --text-lead: #F8FAFC;
+            --text-body: #94A3B8;
+            --text-muted: #64748B;
 
-            --accent-green: #22C55E;
-            --accent-blue: #38BDF8;
+            --primary: #3B82F6;
+            --primary-glow: rgba(59, 130, 246, 0.25);
+            --emerald: #10B981;
 
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
 
-            --radius-sm: 6px;
-            --radius-md: 12px;
-            --radius-lg: 18px;
-            --radius-xl: 24px;
+            --radius: 14px;
         }
 
-        /* Reset & Foundation */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        html {
-            scroll-behavior: smooth;
-            background-color: var(--bg-base);
+        body {
+            background-color: var(--bg-deep);
             color: var(--text-lead);
             font-family: var(--font-sans);
-            font-size: 16px;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        body {
-            background-color: var(--bg-base);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        ::selection {
-            background: #FFFFFF;
-            color: #000000;
-        }
-
-        /* Subtle Geometric Background Grid (Minimal & Elegant) */
-        .bg-grid {
+        /* Ambient Lighting */
+        .ambient-radial {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            pointer-events: none;
-            z-index: 0;
-            mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 100%);
-        }
-
-        /* Soft Center White Light Spotlight */
-        .ambient-spotlight {
-            position: fixed;
-            top: -150px;
+            top: -200px;
             left: 50%;
             transform: translateX(-50%);
-            width: 900px;
-            height: 600px;
-            background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.07) 0%, transparent 70%);
-            filter: blur(80px);
+            width: 1000px;
+            height: 700px;
+            background: radial-gradient(50% 50% at 50% 50%, rgba(37, 99, 235, 0.12) 0%, rgba(6, 9, 17, 0) 100%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Responsive Container */
+        /* Container */
         .container {
             width: 100%;
-            max-width: 1180px;
+            max-width: 980px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
-        /* Top Navigation */
+        /* Navbar */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-hairline);
-            z-index: 100;
-            display: flex;
-            align-items: center;
+            padding: 24px 0;
         }
 
         .nav-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            width: 100%;
         }
 
-        .nav-brand {
+        .brand {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -152,61 +99,37 @@
             color: var(--text-lead);
         }
 
-        .nav-logo-box {
-            width: 30px;
-            height: 30px;
+        .brand-icon {
+            width: 28px;
+            height: 28px;
             border-radius: 8px;
-            background: #FFFFFF;
-            color: #000000;
+            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 800;
-            font-size: 0.85rem;
+            box-shadow: 0 0 16px var(--primary-glow);
         }
 
-        .nav-brand-title {
+        .brand-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: #FFFFFF;
+        }
+
+        .brand-name {
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: -0.02em;
         }
 
-        .nav-tag {
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            color: var(--text-muted);
-            border: 1px solid var(--border-hairline);
-            padding: 2px 7px;
-            border-radius: var(--radius-sm);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-lead);
-        }
-
-        .btn-github {
+        .nav-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 7px 14px;
+            padding: 7px 16px;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-line);
+            border-radius: 8px;
             color: var(--text-lead);
             text-decoration: none;
             font-size: 0.82rem;
@@ -214,853 +137,346 @@
             transition: all 0.2s ease;
         }
 
-        .btn-github:hover {
+        .nav-btn:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: var(--border-hover);
         }
 
-        .btn-github svg {
+        .nav-btn svg {
             width: 14px;
             height: 14px;
             fill: currentColor;
         }
 
-        /* Hero Section */
+        /* Hero */
         .hero {
-            padding-top: 170px;
-            padding-bottom: 90px;
+            padding: 60px 0 50px 0;
             text-align: center;
         }
 
-        .hero-badge {
+        .badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-hairline);
+            padding: 5px 14px;
+            border-radius: 9999px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.25);
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-body);
-            margin-bottom: 28px;
+            font-size: 0.72rem;
+            color: #93C5FD;
+            margin-bottom: 24px;
         }
 
-        .pulse-dot {
+        .dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--accent-green);
-            box-shadow: 0 0 8px var(--accent-green);
+            background: var(--emerald);
+            box-shadow: 0 0 8px var(--emerald);
         }
 
-        .hero-headline {
-            font-size: clamp(2.4rem, 6vw, 4.4rem);
+        .hero h1 {
+            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
             font-weight: 800;
-            line-height: 1.08;
-            letter-spacing: -0.04em;
+            line-height: 1.1;
+            letter-spacing: -0.035em;
             color: #FFFFFF;
-            max-width: 900px;
-            margin: 0 auto 24px auto;
+            margin-bottom: 18px;
         }
 
-        .hero-headline span {
-            background: linear-gradient(180deg, #FFFFFF 0%, #777777 100%);
+        .hero h1 span {
+            background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-description {
-            font-size: clamp(1rem, 2vw, 1.2rem);
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.15rem);
             color: var(--text-body);
-            max-width: 680px;
-            margin: 0 auto 38px auto;
-            line-height: 1.65;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 26px;
-            border-radius: var(--radius-sm);
-            background: #FFFFFF;
-            color: #000000;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-primary:hover {
-            background: #E5E5E5;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            border-radius: var(--radius-sm);
-            background: transparent;
-            border: 1px solid var(--border-hairline);
-            color: var(--text-lead);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--border-hover);
-        }
-
-        /* CLI Command Pill */
-        .cli-container {
-            margin-top: 36px;
-        }
-
-        .cli-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 18px;
-            background: #0A0A0A;
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-sm);
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .cli-pill:hover {
-            border-color: var(--border-hover);
-            color: var(--text-lead);
-        }
-
-        .cli-pill .prefix {
-            color: var(--text-muted);
-        }
-
-        .cli-pill .text {
-            color: #E5E5E5;
-        }
-
-        /* Telemetry Stats Bar */
-        .metrics-bar {
-            margin-top: 60px;
-            padding: 24px 32px;
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-md);
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            text-align: left;
-        }
-
-        .metric-col {
-            border-left: 1px solid var(--border-hairline);
-            padding-left: 20px;
-        }
-
-        .metric-col:first-child {
-            border-left: none;
-            padding-left: 0;
-        }
-
-        .metric-label {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            margin-bottom: 4px;
-        }
-
-        .metric-value {
-            font-size: 1.55rem;
-            font-weight: 700;
-            font-family: var(--font-mono);
-            letter-spacing: -0.02em;
-            color: #FFFFFF;
-        }
-
-        /* Section Commons */
-        .section {
-            padding: 90px 0;
-        }
-
-        .section-header {
-            margin-bottom: 50px;
-        }
-
-        .section-tag {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.6rem);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            color: #FFFFFF;
-            line-height: 1.2;
-            margin-bottom: 12px;
-        }
-
-        .section-sub {
-            color: var(--text-body);
-            font-size: 1rem;
-            max-width: 600px;
+            max-width: 580px;
+            margin: 0 auto 32px auto;
             line-height: 1.6;
         }
 
-        /* Bento Grid (Clean Asymmetrical Layout) */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 18px;
+        .actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
 
-        .bento-card {
+        .btn-fill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 24px;
+            border-radius: 8px;
+            background: #FFFFFF;
+            color: #060911;
+            font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-fill:hover {
+            background: #E2E8F0;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 8px;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--border-line);
+            color: var(--text-lead);
+            font-weight: 500;
+            font-size: 0.88rem;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline:hover {
+            background: rgba(15, 23, 42, 0.9);
+            border-color: var(--border-hover);
+        }
+
+        /* 3 Minimal Pillars (No Clutter, 1 Sentence Each) */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin: 40px 0;
+        }
+
+        .card {
             background: var(--bg-card);
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-md);
-            padding: 32px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border: 1px solid var(--border-line);
+            border-radius: var(--radius);
+            padding: 24px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             transition: all 0.25s ease;
         }
 
-        .bento-card:hover {
-            border-color: var(--border-hover);
+        .card:hover {
             background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
         }
 
-        .col-8 { grid-column: span 8; }
-        .col-4 { grid-column: span 4; }
-        .col-6 { grid-column: span 6; }
-        .col-12 { grid-column: span 12; }
-
-        .card-num {
+        .card-tag {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-bottom: 18px;
+            font-size: 0.7rem;
+            color: #60A5FA;
+            margin-bottom: 12px;
+            font-weight: 600;
         }
 
         .card-title {
-            font-size: 1.28rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
+            font-size: 1.08rem;
+            font-weight: 700;
             color: #FFFFFF;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
         }
 
         .card-desc {
             color: var(--text-body);
-            font-size: 0.92rem;
-            line-height: 1.6;
-            margin-bottom: 24px;
+            font-size: 0.88rem;
+            line-height: 1.55;
         }
 
-        .card-terminal {
-            background: #080808;
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            line-height: 1.7;
-            color: #CCCCCC;
-            margin-top: 14px;
-            overflow-x: auto;
-        }
-
-        .card-terminal .kw { color: #FFFFFF; font-weight: 600; }
-        .card-terminal .fn { color: #A1A1AA; }
-        .card-terminal .str { color: #D4D4D8; }
-        .card-terminal .cm { color: #52525B; }
-
-        .card-tags {
+        /* Stats Strip */
+        .stats {
             display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: auto;
-            padding-top: 20px;
-        }
-
-        .tag-pill {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            padding: 4px 10px;
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-hairline);
-            color: var(--text-muted);
-        }
-
-        /* Interactive Systems Console Matrix */
-        .matrix-box {
-            background: var(--bg-subtle);
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-md);
-            padding: 36px;
-            margin-top: 40px;
-        }
-
-        .matrix-tabs {
-            display: flex;
-            gap: 10px;
-            border-bottom: 1px solid var(--border-hairline);
-            padding-bottom: 18px;
-            margin-bottom: 28px;
-            overflow-x: auto;
-        }
-
-        .matrix-tab-btn {
-            background: transparent;
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-sm);
-            color: var(--text-muted);
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            padding: 8px 16px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s ease;
-        }
-
-        .matrix-tab-btn.active, .matrix-tab-btn:hover {
-            background: #FFFFFF;
-            color: #000000;
-            border-color: #FFFFFF;
-            font-weight: 600;
-        }
-
-        .matrix-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 32px;
             align-items: center;
-        }
-
-        .matrix-headline {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 12px;
-            letter-spacing: -0.02em;
-        }
-
-        .matrix-body {
-            color: var(--text-body);
-            font-size: 0.95rem;
-            line-height: 1.65;
-            margin-bottom: 20px;
-        }
-
-        .matrix-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-        }
-
-        .matrix-cell {
-            background: var(--bg-card);
-            border: 1px solid var(--border-hairline);
-            border-radius: var(--radius-sm);
-            padding: 16px;
-        }
-
-        .matrix-cell-lbl {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .matrix-cell-val {
-            font-family: var(--font-mono);
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-top: 4px;
-        }
-
-        /* Minimalist Manifesto Quote */
-        .quote-section {
-            border-top: 1px solid var(--border-hairline);
-            border-bottom: 1px solid var(--border-hairline);
-            padding: 70px 0;
-            margin: 60px 0;
+            justify-content: space-around;
+            padding: 20px 24px;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--border-line);
+            border-radius: var(--radius);
+            margin: 30px 0 50px 0;
             text-align: center;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
-        .quote-text {
-            font-size: clamp(1.3rem, 3vw, 1.85rem);
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1.5;
-            color: #FFFFFF;
-            max-width: 840px;
-            margin: 0 auto 16px auto;
-        }
-
-        .quote-author {
+        .stat-num {
             font-family: var(--font-mono);
-            font-size: 0.78rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .stat-lbl {
+            font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.05em;
+            margin-top: 2px;
         }
 
-        /* Minimal Footer */
+        /* Footer */
         footer {
-            padding: 40px 0 60px 0;
-            border-top: 1px solid var(--border-hairline);
+            border-top: 1px solid var(--border-line);
+            padding: 30px 0;
         }
 
         .footer-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .footer-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            font-size: 0.82rem;
             color: var(--text-muted);
-            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .footer-nav {
-            display: flex;
-            gap: 24px;
-            list-style: none;
-        }
-
-        .footer-nav a {
+        .footer-inner a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.85rem;
             transition: color 0.2s ease;
         }
 
-        .footer-nav a:hover {
-            color: #FFFFFF;
+        .footer-inner a:hover {
+            color: var(--text-lead);
         }
 
-        /* Toast Feedback */
-        #toast {
-            position: fixed;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%) translateY(80px);
-            background: #FFFFFF;
-            color: #000000;
-            padding: 8px 18px;
-            border-radius: var(--radius-sm);
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: all 0.25s ease;
-            z-index: 1000;
-            pointer-events: none;
-        }
-
-        #toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        /* Responsive Breakpoints (Laptop, Tablet, Mobile) */
-        @media (max-width: 960px) {
-            .col-8, .col-4 { grid-column: span 12; }
-            .matrix-grid { grid-template-columns: 1fr; }
-            .metrics-bar { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-            .metric-col { border-left: none; padding-left: 0; }
-        }
-
-        @media (max-width: 640px) {
-            .nav-links { display: none; }
-            .hero { padding-top: 130px; padding-bottom: 60px; }
-            .metrics-bar { grid-template-columns: 1fr; padding: 20px; }
-            .matrix-box { padding: 24px 18px; }
-            .matrix-stats { grid-template-columns: 1fr; }
-            .footer-inner { flex-direction: column; text-align: center; }
-            .footer-left { flex-direction: column; }
-            .footer-nav { justify-content: center; }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding: 40px 0 30px 0;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 18px;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="ambient-spotlight"></div>
+    <div class="ambient-radial"></div>
 
-    <div id="toast">Copied to clipboard</div>
-
-    <!-- Navigation Header -->
-    <nav>
-        <div class="container">
+    <div class="container">
+        <!-- Header -->
+        <nav>
             <div class="nav-inner">
-                <a href="#" class="nav-brand">
-                    <div class="nav-logo-box">A</div>
-                    <span class="nav-brand-title">The Aether Labs</span>
-                    <span class="nav-tag">CORE-V2</span>
+                <a href="#" class="brand">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <span class="brand-name">The Aether Labs</span>
                 </a>
 
-                <ul class="nav-links">
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#systems">Systems</a></li>
-                    <li><a href="#manifesto">Manifesto</a></li>
-                </ul>
-
-                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-github">
+                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <svg viewBox="0 0 24 24">
                         <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
                     </svg>
-                    <span>GitHub Hub</span>
+                    <span>GitHub</span>
                 </a>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Main Container -->
-    <main class="container">
-        <!-- Hero Section -->
+        <!-- Hero: Radically Brief & Clear -->
         <section class="hero">
-            <div class="hero-badge">
-                <span class="pulse-dot"></span>
-                <span>AUTONOMOUS SYSTEMS // ONLINE</span>
+            <div class="badge">
+                <span class="dot"></span>
+                <span>AUTONOMOUS SYSTEMS // ACTIVE</span>
             </div>
 
-            <h1 class="hero-headline">
-                Exploring Infinite Possibilities Through <span>Pure Technology.</span>
+            <h1>
+                Exploring Infinite Possibilities <br>
+                <span>Through Pure Technology.</span>
             </h1>
 
-            <p class="hero-description">
-                An independent research studio engineering deterministic multi-agent architectures, first-principles cognitive graphs, and zero-compromise automated systems.
+            <p>
+                An independent research studio engineering autonomous multi-agent architectures, cognitive knowledge vaults, and resilient systems.
             </p>
 
-            <div class="hero-buttons">
-                <a href="#research" class="btn-primary">
-                    <span>Explore Research</span>
+            <div class="actions">
+                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-fill">
+                    <span>Explore Repositories</span>
                     &rarr;
                 </a>
-                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    <span>Source Repositories</span>
+                <a href="#focus" class="btn-outline">
+                    <span>Core Focus</span>
                 </a>
             </div>
-
-            <!-- CLI Command -->
-            <div class="cli-container">
-                <div class="cli-pill" onclick="copyClone()">
-                    <span class="prefix">$</span>
-                    <span class="text">git clone https://github.com/the-aether-labs/the-aether-labs.github.io</span>
-                    <span class="prefix">// copy</span>
-                </div>
-            </div>
-
-            <!-- Metrics Strip -->
-            <div class="metrics-bar">
-                <div class="metric-col">
-                    <div class="metric-label">Active Projects</div>
-                    <div class="metric-value">22 Systems</div>
-                </div>
-
-                <div class="metric-col">
-                    <div class="metric-label">Security Enclave</div>
-                    <div class="metric-value">100% Isolated</div>
-                </div>
-
-                <div class="metric-col">
-                    <div class="metric-label">Edge Latency</div>
-                    <div class="metric-value">&lt; 14ms</div>
-                </div>
-
-                <div class="metric-col">
-                    <div class="metric-label">Cloud Recovery</div>
-                    <div class="metric-value">Zero-Loss 1-Click</div>
-                </div>
-            </div>
         </section>
 
-        <!-- Core Research Pillars (Minimal Bento Grid) -->
-        <section class="section" id="research">
-            <div class="section-header">
-                <span class="section-tag">// 01 &mdash; ARCHITECTURE & RESEARCH</span>
-                <h2 class="section-title">Core Research Pillars</h2>
-                <p class="section-sub">
-                    Translating theoretical cognitive autonomy into deterministic, minimal-footprint software architectures.
+        <!-- 3 Clean Cards: Just 1-2 Sentences Each -->
+        <section class="cards" id="focus">
+            <div class="card">
+                <div class="card-tag">01 // AUTONOMY</div>
+                <h3 class="card-title">Multi-Agent Swarms</h3>
+                <p class="card-desc">
+                    Self-coordinating agent teams with reactive wake-up loops and isolated execution boundaries.
                 </p>
             </div>
 
-            <div class="bento-grid">
-                <!-- Bento 1: Swarm Engine (Span 8) -->
-                <div class="bento-card col-8">
-                    <div>
-                        <div class="card-num">// 01.1 &mdash; DISTRIBUTED AGENTS</div>
-                        <h3 class="card-title">Autonomous Multi-Agent Swarms</h3>
-                        <p class="card-desc">
-                            Deterministic multi-agent orchestrations with reactive message loops, isolated execution boundaries, and self-verifying guardrails. Zero token waste and no busy-polling.
-                        </p>
-                    </div>
-
-                    <div class="card-terminal">
-                        <span class="kw">const</span> swarm = <span class="kw">await</span> AetherSwarm.<span class="fn">spawn</span>({<br>
-                        &nbsp;&nbsp;topology: <span class="str">"deterministic-hierarchy"</span>,<br>
-                        &nbsp;&nbsp;agents: [<span class="str">"Coordinator"</span>, <span class="str">"Dispatcher"</span>, <span class="str">"Verifier"</span>],<br>
-                        &nbsp;&nbsp;boundary: <span class="str">"zero-leak-sandbox"</span><br>
-                        });<br>
-                        <span class="cm">// Reactive wakeups triggered only on verified state transitions</span><br>
-                        <span class="kw">await</span> swarm.<span class="fn">executeUntilVerified</span>();
-                    </div>
-
-                    <div class="card-tags">
-                        <span class="tag-pill">Reactive Message Loops</span>
-                        <span class="tag-pill">Subagent Enclaves</span>
-                        <span class="tag-pill">Autonomous Verifiers</span>
-                    </div>
-                </div>
-
-                <!-- Bento 2: Cognitive Vaults (Span 4) -->
-                <div class="bento-card col-4">
-                    <div>
-                        <div class="card-num">// 01.2 &mdash; KNOWLEDGE SYSTEMS</div>
-                        <h3 class="card-title">Cognitive Knowledge Vaults</h3>
-                        <p class="card-desc">
-                            4-Lens structural deconstruction: Core, Map, Boundary, Execution. Synthesizing dense mental models into atomic local Markdown graphs without proprietary cloud lock-in.
-                        </p>
-                    </div>
-
-                    <div class="card-tags">
-                        <span class="tag-pill">Obsidian IPC</span>
-                        <span class="tag-pill">4-Lens Mastery</span>
-                        <span class="tag-pill">Local Graph RAG</span>
-                    </div>
-                </div>
-
-                <!-- Bento 3: Zero-Leak Guardrails (Span 4) -->
-                <div class="bento-card col-4">
-                    <div>
-                        <div class="card-num">// 01.3 &mdash; SECURITY PROTOCOLS</div>
-                        <h3 class="card-title">Zero-Leak Privacy Enclaves</h3>
-                        <p class="card-desc">
-                            Mandatory hardware boundary locks, anonymous noreply Git remotes, and background encryption enclaves protecting developer identity and system stability.
-                        </p>
-                    </div>
-
-                    <div class="card-tags">
-                        <span class="tag-pill">Masked Git Commits</span>
-                        <span class="tag-pill">Silent VBS Engine</span>
-                        <span class="tag-pill">Hardware Protection</span>
-                    </div>
-                </div>
-
-                <!-- Bento 4: Silent Background Daemon (Span 8) -->
-                <div class="bento-card col-8">
-                    <div>
-                        <div class="card-num">// 01.4 &mdash; AUTOMATED RESILIENCE</div>
-                        <h3 class="card-title">Silent Background Synchronization</h3>
-                        <p class="card-desc">
-                            Completely concealed background automation running without console popups. Archives 200+ conversation sessions into encrypted rolling cloud backups with 1-click disaster recovery.
-                        </p>
-                    </div>
-
-                    <div class="card-terminal">
-                        <span class="cm"># Daily automated silent daemon execution</span><br>
-                        <span class="fn">Invoke-AetherBackup</span> -Target <span class="str">"GoogleDrive:\Backups"</span> -Retention <span class="kw">7</span><br>
-                        <span class="kw">[OK]</span> 16,420 cognitive nodes compacted &bull; 0ms UI impact &bull; 100% verified
-                    </div>
-
-                    <div class="card-tags">
-                        <span class="tag-pill">Rolling 7-Day Retention</span>
-                        <span class="tag-pill">Native tar Compression</span>
-                        <span class="tag-pill">1-Click Disaster Recovery</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive Systems Matrix -->
-        <section class="section" id="systems">
-            <div class="section-header">
-                <span class="section-tag">// 02 &mdash; OPERATIONAL MATRIX</span>
-                <h2 class="section-title">System Architecture Telemetry</h2>
-                <p class="section-sub">
-                    Inspect the operational parameters and core specifications of our active software subsystems.
+            <div class="card">
+                <div class="card-tag">02 // KNOWLEDGE</div>
+                <h3 class="card-title">Cognitive Vaults</h3>
+                <p class="card-desc">
+                    First-principles deconstruction compiling dense mental models into local Markdown graphs.
                 </p>
             </div>
 
-            <div class="matrix-box">
-                <div class="matrix-tabs">
-                    <button class="matrix-tab-btn active" onclick="switchMatrix('swarm', this)">SWARM-TOPOLOGY</button>
-                    <button class="matrix-tab-btn" onclick="switchMatrix('vault', this)">KNOWLEDGE-VAULT</button>
-                    <button class="matrix-tab-btn" onclick="switchMatrix('security', this)">PRIVACY-ENCLAVE</button>
-                    <button class="matrix-tab-btn" onclick="switchMatrix('cloud', this)">DISASTER-RECOVERY</button>
-                </div>
-
-                <div class="matrix-grid">
-                    <div>
-                        <h4 class="matrix-headline" id="mat-title">Multi-Agent Swarm Topology</h4>
-                        <p class="matrix-body" id="mat-desc">
-                            Autonomous agents running in deterministic workspaces, communicating via shared message bus and reactive wakeup triggers without busy-polling or token waste.
-                        </p>
-                        <div class="card-tags" id="mat-pills" style="padding-top: 0;">
-                            <span class="tag-pill">Coordinated Handoffs</span>
-                            <span class="tag-pill">Shared Message Board</span>
-                            <span class="tag-pill">Self-Verification</span>
-                        </div>
-                    </div>
-
-                    <div class="matrix-stats">
-                        <div class="matrix-cell">
-                            <div class="matrix-cell-lbl">Protocol</div>
-                            <div class="matrix-cell-val" id="mat-m1">AETHER-SWARM/3.0</div>
-                        </div>
-                        <div class="matrix-cell">
-                            <div class="matrix-cell-lbl">Concurrency</div>
-                            <div class="matrix-cell-val" id="mat-m2">Non-Blocking Async</div>
-                        </div>
-                        <div class="matrix-cell">
-                            <div class="matrix-cell-lbl">Resilience</div>
-                            <div class="matrix-cell-val" id="mat-m3">Automatic Self-Heal</div>
-                        </div>
-                        <div class="matrix-cell">
-                            <div class="matrix-cell-lbl">Efficiency</div>
-                            <div class="matrix-cell-val" id="mat-m4">99.4% Optimized</div>
-                        </div>
-                    </div>
-                </div>
+            <div class="card">
+                <div class="card-tag">03 // PRIVACY</div>
+                <h3 class="card-title">Zero-Leak Enclaves</h3>
+                <p class="card-desc">
+                    Hardware boundary locks, masked Git remotes, and silent background cloud synchronization.
+                </p>
             </div>
         </section>
 
-        <!-- Manifesto Section -->
-        <section class="quote-section" id="manifesto">
-            <p class="quote-text">
-                &ldquo;Technology achieves its highest form when it eliminates friction, protects personal sovereignty, and transforms complexity into effortless intelligence.&rdquo;
-            </p>
-            <div class="quote-author">// The Aether Labs Core Directive</div>
-        </section>
-    </main>
+        <!-- Minimal Metrics Strip -->
+        <div class="stats">
+            <div>
+                <div class="stat-num">22</div>
+                <div class="stat-lbl">Active Projects</div>
+            </div>
+            <div>
+                <div class="stat-num">100%</div>
+                <div class="stat-lbl">Private Enclaves</div>
+            </div>
+            <div>
+                <div class="stat-num">&lt; 14ms</div>
+                <div class="stat-lbl">Edge Latency</div>
+            </div>
+            <div>
+                <div class="stat-num">Zero-Loss</div>
+                <div class="stat-lbl">Disaster Recovery</div>
+            </div>
+        </div>
+    </div>
 
-    <!-- Global Minimal Footer -->
+    <!-- Minimal Footer -->
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <div class="footer-left">
-                    <span style="color: #FFFFFF; font-weight: 600;">The Aether Labs</span>
-                    <span>&mdash;</span>
-                    <span>Autonomous Systems Engineering</span>
+                <div>&copy; 2026 The Aether Labs. Autonomous Systems Engineering.</div>
+                <div>
+                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">github.com/the-aether-labs</a>
                 </div>
-
-                <ul class="footer-nav">
-                    <li><a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
-                    <li><a href="#research">Research</a></li>
-                    <li><a href="#systems">Telemetry</a></li>
-                    <li><a href="#manifesto">Manifesto</a></li>
-                </ul>
             </div>
         </div>
     </footer>
-
-    <!-- Scripts -->
-    <script>
-        const matrixData = {
-            swarm: {
-                title: "Multi-Agent Swarm Topology",
-                desc: "Autonomous agents running in deterministic workspaces, communicating via shared message bus and reactive wakeup triggers without busy-polling or token waste.",
-                pills: ["Coordinated Handoffs", "Shared Message Board", "Self-Verification"],
-                m1: "AETHER-SWARM/3.0",
-                m2: "Non-Blocking Async",
-                m3: "Automatic Self-Heal",
-                m4: "99.4% Optimized"
-            },
-            vault: {
-                title: "First-Principles Cognitive Vault",
-                desc: "High-density multi-lens conceptual decomposition. Compiles abstract logic directly into bidirectional atomic Obsidian Markdown graphs.",
-                pills: ["4-Lens Deconstruction", "Obsidian Native IPC", "Zero-Latency Recall"],
-                m1: "COGNITIVE-GRAPH/V2",
-                m2: "Bidirectional Local",
-                m3: "Zero Data Leak",
-                m4: "Atomic Modular"
-            },
-            security: {
-                title: "Zero-Leak Privacy Enclave",
-                desc: "Mandatory hardware boundary isolation, private Git noreply proxy masking, and deterministic sandboxes blocking untrusted network execution.",
-                pills: ["Hardware Guardrail", "Masked Commits", "Deterministic Sandbox"],
-                m1: "SHIELD-ENCLAVE/V4",
-                m2: "Air-Gapped Local",
-                m3: "100% Guaranteed",
-                m4: "0.00% Exposure"
-            },
-            cloud: {
-                title: "Silent Disaster Recovery Daemon",
-                desc: "Concealed VBScript/PowerShell background pipelines taking direct multi-gigabyte atomic tar archives with 7-day rolling Google Drive synchronization.",
-                pills: ["Concealed VBScript", "Rolling 7-Backups", "1-Click Restorer"],
-                m1: "DAEMON-SYNCHRON/V1",
-                m2: "Idle Task Priority",
-                m3: "Atomic Checksums",
-                m4: "Instant Recovery"
-            }
-        };
-
-        function switchMatrix(key, btn) {
-            document.querySelectorAll('.matrix-tab-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const data = matrixData[key];
-            document.getElementById('mat-title').textContent = data.title;
-            document.getElementById('mat-desc').textContent = data.desc;
-            document.getElementById('mat-m1').textContent = data.m1;
-            document.getElementById('mat-m2').textContent = data.m2;
-            document.getElementById('mat-m3').textContent = data.m3;
-            document.getElementById('mat-m4').textContent = data.m4;
-
-            const pillContainer = document.getElementById('mat-pills');
-            pillContainer.innerHTML = '';
-            data.pills.forEach(p => {
-                const span = document.createElement('span');
-                span.className = 'tag-pill';
-                span.textContent = p;
-                pillContainer.appendChild(span);
-            });
-        }
-
-        function copyClone() {
-            navigator.clipboard.writeText("git clone https://github.com/the-aether-labs/the-aether-labs.github.io.git");
-            const toast = document.getElementById('toast');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2200);
-        }
-    </script>
 </body>
 </html>
