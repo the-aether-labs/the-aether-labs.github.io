@@ -1,53 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aether Labs // Autonomous AI & Advanced Engineering</title>
-    <meta name="description" content="An independent research and development studio engineering autonomous agentic architectures, practical intelligent tools, and resilient software systems.">
+    <title>The Aether Labs — Autonomous Intelligence & Systems Research</title>
+    <meta name="description" content="An elite independent research studio engineering autonomous agentic architectures, cognitive knowledge graphs, and zero-leak automation systems.">
+    <meta name="keywords" content="Autonomous Agents, AI Research, Multi-Agent Swarms, Cognitive Knowledge, Systems Engineering, The Aether Labs">
+    
+    <!-- OpenGraph / Social Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://the-aether-labs.github.io/">
+    <meta property="og:title" content="The Aether Labs — Autonomous Intelligence">
+    <meta property="og:description" content="Exploring infinite possibilities through pure technology and autonomous systems engineering.">
+
+    <!-- Favicon SVG -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238B5CF6'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+
+    <!-- Fonts: Inter Display + JetBrains Mono for High-Tech Aesthetic -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --bg-base: #060709;
-            --bg-surface: #0c0e14;
-            --bg-card: rgba(16, 20, 30, 0.7);
-            --bg-card-hover: rgba(22, 28, 42, 0.85);
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(124, 58, 237, 0.4);
-            --text-primary: #F8FAFC;
-            --text-secondary: #94A3B8;
-            --text-muted: #64748B;
-            --accent-primary: #8B5CF6;
-            --accent-secondary: #38BDF8;
-            --accent-gradient: linear-gradient(135deg, #A855F7 0%, #6366F1 50%, #38BDF8 100%);
-            --accent-glow: radial-gradient(circle, rgba(139, 92, 246, 0.18) 0%, rgba(56, 189, 248, 0.05) 50%, transparent 70%);
-            --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg-void: #030407;
+            --bg-card: rgba(10, 13, 20, 0.65);
+            --bg-card-hover: rgba(16, 21, 32, 0.85);
+            --bg-elevated: rgba(22, 28, 44, 0.7);
+            
+            --border-dim: rgba(255, 255, 255, 0.06);
+            --border-bright: rgba(255, 255, 255, 0.16);
+            --border-glow: rgba(168, 85, 247, 0.4);
+
+            --text-lead: #FFFFFF;
+            --text-sub: #94A3B8;
+            --text-dim: #64748B;
+            --text-dark: #334155;
+
+            --cyan: #38BDF8;
+            --violet: #8B5CF6;
+            --purple: #A855F7;
+            --emerald: #10B981;
+            --amber: #F59E0B;
+
+            --gradient-aurora: linear-gradient(135deg, #C084FC 0%, #6366F1 45%, #38BDF8 100%);
+            --gradient-subtle: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0) 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+
+            --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
+
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 22px;
+            --radius-xl: 30px;
         }
 
+        /* Reset & Base */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            background-color: var(--bg-base);
-            color: var(--text-primary);
-            font-family: var(--font-main);
+            background-color: var(--bg-void);
+            color: var(--text-lead);
+            font-family: var(--font-body);
             overflow-x: hidden;
             line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            selection-background-color: rgba(168, 85, 247, 0.3);
+            selection-color: #FFFFFF;
         }
 
-        /* Ambient Glow & Starfield Canvas */
-        #ambient-canvas {
+        /* Film Grain Noise Texture */
+        .noise-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.025;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Interactive Canvas */
+        #interactive-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -55,78 +98,117 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.6;
         }
 
-        .ambient-glow-1 {
+        /* Atmospheric Volumetric Glows */
+        .glow-orb-primary {
             position: fixed;
-            top: -200px;
-            left: 20%;
+            top: -10%;
+            left: 30%;
             width: 800px;
             height: 800px;
-            background: radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, transparent 70%);
-            filter: blur(80px);
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.14) 0%, rgba(99, 102, 241, 0.06) 40%, transparent 70%);
+            filter: blur(100px);
             pointer-events: none;
             z-index: 0;
+            animation: pulse-glow 14s ease-in-out infinite alternate;
         }
 
-        .ambient-glow-2 {
+        .glow-orb-secondary {
             position: fixed;
-            bottom: -200px;
+            bottom: 5%;
             right: 15%;
             width: 700px;
             height: 700px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
-            filter: blur(90px);
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.10) 0%, rgba(168, 85, 247, 0.04) 50%, transparent 70%);
+            filter: blur(110px);
             pointer-events: none;
             z-index: 0;
+            animation: pulse-glow 18s ease-in-out infinite alternate-reverse;
         }
 
-        /* Header / Navbar */
-        nav {
+        @keyframes pulse-glow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            50% { transform: scale(1.15) translate(30px, -20px); opacity: 1; }
+            100% { transform: scale(0.95) translate(-20px, 30px); opacity: 0.7; }
+        }
+
+        /* Container */
+        .wrapper {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 28px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Navigation Bar */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 74px;
+            z-index: 100;
+            padding: 16px 36px;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 12px 36px;
+        }
+
+        .nav-inner {
+            max-width: 1240px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 48px;
-            background: rgba(6, 7, 9, 0.75);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-subtle);
-            z-index: 100;
+            background: rgba(10, 13, 20, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dim);
+            border-radius: 9999px;
+            padding: 8px 16px 8px 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .brand {
+        .logo {
             display: flex;
             align-items: center;
             gap: 12px;
             text-decoration: none;
-            color: var(--text-primary);
+            color: var(--text-lead);
         }
 
-        .brand-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            background: var(--accent-gradient);
+        .logo-symbol {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            background: linear-gradient(135deg, #8B5CF6, #38BDF8);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 24px rgba(139, 92, 246, 0.5);
+            position: relative;
         }
 
-        .brand-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
+        .logo-symbol::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+            pointer-events: none;
         }
 
-        .brand-name {
-            font-size: 1.15rem;
+        .logo-symbol svg {
+            width: 18px;
+            height: 18px;
+            fill: #FFFFFF;
+        }
+
+        .logo-text {
+            font-size: 1.05rem;
             font-weight: 700;
             letter-spacing: -0.02em;
             background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
@@ -134,132 +216,144 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-links {
+        .logo-badge {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            color: #C084FC;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-menu {
             display: flex;
             align-items: center;
-            gap: 32px;
+            gap: 28px;
             list-style: none;
         }
 
-        .nav-links a {
-            color: var(--text-secondary);
+        .nav-menu a {
+            color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.92rem;
+            font-size: 0.88rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--text-primary);
+        .nav-menu a:hover {
+            color: var(--text-lead);
         }
 
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .btn-github {
+        .nav-btn {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 9px 18px;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid var(--border-bright);
+            color: var(--text-lead);
+            padding: 7px 16px;
             border-radius: 9999px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             font-weight: 600;
+            text-decoration: none;
             transition: all 0.25s ease;
         }
 
-        .btn-github:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-1px);
         }
 
-        .btn-github svg {
-            width: 16px;
-            height: 16px;
+        .nav-btn svg {
+            width: 15px;
+            height: 15px;
             fill: currentColor;
-        }
-
-        /* Container Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 1;
         }
 
         /* Hero Section */
         .hero {
-            padding-top: 170px;
-            padding-bottom: 100px;
+            padding-top: 190px;
+            padding-bottom: 90px;
             text-align: center;
             position: relative;
         }
 
-        .hero-badge {
+        .status-pill {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 7px 18px;
+            gap: 10px;
+            padding: 6px 16px;
             border-radius: 9999px;
             background: rgba(139, 92, 246, 0.08);
-            border: 1px solid rgba(139, 92, 246, 0.25);
+            border: 1px solid rgba(139, 92, 246, 0.3);
             font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: #C4B5FD;
-            margin-bottom: 28px;
+            font-size: 0.78rem;
+            color: #DDD6FE;
+            margin-bottom: 30px;
             box-shadow: 0 0 24px rgba(139, 92, 246, 0.15);
+            backdrop-filter: blur(12px);
         }
 
-        .badge-dot {
-            width: 7px;
-            height: 7px;
+        .status-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: #38BDF8;
-            box-shadow: 0 0 10px #38BDF8;
-            animation: pulse 2s infinite;
+            background: #10B981;
+            box-shadow: 0 0 10px #10B981;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(0.85); }
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            border: 1px solid #10B981;
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes ping {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
         }
 
         .hero-title {
-            font-size: 4rem;
+            font-size: 4.8rem;
             font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.04em;
-            margin-bottom: 24px;
-            max-width: 950px;
+            line-height: 1.05;
+            letter-spacing: -0.045em;
+            margin-bottom: 28px;
+            max-width: 1050px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-title span {
-            background: var(--accent-gradient);
+        .hero-title-shimmer {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 40%, #A855F7 70%, #38BDF8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            background-size: 200% auto;
+            animation: textShimmer 6s linear infinite alternate;
         }
 
-        .hero-sub {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 720px;
-            margin: 0 auto 40px auto;
-            font-weight: 400;
+        @keyframes textShimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .hero-desc {
+            font-size: 1.3rem;
+            color: var(--text-sub);
+            max-width: 780px;
+            margin: 0 auto 44px auto;
             line-height: 1.65;
+            font-weight: 400;
         }
 
-        .hero-cta {
+        .hero-actions {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -267,264 +361,480 @@
             flex-wrap: wrap;
         }
 
-        .btn-primary {
+        .cta-main {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 34px;
+            border-radius: 9999px;
+            background: var(--gradient-aurora);
+            color: #FFFFFF;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.45);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 40px rgba(139, 92, 246, 0.65);
+        }
+
+        .cta-main svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.2s ease;
+        }
+
+        .cta-main:hover svg {
+            transform: translateX(3px);
+        }
+
+        .cta-secondary {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             padding: 14px 30px;
-            background: var(--accent-gradient);
-            border: none;
             border-radius: 9999px;
-            color: white;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            box-shadow: 0 8px 30px rgba(124, 58, 237, 0.4);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.6);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 14px 28px;
             background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-subtle);
-            border-radius: 9999px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.95rem;
+            border: 1px solid var(--border-bright);
+            color: var(--text-lead);
             font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            backdrop-filter: blur(12px);
             transition: all 0.25s ease;
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(255, 255, 255, 0.2);
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.3);
             transform: translateY(-2px);
         }
 
-        /* Stats Strip */
-        .stats-strip {
-            margin-top: 70px;
-            padding: 24px 32px;
-            background: rgba(12, 14, 20, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
+        /* CLI Interactive Badge */
+        .cli-pill {
+            margin-top: 36px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 18px;
+            background: rgba(10, 13, 20, 0.8);
+            border: 1px solid var(--border-dim);
+            border-radius: 9999px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cli-pill:hover {
+            border-color: var(--border-bright);
+            color: var(--text-lead);
+        }
+
+        .cli-pill .cmd {
+            color: #38BDF8;
+        }
+
+        .cli-pill .copy-icon {
+            opacity: 0.6;
+            transition: opacity 0.2s ease;
+        }
+
+        .cli-pill:hover .copy-icon {
+            opacity: 1;
+        }
+
+        /* Live Systems Telemetry Banner */
+        .telemetry-strip {
+            margin-top: 60px;
+            padding: 24px 36px;
+            background: rgba(10, 13, 20, 0.5);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-xl);
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            text-align: center;
+            gap: 20px;
         }
 
-        .stat-item {
-            padding: 8px 12px;
+        .telemetry-item {
+            text-align: left;
+            border-left: 1px solid var(--border-dim);
+            padding-left: 20px;
         }
 
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: 800;
+        .telemetry-item:first-child {
+            border-left: none;
+            padding-left: 0;
+        }
+
+        .telemetry-header {
             font-family: var(--font-mono);
-            letter-spacing: -0.02em;
-            background: linear-gradient(180deg, #FFFFFF 0%, #94A3B8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
-        }
-
-        .stat-label {
-            font-size: 0.82rem;
-            color: var(--text-muted);
+            font-size: 0.72rem;
+            color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            font-weight: 600;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
-        /* Section Commons */
-        .section {
-            padding: 100px 0;
+        .telemetry-val {
+            font-size: 1.7rem;
+            font-weight: 800;
+            font-family: var(--font-mono);
+            letter-spacing: -0.03em;
+            color: var(--text-lead);
+        }
+
+        .telemetry-val.highlight-green { color: var(--emerald); }
+        .telemetry-val.highlight-cyan { color: var(--cyan); }
+        .telemetry-val.highlight-violet { color: #C084FC; }
+
+        /* Bento Grid Section */
+        .section-wrap {
+            padding: 110px 0;
             position: relative;
         }
 
         .section-header {
             text-align: center;
-            max-width: 680px;
-            margin: 0 auto 60px auto;
+            max-width: 720px;
+            margin: 0 auto 64px auto;
         }
 
-        .section-tag {
+        .eyebrow {
             font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--accent-secondary);
+            font-size: 0.78rem;
+            color: var(--cyan);
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            letter-spacing: 0.14em;
             margin-bottom: 12px;
             display: inline-block;
         }
 
-        .section-title {
-            font-size: 2.6rem;
+        .headline {
+            font-size: 3rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
-            line-height: 1.2;
-            margin-bottom: 16px;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 18px;
         }
 
-        .section-desc {
-            color: var(--text-secondary);
-            font-size: 1.05rem;
+        .subline {
+            color: var(--text-sub);
+            font-size: 1.1rem;
             line-height: 1.6;
         }
 
-        /* Pillars Grid */
-        .pillars-grid {
+        /* Modern Asymmetric Bento Grid */
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 22px;
         }
 
-        .pillar-card {
+        .bento-card {
             background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            padding: 36px;
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-lg);
+            padding: 38px;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
-        .pillar-card::before {
+        /* Interactive Spotlight Border Highlight (Cursor tracking) */
+        .bento-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--accent-gradient);
+            inset: 0;
+            border-radius: var(--radius-lg);
+            padding: 1px;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(168, 85, 247, 0.35), transparent 40%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
 
-        .pillar-card:hover {
+        .bento-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.35);
             background: var(--bg-card-hover);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
-        .pillar-card:hover::before {
+        .bento-card:hover::before {
             opacity: 1;
         }
 
-        .pillar-icon {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            background: rgba(139, 92, 246, 0.1);
+        .col-span-8 { grid-column: span 8; }
+        .col-span-4 { grid-column: span 4; }
+        .col-span-6 { grid-column: span 6; }
+        .col-span-12 { grid-column: span 12; }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(139, 92, 246, 0.12);
             border: 1px solid rgba(139, 92, 246, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
+            color: #C084FC;
             margin-bottom: 24px;
-            color: #C4B5FD;
         }
 
-        .pillar-icon svg {
-            width: 26px;
-            height: 26px;
+        .card-icon.cyan-accent {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: rgba(56, 189, 248, 0.25);
+            color: var(--cyan);
         }
 
-        .pillar-title {
-            font-size: 1.35rem;
+        .card-icon.emerald-accent {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.25);
+            color: var(--emerald);
+        }
+
+        .card-icon svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .card-title {
+            font-size: 1.45rem;
             font-weight: 700;
-            margin-bottom: 12px;
             letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            color: var(--text-lead);
         }
 
-        .pillar-desc {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
+        .card-desc {
+            color: var(--text-sub);
+            font-size: 0.96rem;
             line-height: 1.6;
-            margin-bottom: 20px;
+            margin-bottom: 26px;
         }
 
-        .pillar-tags {
+        .pill-cluster {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
+            margin-top: auto;
         }
 
-        .pillar-tag {
-            padding: 4px 10px;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .tech-pill {
             font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
+            font-size: 0.72rem;
+            padding: 5px 12px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-dim);
+            color: var(--text-sub);
         }
 
-        /* Manifesto Quote Card */
-        .manifesto-box {
-            margin-top: 60px;
-            background: linear-gradient(135deg, rgba(16, 20, 30, 0.8) 0%, rgba(22, 28, 42, 0.5) 100%);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            border-radius: 24px;
+        /* Interactive Architecture Visualizer Inside Bento Card */
+        .terminal-box {
+            background: #06080F;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: #E2E8F0;
+            overflow-x: auto;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 14px;
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .terminal-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+
+        .td-red { background: #EF4444; }
+        .td-amber { background: #F59E0B; }
+        .td-green { background: #10B981; }
+
+        .terminal-code {
+            line-height: 1.7;
+        }
+
+        .code-keyword { color: #C084FC; font-weight: 600; }
+        .code-func { color: #38BDF8; }
+        .code-string { color: #A7F3D0; }
+        .code-comment { color: #64748B; font-style: italic; }
+
+        /* Interactive Tabbed System Matrix */
+        .matrix-section {
+            background: rgba(8, 11, 18, 0.6);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-xl);
             padding: 48px;
+            backdrop-filter: blur(20px);
+            margin-top: 40px;
+        }
+
+        .matrix-tabs {
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid var(--border-dim);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .matrix-tab {
+            padding: 9px 20px;
+            border-radius: 9999px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-dim);
+            color: var(--text-sub);
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .matrix-tab.active, .matrix-tab:hover {
+            background: rgba(139, 92, 246, 0.15);
+            border-color: rgba(139, 92, 246, 0.4);
+            color: #FFFFFF;
+        }
+
+        .matrix-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 36px;
+            align-items: center;
+        }
+
+        .matrix-info h4 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            letter-spacing: -0.02em;
+        }
+
+        .matrix-info p {
+            color: var(--text-sub);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 22px;
+        }
+
+        .matrix-metrics {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .metric-cell {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-dim);
+            border-radius: var(--radius-md);
+            padding: 16px;
+        }
+
+        .metric-cell-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+        }
+
+        .metric-cell-val {
+            font-family: var(--font-mono);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-lead);
+            margin-top: 4px;
+        }
+
+        /* Manifesto Grand Quote */
+        .manifesto-banner {
+            margin: 80px 0;
+            padding: 60px 48px;
+            background: radial-gradient(ellipse at 50% -20%, rgba(139, 92, 246, 0.18) 0%, rgba(10, 13, 20, 0.7) 70%);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: var(--radius-xl);
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .manifesto-box::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.12), transparent 70%);
-            pointer-events: none;
+        .quote-lead {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.4;
+            max-width: 900px;
+            margin: 0 auto 20px auto;
+            color: #F8FAFC;
         }
 
-        .manifesto-quote {
-            font-size: 1.55rem;
-            font-weight: 600;
-            line-height: 1.5;
-            letter-spacing: -0.02em;
-            color: #F1F5F9;
-            max-width: 820px;
-            margin: 0 auto 16px auto;
+        .quote-lead span {
+            background: var(--gradient-aurora);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .manifesto-author {
+        .quote-author {
             font-family: var(--font-mono);
             font-size: 0.85rem;
-            color: var(--accent-secondary);
+            color: var(--cyan);
             text-transform: uppercase;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--border-subtle);
-            padding: 50px 0 35px 0;
-            margin-top: 60px;
-            background: rgba(6, 7, 9, 0.95);
+            border-top: 1px solid var(--border-dim);
+            padding: 70px 0 40px 0;
+            background: #020305;
         }
 
-        .footer-content {
+        .footer-grid {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 24px;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
         }
 
         .footer-brand {
@@ -533,315 +843,607 @@
             gap: 12px;
         }
 
-        .footer-copy {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
         .footer-links {
             display: flex;
-            gap: 24px;
+            gap: 28px;
             list-style: none;
         }
 
         .footer-links a {
-            color: var(--text-secondary);
+            color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             transition: color 0.2s ease;
         }
 
         .footer-links a:hover {
-            color: var(--text-primary);
+            color: var(--text-lead);
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 900px) {
-            nav { padding: 0 24px; }
-            .nav-links { display: none; }
-            .hero-title { font-size: 2.8rem; }
-            .pillars-grid { grid-template-columns: 1fr; }
-            .stats-strip { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+        .footer-bottom {
+            padding-top: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+            gap: 16px;
         }
 
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2.2rem; }
-            .hero-sub { font-size: 1.05rem; }
-            .stats-strip { grid-template-columns: 1fr; }
-            .manifesto-box { padding: 32px 20px; }
-            .manifesto-quote { font-size: 1.2rem; }
-            .footer-content { flex-direction: column; text-align: center; }
+        /* Toast Notification */
+        #toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #10B981;
+            color: #FFFFFF;
+            padding: 10px 22px;
+            border-radius: 9999px;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+        }
+
+        #toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-title { font-size: 3.6rem; }
+            .col-span-8, .col-span-4 { grid-column: span 12; }
+            .matrix-content { grid-template-columns: 1fr; }
+            .telemetry-strip { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .telemetry-item { border-left: none; padding-left: 0; }
+        }
+
+        @media (max-width: 640px) {
+            header { padding: 12px 16px; }
+            .nav-inner { padding: 6px 12px 6px 16px; }
+            .nav-menu { display: none; }
+            .hero { padding-top: 140px; }
+            .hero-title { font-size: 2.6rem; }
+            .hero-desc { font-size: 1.05rem; }
+            .headline { font-size: 2.2rem; }
+            .telemetry-strip { grid-template-columns: 1fr; }
+            .quote-lead { font-size: 1.35rem; }
+            .matrix-section { padding: 28px 20px; }
+            .footer-grid, .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <canvas id="ambient-canvas"></canvas>
-    <div class="ambient-glow-1"></div>
-    <div class="ambient-glow-2"></div>
+    <div class="noise-layer"></div>
+    <canvas id="interactive-canvas"></canvas>
+    <div class="glow-orb-primary"></div>
+    <div class="glow-orb-secondary"></div>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="brand">
-            <div class="brand-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                </svg>
-            </div>
-            <span class="brand-name">The Aether Labs</span>
-        </a>
+    <div id="toast">Copied to clipboard</div>
 
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#pillars">Research Pillars</a></li>
-            <li><a href="#manifesto">Manifesto</a></li>
-        </ul>
+    <!-- Navigation Header -->
+    <header id="main-header">
+        <div class="nav-inner">
+            <a href="#" class="logo">
+                <div class="logo-symbol">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                    </svg>
+                </div>
+                <span class="logo-text">The Aether Labs</span>
+                <span class="logo-badge">LABS-V2.4</span>
+            </a>
 
-        <div class="nav-actions">
-            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-github">
+            <ul class="nav-menu">
+                <li><a href="#research">Research</a></li>
+                <li><a href="#systems">Systems Matrix</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#manifesto">Manifesto</a></li>
+            </ul>
+
+            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="nav-btn">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
                 </svg>
-                <span>GitHub</span>
+                <span>GitHub Hub</span>
             </a>
         </div>
-    </nav>
+    </header>
 
-    <!-- Main Content -->
-    <main class="container">
+    <!-- Main Container -->
+    <div class="wrapper">
         <!-- Hero Section -->
-        <section class="hero" id="about">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                <span>THE AETHER LABS // AUTONOMOUS AI & RESEARCH</span>
+        <section class="hero">
+            <div class="status-pill">
+                <span class="status-dot"></span>
+                <span>AUTONOMOUS SYSTEMS ONLINE // ALL PIPELINES VERIFIED</span>
             </div>
 
             <h1 class="hero-title">
-                Exploring Infinite Possibilities Through <span>Pure Technology</span>
+                Engineering Next-Gen Intelligence Through <span class="hero-title-shimmer">Pure Technology</span>
             </h1>
 
-            <p class="hero-sub">
-                An independent research and development studio engineering autonomous agentic architectures, practical intelligent tools, and next-generation software systems.
+            <p class="hero-desc">
+                An elite independent research studio developing deterministic multi-agent architectures, first-principles cognitive graphs, and zero-compromise automated systems.
             </p>
 
-            <div class="hero-cta">
-                <a href="#pillars" class="btn-primary">
+            <div class="hero-actions">
+                <a href="#research" class="cta-main">
                     <span>Explore Research Pillars</span>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <polyline points="19 12 12 19 5 12"></polyline>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
                     </svg>
                 </a>
-                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-secondary">
-                    <span>View GitHub Repositories</span>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                        <polyline points="15 3 21 3 21 9"></polyline>
-                        <line x1="10" y1="14" x2="21" y2="3"></line>
-                    </svg>
+                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="cta-secondary">
+                    <span>Source Repositories</span>
                 </a>
             </div>
 
-            <!-- Stats Strip -->
-            <div class="stats-strip">
-                <div class="stat-item">
-                    <div class="stat-value">22+</div>
-                    <div class="stat-label">Active Projects</div>
+            <!-- Copyable CLI Command -->
+            <div>
+                <div class="cli-pill" onclick="copyCli()">
+                    <span>$</span>
+                    <span class="cmd">git clone https://github.com/the-aether-labs/the-aether-labs.github.io</span>
+                    <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">100%</div>
-                    <div class="stat-label">Private & Secured</div>
+            </div>
+
+            <!-- Telemetry Status Strip -->
+            <div class="telemetry-strip">
+                <div class="telemetry-item">
+                    <div class="telemetry-header">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                        <span>Active Projects</span>
+                    </div>
+                    <div class="telemetry-val highlight-violet">22 Systems</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">24/7</div>
-                    <div class="stat-label">Autonomous Pipelines</div>
+
+                <div class="telemetry-item">
+                    <div class="telemetry-header">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        <span>Security Enclave</span>
+                    </div>
+                    <div class="telemetry-val highlight-green">100% Isolated</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">0%</div>
-                    <div class="stat-label">System Bloat</div>
+
+                <div class="telemetry-item">
+                    <div class="telemetry-header">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Runtime Latency</span>
+                    </div>
+                    <div class="telemetry-val highlight-cyan">&lt; 14ms Edge</div>
+                </div>
+
+                <div class="telemetry-item">
+                    <div class="telemetry-header">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
+                        <span>Cloud Recovery</span>
+                    </div>
+                    <div class="telemetry-val">1-Click Zero-Loss</div>
                 </div>
             </div>
         </section>
 
-        <!-- Pillars Section -->
-        <section class="section" id="pillars">
+        <!-- Bento Grid: Core Research Pillars -->
+        <section class="section-wrap" id="research">
             <div class="section-header">
-                <span class="section-tag">// ARCHITECTURE & FOCUS</span>
-                <h2 class="section-title">Core Research Pillars</h2>
-                <p class="section-desc">
-                    We translate theoretical intelligence into durable, ultra-fast software primitives and resilient systems.
+                <span class="eyebrow">// SCIENTIFIC DISCIPLINES</span>
+                <h2 class="headline">Architecture & Core Research</h2>
+                <p class="subline">
+                    Bridging cutting-edge cognitive autonomy with deterministic, zero-strain systems engineering.
                 </p>
             </div>
 
-            <div class="pillars-grid">
-                <!-- Pillar 1 -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                            <line x1="8" y1="21" x2="16" y2="21"></line>
-                            <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
+            <div class="bento-grid">
+                <!-- Bento 1: Swarm Engine (Span 8) -->
+                <div class="bento-card col-span-8">
+                    <div>
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                <polyline points="2 17 12 22 22 17"></polyline>
+                                <polyline points="2 12 12 17 22 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Autonomous Multi-Agent Swarms</h3>
+                        <p class="card-desc">
+                            Hierarchical multi-agent topologies utilizing reactive wake-up dispatching, isolated execution sandboxes, and automated verification loops. Zero human babysitting required.
+                        </p>
                     </div>
-                    <h3 class="pillar-title">Autonomous Agent Architectures</h3>
-                    <p class="pillar-desc">
-                        Designing multi-agent orchestrations with reactive message loops, isolated sandboxes, and self-verifying execution boundaries.
-                    </p>
-                    <div class="pillar-tags">
-                        <span class="pillar-tag">Multi-Agent Swarms</span>
-                        <span class="pillar-tag">Deterministic Sandbox</span>
-                        <span class="pillar-tag">Self-Healing</span>
+
+                    <div class="terminal-box">
+                        <div class="terminal-header">
+                            <div class="terminal-dots">
+                                <span class="terminal-dot td-red"></span>
+                                <span class="terminal-dot td-amber"></span>
+                                <span class="terminal-dot td-green"></span>
+                            </div>
+                            <span style="color: var(--text-dim);">swarm-orchestrator.ts</span>
+                        </div>
+                        <div class="terminal-code">
+                            <span class="code-keyword">const</span> swarm = <span class="code-keyword">await</span> AetherSwarm.<span class="code-func">spawn</span>({<br>
+                            &nbsp;&nbsp;topology: <span class="code-string">"deterministic-hierarchy"</span>,<br>
+                            &nbsp;&nbsp;agents: [<span class="code-string">"Coordinator"</span>, <span class="code-string">"Researcher"</span>, <span class="code-string">"Verifier"</span>],<br>
+                            &nbsp;&nbsp;guardrails: <span class="code-string">"zero-leak-strict-boundary"</span><br>
+                            });<br>
+                            <span class="code-comment">// Reactive wakeups triggered only on verified state mutations</span><br>
+                            <span class="code-keyword">await</span> swarm.<span class="code-func">executeUntilVerified</span>();
+                        </div>
+                    </div>
+
+                    <div class="pill-cluster" style="margin-top: 24px;">
+                        <span class="tech-pill">Reactive Message Loops</span>
+                        <span class="tech-pill">Subagent Enclaves</span>
+                        <span class="tech-pill">Autonomous Verifiers</span>
                     </div>
                 </div>
 
-                <!-- Pillar 2 -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                            <polyline points="2 17 12 22 22 17"></polyline>
-                            <polyline points="2 12 12 17 22 12"></polyline>
-                        </svg>
+                <!-- Bento 2: First Principles Cognitive Graph (Span 4) -->
+                <div class="bento-card col-span-4">
+                    <div>
+                        <div class="card-icon cyan-accent">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="18" cy="5" r="3"></circle>
+                                <circle cx="6" cy="12" r="3"></circle>
+                                <circle cx="18" cy="19" r="3"></circle>
+                                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                                <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Cognitive Knowledge Vaults</h3>
+                        <p class="card-desc">
+                            4-Lens structural deconstruction: Core, Map, Boundary, Execution. Synthesizing dense knowledge directly into local Markdown vaults with zero cloud lock-in.
+                        </p>
                     </div>
-                    <h3 class="pillar-title">First-Principles Knowledge Engines</h3>
-                    <p class="pillar-desc">
-                        Deconstructing complex systems through structural multi-lens frameworks, dynamic concept mapping, and local Markdown knowledge vaults.
-                    </p>
-                    <div class="pillar-tags">
-                        <span class="pillar-tag">Obsidian Integration</span>
-                        <span class="pillar-tag">4-Lens Mastery</span>
-                        <span class="pillar-tag">Zero-Latency Retrieval</span>
+
+                    <div class="pill-cluster">
+                        <span class="tech-pill">Obsidian IPC</span>
+                        <span class="tech-pill">4-Lens Mastery</span>
+                        <span class="tech-pill">Local Graph RAG</span>
                     </div>
                 </div>
 
-                <!-- Pillar 3 -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                        </svg>
+                <!-- Bento 3: Zero-Leak Shield & Cloud Pipeline (Span 4) -->
+                <div class="bento-card col-span-4">
+                    <div>
+                        <div class="card-icon emerald-accent">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Zero-Leak Guardrails</h3>
+                        <p class="card-desc">
+                            Automated credential masking, private noreply Git remotes, and background encryption enclaves guaranteeing absolute data sovereignty and hardware safety.
+                        </p>
                     </div>
-                    <h3 class="pillar-title">Resilient Automation & Privacy</h3>
-                    <p class="pillar-desc">
-                        Silent background schedulers, zero-leak credential isolation, and automated multi-tier disaster recovery architectures.
-                    </p>
-                    <div class="pillar-tags">
-                        <span class="pillar-tag">Task Automation</span>
-                        <span class="pillar-tag">Credential Masking</span>
-                        <span class="pillar-tag">1-Click Recovery</span>
+
+                    <div class="pill-cluster">
+                        <span class="tech-pill">Masked Git Commits</span>
+                        <span class="tech-pill">Silent VBS Engine</span>
+                        <span class="tech-pill">Hardware Protection</span>
                     </div>
                 </div>
 
-                <!-- Pillar 4 -->
-                <div class="pillar-card">
-                    <div class="pillar-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
+                <!-- Bento 4: Silent Daemon & Recovery (Span 8) -->
+                <div class="bento-card col-span-8">
+                    <div>
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                <line x1="8" y1="21" x2="16" y2="21"></line>
+                                <line x1="12" y1="17" x2="12" y2="21"></line>
+                            </svg>
+                        </div>
+                        <h3 class="card-title">Silent Background Synchronization</h3>
+                        <p class="card-desc">
+                            Zero-interruption Windows task automation running entirely concealed without console windows, capturing 200+ conversation sessions into encrypted rolling cloud archives.
+                        </p>
                     </div>
-                    <h3 class="pillar-title">Modern Web & Human-AI Interfaces</h3>
-                    <p class="pillar-desc">
-                        Ultra-lightweight, responsive interfaces bridging complex autonomous reasoning into frictionless, delightful human experiences.
-                    </p>
-                    <div class="pillar-tags">
-                        <span class="pillar-tag">Sub-200ms Load</span>
-                        <span class="pillar-tag">Glassmorphic UI</span>
-                        <span class="pillar-tag">Accessible Design</span>
+
+                    <div class="terminal-box">
+                        <div class="terminal-code">
+                            <span class="code-comment"># Daily 20:00 automated silent daemon execution</span><br>
+                            <span class="code-func">Invoke-AetherBackup</span> -Target <span class="code-string">"GoogleDrive:\Backups"</span> -Retention <span class="code-keyword">7</span><br>
+                            <span class="code-keyword">[OK]</span> 16,420 cognitive nodes compacted &rarr; 266 MB stream &bull; 0ms UI impact
+                        </div>
+                    </div>
+
+                    <div class="pill-cluster" style="margin-top: 24px;">
+                        <span class="tech-pill">Rolling 7-Day Retention</span>
+                        <span class="tech-pill">Native tar Deflate</span>
+                        <span class="tech-pill">Instant Disaster Recovery</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Manifesto Box -->
-            <div class="manifesto-box" id="manifesto">
-                <p class="manifesto-quote">
-                    “Technology is at its best when it removes friction, protects personal sovereignty, and transforms complexity into effortless intelligence.”
-                </p>
-                <div class="manifesto-author">// The Aether Labs Core Directive</div>
             </div>
         </section>
-    </main>
 
-    <!-- Footer -->
+        <!-- Interactive Systems Matrix -->
+        <section class="section-wrap" id="systems">
+            <div class="section-header">
+                <span class="eyebrow">// LIVE TELEMETRY MATRIX</span>
+                <h2 class="headline">Explore System Architectures</h2>
+                <p class="subline">
+                    Click through active architectural subsystems to inspect operational topologies and specifications.
+                </p>
+            </div>
+
+            <div class="matrix-section">
+                <div class="matrix-tabs">
+                    <button class="matrix-tab active" onclick="switchMatrix('swarm', this)">// SWARM-TOPOLOGY</button>
+                    <button class="matrix-tab" onclick="switchMatrix('vault', this)">// KNOWLEDGE-VAULT</button>
+                    <button class="matrix-tab" onclick="switchMatrix('security', this)">// PRIVACY-ENCLAVE</button>
+                    <button class="matrix-tab" onclick="switchMatrix('cloud', this)">// DISASTER-RECOVERY</button>
+                </div>
+
+                <div class="matrix-content" id="matrix-display">
+                    <div class="matrix-info">
+                        <h4 id="mat-title">Multi-Agent Swarm Topology</h4>
+                        <p id="mat-desc">
+                            Autonomous agents running in deterministic workspaces, communicating via shared message bus and reactive wakeup triggers without busy-polling or token waste.
+                        </p>
+                        <div class="pill-cluster" id="mat-pills">
+                            <span class="tech-pill">Coordinated Handoffs</span>
+                            <span class="tech-pill">Shared Message Board</span>
+                            <span class="tech-pill">Self-Verification</span>
+                        </div>
+                    </div>
+
+                    <div class="matrix-metrics">
+                        <div class="metric-cell">
+                            <div class="metric-cell-lbl">Active Protocol</div>
+                            <div class="metric-cell-val" id="mat-m1">AETHER-SWARM/3.0</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-cell-lbl">Concurrency Model</div>
+                            <div class="metric-cell-val" id="mat-m2">Non-Blocking Async</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-cell-lbl">Failure Resilience</div>
+                            <div class="metric-cell-val" id="mat-m3">Automatic Self-Heal</div>
+                        </div>
+                        <div class="metric-cell">
+                            <div class="metric-cell-lbl">Token Efficiency</div>
+                            <div class="metric-cell-val" id="mat-m4">99.4% Optimized</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto Grand Statement -->
+        <section class="manifesto-banner" id="manifesto">
+            <p class="quote-lead">
+                “Technology achieves its highest form when it eliminates friction, protects <span>human sovereignty</span>, and transforms raw complexity into effortless intelligence.”
+            </p>
+            <div class="quote-author">// The Aether Labs Directive</div>
+        </section>
+    </div>
+
+    <!-- Global Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
+        <div class="wrapper">
+            <div class="footer-grid">
                 <div class="footer-brand">
-                    <div class="brand-icon" style="width: 28px; height: 28px;">
-                        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px;">
+                    <div class="logo-symbol" style="width: 30px; height: 30px;">
+                        <svg viewBox="0 0 24 24" style="width: 15px; height: 15px;">
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
                         </svg>
                     </div>
-                    <span class="brand-name" style="font-size: 1rem;">The Aether Labs</span>
-                </div>
-
-                <div class="footer-copy">
-                    &copy; 2026 The Aether Labs. Autonomous AI Research & Systems.
+                    <span class="logo-text" style="font-size: 1rem;">The Aether Labs</span>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-dim);">// Autonomous R&D</span>
                 </div>
 
                 <ul class="footer-links">
-                    <li><a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    <li><a href="#about">Overview</a></li>
-                    <li><a href="#pillars">Pillars</a></li>
+                    <li><a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">GitHub Profile</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#systems">Telemetry</a></li>
+                    <li><a href="#manifesto">Manifesto</a></li>
                 </ul>
+            </div>
+
+            <div class="footer-bottom">
+                <div>&copy; 2026 The Aether Labs. Autonomous Systems Engineering. All Rights Reserved.</div>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; color: #10B981;">
+                    &bull; ALL SYSTEMS OPERATIONAL &bull; 0% COMPROMISE
+                </div>
             </div>
         </div>
     </footer>
 
-    <!-- Interactive Canvas Particle Field -->
+    <!-- Interactive Scripts -->
     <script>
-        const canvas = document.getElementById('ambient-canvas');
+        // 1. Constellation Particle Physics
+        const canvas = document.getElementById('interactive-canvas');
         const ctx = canvas.getContext('2d');
-        let width, height;
+        let w, h;
         let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.size = Math.random() * 1.5 + 0.5;
-                this.speedX = (Math.random() - 0.5) * 0.25;
-                this.speedY = (Math.random() - 0.5) * 0.25;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x < 0) this.x = width;
-                if (this.x > width) this.x = 0;
-                if (this.y < 0) this.y = height;
-                if (this.y > height) this.y = 0;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+        function initCanvas() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            particles = [];
+            const count = Math.min(Math.floor(w / 18), 90);
+            for (let i = 0; i < count; i++) {
+                particles.push({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    size: Math.random() * 1.6 + 0.6,
+                    baseAlpha: Math.random() * 0.4 + 0.15
+                });
             }
         }
 
-        const particleCount = Math.min(width < 768 ? 40 : 80, 100);
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
+        window.addEventListener('resize', initCanvas);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
 
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
+        initCanvas();
+
+        function renderConstellation() {
+            ctx.clearRect(0, 0, w, h);
+
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0) p.x = w;
+                if (p.x > w) p.x = 0;
+                if (p.y < 0) p.y = h;
+                if (p.y > h) p.y = 0;
+
+                // Mouse interaction repulsion/attraction
+                if (mouse.x !== null) {
+                    let dx = mouse.x - p.x;
+                    let dy = mouse.y - p.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        let force = (mouse.radius - dist) / mouse.radius;
+                        p.x -= (dx / dist) * force * 1.5;
+                        p.y -= (dy / dist) * force * 1.5;
+                    }
+                }
+
+                // Draw Particle
+                ctx.fillStyle = `rgba(192, 132, 252, ${p.baseAlpha})`;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Connect nearby particles
+                for (let j = i + 1; j < particles.length; j++) {
+                    let p2 = particles[j];
+                    let dx = p.x - p2.x;
+                    let dy = p.y - p2.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < 110) {
+                        let alpha = (1 - dist / 110) * 0.18;
+                        ctx.strokeStyle = `rgba(99, 102, 241, ${alpha})`;
+                        ctx.lineWidth = 0.6;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
             }
-            requestAnimationFrame(animate);
+
+            requestAnimationFrame(renderConstellation);
         }
-        animate();
+        renderConstellation();
+
+        // 2. Bento Card Spotlight Tracking
+        document.querySelectorAll('.bento-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+
+        // 3. Systems Matrix Interactive Tabs
+        const matrixData = {
+            swarm: {
+                title: "Multi-Agent Swarm Topology",
+                desc: "Autonomous agents running in deterministic workspaces, communicating via shared message bus and reactive wakeup triggers without busy-polling or token waste.",
+                pills: ["Coordinated Handoffs", "Shared Message Board", "Self-Verification"],
+                m1: "AETHER-SWARM/3.0",
+                m2: "Non-Blocking Async",
+                m3: "Automatic Self-Heal",
+                m4: "99.4% Optimized"
+            },
+            vault: {
+                title: "First-Principles Cognitive Vault",
+                desc: "High-density multi-lens conceptual decomposition. Compiles abstract logic directly into bidirectional atomic Obsidian Markdown graphs.",
+                pills: ["4-Lens Deconstruction", "Obsidian Native IPC", "Zero-Latency Recall"],
+                m1: "COGNITIVE-GRAPH/V2",
+                m2: "Bidirectional Local",
+                m3: "Zero Data Leak",
+                m4: "Atomic Modular"
+            },
+            security: {
+                title: "Zero-Leak Privacy Enclave",
+                desc: "Mandatory hardware boundary isolation, private Git noreply proxy masking, and deterministic sandboxes blocking untrusted network execution.",
+                pills: ["Hardware Guardrail", "Masked Commits", "Deterministic Sandbox"],
+                m1: "SHIELD-ENCLAVE/V4",
+                m2: "Air-Gapped Local",
+                m3: "100% Guaranteed",
+                m4: "0.00% Exposure"
+            },
+            cloud: {
+                title: "Silent Disaster Recovery Daemon",
+                desc: "Concealed VBScript/PowerShell background pipelines taking direct multi-gigabyte atomic tar archives with 7-day rolling Google Drive synchronization.",
+                pills: ["Concealed VBScript", "Rolling 7-Backups", "1-Click Restorer"],
+                m1: "DAEMON-SYNCHRON/V1",
+                m2: "Idle Task Priority",
+                m3: "Atomic Checksums",
+                m4: "Instant Recovery"
+            }
+        };
+
+        function switchMatrix(key, btn) {
+            document.querySelectorAll('.matrix-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const data = matrixData[key];
+            document.getElementById('mat-title').textContent = data.title;
+            document.getElementById('mat-desc').textContent = data.desc;
+            document.getElementById('mat-m1').textContent = data.m1;
+            document.getElementById('mat-m2').textContent = data.m2;
+            document.getElementById('mat-m3').textContent = data.m3;
+            document.getElementById('mat-m4').textContent = data.m4;
+
+            const pillContainer = document.getElementById('mat-pills');
+            pillContainer.innerHTML = '';
+            data.pills.forEach(p => {
+                const span = document.createElement('span');
+                span.className = 'tech-pill';
+                span.textContent = p;
+                pillContainer.appendChild(span);
+            });
+        }
+
+        // 4. Copy CLI Command
+        function copyCli() {
+            navigator.clipboard.writeText("git clone https://github.com/the-aether-labs/the-aether-labs.github.io.git");
+            const toast = document.getElementById('toast');
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2500);
+        }
+
+        // 5. Scroll Header Transition
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
     </script>
 </body>
 </html>
