@@ -1,534 +1,1452 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev // The Aether Labs — AI Systems Engineer & Builder</title>
-    <meta name="description" content="AI Systems Engineer & Full-Stack Builder. I build autonomous agents, intelligent automations, and modern web applications.">
+    <title>Dev // The Aether Labs — Principal AI Systems Architect</title>
+    <meta name="description" content="Principal AI Systems Architect & Builder at The Aether Labs. Engineering autonomous multi-agent architectures, cognitive knowledge graphs, and zero-leak automation systems.">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%236366F1'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 
-    <!-- Google Font: Inter -->
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <script>
+        // Apply persisted theme immediately to prevent flash of unstyled content
+        (function () {
+            try {
+                const savedTheme = localStorage.getItem('aether_profile_theme');
+                if (savedTheme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                } else {
+                    document.documentElement.classList.add('dark');
+                }
+            } catch (e) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        obsidian: '#08090C',
+                        surfaceDark: '#0D0F14',
+                        paper: '#F8FAFC',
+                    }
+                }
+            }
+        };
+    </script>
 
     <style>
-        :root {
-            /* Calm Midnight Navy & Slate (Client-Grade Luxury) */
-            --bg-page: #080C14;
-            --bg-card: rgba(15, 23, 42, 0.7);
-            --bg-card-hover: rgba(23, 33, 58, 0.85);
-            --bg-tag: rgba(255, 255, 255, 0.05);
-
-            --border-subtle: rgba(148, 163, 184, 0.14);
-            --border-hover: rgba(59, 130, 246, 0.4);
-
-            --text-heading: #F8FAFC;
-            --text-body: #94A3B8;
-            --text-muted: #64748B;
-
-            --primary: #3B82F6;
-            --emerald: #10B981;
-
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-mono: 'JetBrains Mono', monospace;
-
-            --radius-sm: 8px;
-            --radius-md: 14px;
-            --radius-lg: 20px;
-        }
-
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
+        /* Base Typographic Precision */
         body {
-            background-color: var(--bg-page);
-            color: var(--text-heading);
-            font-family: var(--font-sans);
-            line-height: 1.6;
+            font-feature-settings: "cv02", "cv03", "cv04", "cv11";
             -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Subtle Ambient Radial Glow */
-        .ambient-glow {
-            position: fixed;
-            top: -220px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 900px;
-            height: 600px;
-            background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-            z-index: 0;
+        /* Layer A: 24px Architectural Radial Dot-Matrix Pattern */
+        .arch-dot-matrix {
+            background-size: 24px 24px;
+            background-image: radial-gradient(circle, rgba(15, 23, 42, 0.14) 1px, transparent 1px);
+            mask-image: radial-gradient(ellipse 90% 75% at 50% 20%, #000 50%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 20%, #000 50%, transparent 100%);
         }
 
-        .container {
-            width: 100%;
-            max-width: 820px;
-            margin: 0 auto;
-            padding: 0 24px;
-            position: relative;
-            z-index: 1;
+        .dark .arch-dot-matrix {
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.11) 1px, transparent 1px);
         }
 
-        /* Top Minimal Header */
-        header {
-            padding: 24px 0;
+        /* Layer D: Ultra-Light SVG Fractal Film Grain Overlay */
+        .arch-fractal-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='fractalNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23fractalNoise)' opacity='0.032'/%3E%3C/svg%3E");
         }
 
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        /* Architectural Surface Panels with Crisp 1px Hairline Borders */
+        .swiss-panel {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .brand-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: var(--text-heading);
+        .dark .swiss-panel {
+            background: rgba(13, 15, 21, 0.78);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 20px 40px -20px rgba(0, 0, 0, 0.7);
         }
 
-        .avatar-box {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #3B82F6, #1D4ED8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 0.95rem;
-            color: #FFFFFF;
-            box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
+        html:not(.dark) .swiss-panel {
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 12px 32px -16px rgba(15, 23, 42, 0.08);
         }
 
-        .brand-text {
-            font-size: 0.98rem;
-            font-weight: 700;
-            letter-spacing: -0.01em;
+        .swiss-card-interactive:hover {
+            transform: translateY(-2px);
         }
 
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 14px;
-            border-radius: 9999px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.25);
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: #A7F3D0;
+        .dark .swiss-card-interactive:hover {
+            border-color: rgba(129, 140, 248, 0.32);
         }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--emerald);
-            box-shadow: 0 0 8px var(--emerald);
+        html:not(.dark) .swiss-card-interactive:hover {
+            border-color: rgba(79, 70, 229, 0.32);
         }
 
-        /* Profile Hero Section */
-        .profile-hero {
-            padding: 50px 0 35px 0;
+        /* Hide Native Scrollbars on Horizontal Tracks */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
 
-        .profile-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-lg);
-            padding: 38px;
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        /* Interactive Horizontal Drag & Snap Track */
+        .horizontal-track {
+            cursor: grab;
+        }
+        .horizontal-track.is-dragging {
+            cursor: grabbing;
+            user-select: none;
+            scroll-snap-type: none !important;
+            scroll-behavior: auto !important;
         }
 
-        .role-tag {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: #60A5FA;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .profile-title {
-            font-size: clamp(1.9rem, 4.5vw, 2.6rem);
-            font-weight: 800;
-            letter-spacing: -0.035em;
-            line-height: 1.2;
-            color: #FFFFFF;
-            margin-bottom: 16px;
-        }
-
-        .profile-title span {
-            background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .profile-bio {
-            color: var(--text-body);
-            font-size: 1.05rem;
-            line-height: 1.65;
-            margin-bottom: 28px;
-            max-width: 680px;
-        }
-
-        .action-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn-hire {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 24px;
-            border-radius: var(--radius-sm);
-            background: #FFFFFF;
-            color: #080C14;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-hire:hover {
-            background: #E2E8F0;
-            transform: translateY(-1px);
-        }
-
-        .btn-gh {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 22px;
-            border-radius: var(--radius-sm);
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-heading);
-            font-weight: 500;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-
-        .btn-gh:hover {
-            background: rgba(255, 255, 255, 0.08);
-            border-color: var(--border-hover);
-        }
-
-        .btn-gh svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* Proof of Work Metrics Strip */
-        .proof-strip {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 14px;
-            margin: 24px 0 45px 0;
-            text-align: center;
-        }
-
-        .proof-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 18px 16px;
-        }
-
-        .proof-val {
-            font-family: var(--font-mono);
-            font-size: 1.45rem;
-            font-weight: 700;
-            color: #FFFFFF;
-        }
-
-        .proof-lbl {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 4px;
-        }
-
-        /* What I Do Section */
-        .section-heading {
-            font-size: 1.25rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 18px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .section-heading span {
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            color: #60A5FA;
-            font-weight: 600;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
-
-        .service-row {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            transition: all 0.2s ease;
-        }
-
-        .service-row:hover {
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-            transform: translateY(-1px);
-        }
-
-        .service-num {
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            font-weight: 700;
-            color: #60A5FA;
-            background: rgba(59, 130, 246, 0.1);
-            padding: 4px 8px;
-            border-radius: 6px;
-            margin-top: 2px;
-        }
-
-        .service-info h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 4px;
-            letter-spacing: -0.01em;
-        }
-
-        .service-info p {
-            font-size: 0.92rem;
-            color: var(--text-body);
-            line-height: 1.55;
-        }
-
-        /* Tech Stack Pills */
-        .stack-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            padding: 22px 24px;
-            margin-bottom: 50px;
-        }
-
-        .stack-title {
-            font-size: 0.82rem;
-            font-family: var(--font-mono);
-            text-transform: uppercase;
-            color: var(--text-muted);
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
-        }
-
-        .stack-pills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tech-pill {
-            font-family: var(--font-mono);
-            font-size: 0.74rem;
-            padding: 5px 12px;
-            border-radius: var(--radius-sm);
-            background: var(--bg-tag);
-            border: 1px solid var(--border-subtle);
-            color: var(--text-heading);
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-subtle);
-            padding: 28px 0;
-            margin-top: 30px;
-        }
-
-        .footer-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .footer-inner a {
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer-inner a:hover {
-            color: var(--text-heading);
-        }
-
-        /* Mobile Viewport */
-        @media (max-width: 640px) {
-            .profile-card { padding: 26px 20px; }
-            .proof-strip { grid-template-columns: 1fr; gap: 10px; }
-            .service-row { flex-direction: column; gap: 10px; }
-            .footer-inner { flex-direction: column; text-align: center; }
+        /* Print-Ready 1-Page Executive Profile Stylesheet */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            html, body {
+                background: #ffffff !important;
+                color: #09090b !important;
+                font-size: 9.5pt !important;
+            }
+            main {
+                max-width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            section {
+                margin-bottom: 1rem !important;
+                break-inside: avoid;
+            }
+            .horizontal-track {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 0.75rem !important;
+                overflow: visible !important;
+            }
+            .horizontal-track > * {
+                min-width: 0 !important;
+                max-width: 100% !important;
+            }
+            .swiss-panel {
+                background: #ffffff !important;
+                border: 1px solid #d4d4d8 !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+            }
+            .print-force-dark-text {
+                color: #09090b !important;
+            }
+            .print-force-muted-text {
+                color: #52525b !important;
+            }
         }
     </style>
 </head>
-<body>
-    <div class="ambient-glow"></div>
+<body class="bg-[#F8FAFC] text-slate-900 dark:bg-[#08090C] dark:text-zinc-100 min-h-screen relative selection:bg-indigo-500 selection:text-white overflow-x-hidden">
 
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="header-inner">
-                <a href="#" class="brand-pill">
-                    <div class="avatar-box">A</div>
-                    <span class="brand-text">The Aether Labs</span>
-                </a>
+    <!-- ===================================================================== -->
+    <!-- MULTI-LAYERED ARCHITECTURAL FIXED BACKGROUND                          -->
+    <!-- ===================================================================== -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden no-print" aria-hidden="true">
+        <!-- Layer A: 24px Radial Dot-Matrix Pattern -->
+        <div class="absolute inset-0 arch-dot-matrix"></div>
 
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span>Available For Projects</span>
-                </div>
-            </div>
-        </header>
+        <!-- Layer B: Dual-Spectrum Subtle Ambient Aurora Glows -->
+        <div class="absolute -top-40 -left-32 w-[640px] h-[460px] rounded-full bg-indigo-500/[0.09] dark:bg-indigo-500/[0.14] blur-[130px]"></div>
+        <div class="absolute -bottom-44 -right-32 w-[620px] h-[460px] rounded-full bg-sky-500/[0.08] dark:bg-cyan-500/[0.10] blur-[135px]"></div>
 
-        <!-- Profile Hero (Client View) -->
-        <section class="profile-hero">
-            <div class="profile-card">
-                <div class="role-tag">// LEAD AI SYSTEMS ENGINEER & BUILDER</div>
-                <h1 class="profile-title">
-                    Hi, I'm Dev. <br>
-                    <span>I Build Autonomous AI Systems & Modern Software.</span>
-                </h1>
+        <!-- Layer C: Fine Concentric Architectural Contour Rings Behind Grid -->
+        <svg class="absolute top-12 left-1/2 -translate-x-1/2 w-[1160px] h-[680px] opacity-[0.26] dark:opacity-[0.16]" viewBox="0 0 1160 680" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="580" cy="220" r="240" stroke="url(#contourStroke)" stroke-width="1" />
+            <circle cx="580" cy="220" r="370" stroke="url(#contourStroke)" stroke-width="1" stroke-dasharray="3 6" />
+            <circle cx="580" cy="220" r="500" stroke="url(#contourStroke)" stroke-width="1" />
+            <line x1="580" y1="0" x2="580" y2="680" stroke="url(#contourStroke)" stroke-width="1" stroke-dasharray="2 8" />
+            <line x1="80" y1="220" x2="1080" y2="220" stroke="url(#contourStroke)" stroke-width="1" stroke-dasharray="2 8" />
+            <defs>
+                <linearGradient id="contourStroke" x1="580" y1="0" x2="580" y2="680" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#6366F1" stop-opacity="0.55" />
+                    <stop offset="1" stop-color="#0EA5E9" stop-opacity="0" />
+                </linearGradient>
+            </defs>
+        </svg>
 
-                <p class="profile-bio">
-                    I help clients, founders, and companies turn complex ideas into lightning-fast web apps, custom autonomous AI agents, and silent automation pipelines that run reliably 24/7.
-                </p>
+        <!-- Layer E: Smooth Cursor-Reactive Radial Spotlight -->
+        <div id="cursorSpotlight" class="absolute w-[520px] h-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-500/[0.06] dark:bg-indigo-400/[0.07] blur-[100px] opacity-0 transition-opacity duration-300"></div>
 
-                <div class="action-row">
-                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-hire">
-                        <span>Get In Touch</span>
-                        &rarr;
-                    </a>
-                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-gh">
-                        <svg viewBox="0 0 24 24">
-                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-                        </svg>
-                        <span>GitHub Profile (22+ Repos)</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Quick Track Record Metrics -->
-        <section class="proof-strip">
-            <div class="proof-box">
-                <div class="proof-val">22+</div>
-                <div class="proof-lbl">Projects Built</div>
-            </div>
-            <div class="proof-box">
-                <div class="proof-val">100%</div>
-                <div class="proof-lbl">Privacy & NDA-Safe</div>
-            </div>
-            <div class="proof-box">
-                <div class="proof-val">24/7</div>
-                <div class="proof-lbl">Silent Automation</div>
-            </div>
-        </section>
-
-        <!-- What I Deliver For Clients -->
-        <section>
-            <h2 class="section-heading">
-                <span>// 01</span> What I Build For Clients
-            </h2>
-
-            <div class="services-grid">
-                <div class="service-row">
-                    <div class="service-num">01</div>
-                    <div class="service-info">
-                        <h3>Custom Autonomous AI Agents & Workflows</h3>
-                        <p>Multi-agent systems tailored to research, scrape, process data, and automate repetitive tasks without human babysitting.</p>
-                    </div>
-                </div>
-
-                <div class="service-row">
-                    <div class="service-num">02</div>
-                    <div class="service-info">
-                        <h3>High-Performance Web Applications & Tools</h3>
-                        <p>Modern, responsive, ultra-fast websites and custom web utilities designed with clean aesthetics and sub-100ms load times.</p>
-                    </div>
-                </div>
-
-                <div class="service-row">
-                    <div class="service-num">03</div>
-                    <div class="service-info">
-                        <h3>Automated Cloud & Desktop Pipelines</h3>
-                        <p>Reliable background syncs, zero-leak credential management, and disaster recovery workflows that run quietly on autopilot.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Core Stack -->
-        <section class="stack-box">
-            <div class="stack-title">Core Technology Stack</div>
-            <div class="stack-pills">
-                <span class="tech-pill">Python</span>
-                <span class="tech-pill">TypeScript</span>
-                <span class="tech-pill">Autonomous Multi-Agent AI</span>
-                <span class="tech-pill">Node.js</span>
-                <span class="tech-pill">PowerShell / Windows Automation</span>
-                <span class="tech-pill">Cloud & Git Enclaves</span>
-                <span class="tech-pill">Obsidian Architecture</span>
-            </div>
-        </section>
+        <!-- Layer D: Ultra-Light SVG Fractal Grain Overlay -->
+        <div class="absolute inset-0 arch-fractal-grain"></div>
     </div>
 
-    <!-- Minimal Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div>&copy; 2026 The Aether Labs &bull; Engineered by Dev</div>
-                <div>
-                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">github.com/the-aether-labs</a>
+    <!-- ===================================================================== -->
+    <!-- STICKY GLASSMORPHIC SWISS NAVIGATION HEADER                           -->
+    <!-- ===================================================================== -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-[#F8FAFC]/80 dark:bg-[#08090C]/80 border-b border-slate-900/[0.08] dark:border-white/[0.08] no-print">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between gap-4">
+            
+            <!-- Left: Monogram Badge, Name & Indexed Anchor Links -->
+            <div class="flex items-center gap-6 min-w-0">
+                <a href="#identity" class="flex items-center gap-2.5 group shrink-0">
+                    <span id="headerMonogram" class="w-7 h-7 rounded-md bg-slate-900 dark:bg-white text-white dark:text-obsidian font-mono text-xs font-semibold flex items-center justify-center tracking-tight">
+                        AL
+                    </span>
+                    <span id="headerName" class="text-sm font-semibold tracking-tight text-slate-900 dark:text-white">
+                        The Aether Labs
+                    </span>
+                    <span class="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.03] dark:bg-white/[0.04] font-mono text-[10px] tracking-wider text-slate-500 dark:text-zinc-400">
+                        DOSSIER // 2026
+                    </span>
+                </a>
+
+                <nav aria-label="Section Navigation" class="hidden md:flex items-center gap-1 font-mono text-[11px] text-slate-500 dark:text-zinc-400">
+                    <a href="#identity" class="px-2.5 py-1 rounded hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition">01 Identity</a>
+                    <a href="#work" class="px-2.5 py-1 rounded hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition">02 Work</a>
+                    <a href="#capabilities" class="px-2.5 py-1 rounded hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition">03 Capabilities</a>
+                    <a href="#ledger" class="px-2.5 py-1 rounded hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition">04 Ledger</a>
+                    <a href="#contact" class="px-2.5 py-1 rounded hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.05] transition">05 Contact</a>
+                </nav>
+            </div>
+
+            <!-- Right: Print CV, Theme Toggle, Edit Info -->
+            <div class="flex items-center gap-2 shrink-0">
+                <button type="button" onclick="window.print()" class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] text-xs font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition" title="Print Executive CV">
+                    <svg class="w-3.5 h-3.5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                    <span>Print CV</span>
+                </button>
+
+                <button type="button" onclick="toggleTheme()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] text-xs font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition" title="Toggle Dark / Light Theme">
+                    <svg class="w-3.5 h-3.5 hidden dark:block text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                    <svg class="w-3.5 h-3.5 block dark:hidden text-slate-700" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                    <span id="themeLabel" class="hidden sm:inline font-mono text-[11px]">Dark</span>
+                </button>
+
+                <button type="button" onclick="openEditModal()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-900 dark:bg-white text-white dark:text-obsidian text-xs font-medium hover:opacity-90 transition">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                    <span>Edit Profile Info</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- MAIN ARCHITECTURAL CONTAINER (max-w-5xl)                              -->
+    <!-- ===================================================================== -->
+    <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 py-10 sm:py-14 space-y-16">
+
+        <!-- ================================================================= -->
+        <!-- SECTION 01 // EXECUTIVE IDENTITY (STRUCTURED BENTO GRID)          -->
+        <!-- ================================================================= -->
+        <section id="identity" class="scroll-mt-20 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-900/[0.08] dark:border-white/[0.08] pb-2.5">
+                <span class="font-mono text-[11px] font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+                    01 // EXECUTIVE IDENTITY
+                </span>
+                <span class="font-mono text-[11px] text-slate-400 dark:text-zinc-500">
+                    DOSSIER · REV 2026.4
+                </span>
+            </div>
+
+            <!-- Main Bento Frame -->
+            <div class="swiss-panel rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] overflow-hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-900/[0.08] dark:divide-white/[0.08]">
+                    
+                    <!-- Left Panel: Avatar + Status + 2-Column Metadata Table -->
+                    <div class="lg:col-span-5 p-6 sm:p-7 flex flex-col justify-between gap-6">
+                        <div class="flex items-center gap-4">
+                            <!-- High-Tech Geometric Monogram Avatar -->
+                            <div class="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24 rounded-lg p-0.5 bg-gradient-to-br from-indigo-500/40 via-sky-400/30 to-transparent dark:from-indigo-400/40 dark:via-cyan-400/20 dark:to-transparent border border-slate-900/[0.08] dark:border-white/[0.12]">
+                                <img id="profilePortrait"
+                                     src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cdefs%3E%3ClinearGradient id='aetherGrad' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234F46E5'/%3E%3Cstop offset='50%25' stop-color='%230F172A'/%3E%3Cstop offset='100%25' stop-color='%23020617'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='240' height='240' rx='12' fill='url(%23aetherGrad)'/%3E%3Cpath d='M120 45 L185 175 L55 175 Z' fill='none' stroke='%2338BDF8' stroke-width='3' stroke-opacity='0.6'/%3E%3Ccircle cx='120' cy='120' r='38' fill='none' stroke='%23818CF8' stroke-width='2.5' stroke-dasharray='4 4'/%3E%3Ccircle cx='120' cy='120' r='6' fill='%2338BDF8'/%3E%3Ctext x='120' y='210' text-anchor='middle' fill='%23F8FAFC' font-family='Inter, sans-serif' font-weight='800' font-size='16' letter-spacing='2'%3EAETHER%3C/text%3E%3C/svg%3E"
+                                     alt="Dev // The Aether Labs"
+                                     class="w-full h-full rounded-[6px] object-cover bg-zinc-900"
+                                     onerror="applyPortraitFallback(this)">
+                                <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emerald-500 ring-2 ring-[#F8FAFC] dark:ring-[#0D0F14]" title="Active Status"></span>
+                            </div>
+
+                            <!-- Live Availability Indicator -->
+                            <div class="space-y-2">
+                                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-700 dark:text-emerald-300">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span>Available for Advisory &amp; Architecture</span>
+                                </div>
+                                <div class="font-mono text-[11px] text-slate-400 dark:text-zinc-500">
+                                    LAB: THE-AETHER-LABS · VERIFIED
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2-Column Key-Value Metadata Table -->
+                        <dl class="border border-slate-900/[0.08] dark:border-white/[0.08] rounded-lg divide-y divide-slate-900/[0.08] dark:divide-white/[0.08] text-xs">
+                            <div class="grid grid-cols-3 px-3.5 py-2.5 gap-2">
+                                <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">ROLE</dt>
+                                <dd id="metaRole" class="col-span-2 font-medium text-slate-800 dark:text-zinc-200 truncate">Principal AI Systems Architect</dd>
+                            </div>
+                            <div class="grid grid-cols-3 px-3.5 py-2.5 gap-2">
+                                <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">STUDIO</dt>
+                                <dd id="metaOrg" class="col-span-2 font-medium text-slate-800 dark:text-zinc-200">The Aether Labs</dd>
+                            </div>
+                            <div class="grid grid-cols-3 px-3.5 py-2.5 gap-2">
+                                <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">LOCATION</dt>
+                                <dd id="metaLocation" class="col-span-2 font-medium text-slate-800 dark:text-zinc-200">Remote · Global Reach</dd>
+                            </div>
+                            <div class="grid grid-cols-3 px-3.5 py-2.5 gap-2">
+                                <dt class="font-mono text-[11px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">CHANNEL</dt>
+                                <dd id="metaEmail" class="col-span-2 font-mono text-[11px] text-indigo-600 dark:text-indigo-400 truncate">the-aether-labs (GitHub)</dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- Right Panel: Name, Executive Summary & Actions -->
+                    <div class="lg:col-span-7 p-6 sm:p-8 flex flex-col justify-between gap-6">
+                        <div class="space-y-4">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2.5">
+                                    <h1 id="heroName" class="text-2xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white print-force-dark-text">
+                                        Dev // The Aether Labs
+                                    </h1>
+                                    <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400" title="Verified System Architect">
+                                        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg>
+                                    </span>
+                                </div>
+                                <p id="heroRole" class="text-sm sm:text-base font-medium text-slate-600 dark:text-zinc-300">
+                                    Principal AI Systems Architect · <span id="heroOrgInline" class="text-slate-900 dark:text-white">The Aether Labs</span>
+                                </p>
+                            </div>
+
+                            <p id="heroBio" class="text-sm leading-relaxed text-slate-600 dark:text-zinc-400 max-w-2xl print-force-muted-text">
+                                Architecting deterministic multi-agent swarms, cognitive knowledge graphs, and zero-leak automation infrastructure for high-velocity organizations.
+                            </p>
+                        </div>
+
+                        <!-- Action Row -->
+                        <div class="flex flex-wrap items-center gap-2.5 pt-2 no-print">
+                            <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition shadow-xs">
+                                <span>Get in Touch</span>
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </a>
+
+                            <button type="button" onclick="downloadVCard()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-md border border-slate-900/[0.1] dark:border-white/[0.1] bg-white/60 dark:bg-white/[0.03] hover:bg-slate-900/[0.04] dark:hover:bg-white/[0.06] text-xs font-medium text-slate-800 dark:text-zinc-200 transition">
+                                <svg class="w-3.5 h-3.5 text-indigo-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                <span>Download vCard (.vcf)</span>
+                            </button>
+
+                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] text-xs font-medium text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition ml-auto sm:ml-2">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                                <span>GitHub (22+ Repos)</span>
+                            </a>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- 4-Column Divided Tabular KPI Ledger -->
+                <div class="border-t border-slate-900/[0.08] dark:border-white/[0.08] grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 divide-x divide-slate-900/[0.08] dark:divide-white/[0.08] bg-slate-900/[0.015] dark:bg-white/[0.015]">
+                    <div class="p-4 sm:px-6 sm:py-5">
+                        <div id="kpi1Code" class="font-mono text-[10px] tracking-wider uppercase text-slate-400 dark:text-zinc-500">01 / PRODUCTION</div>
+                        <div id="kpi1Val" class="mt-1 text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">22+ Systems Built</div>
+                    </div>
+                    <div class="p-4 sm:px-6 sm:py-5">
+                        <div id="kpi2Code" class="font-mono text-[10px] tracking-wider uppercase text-slate-400 dark:text-zinc-500">02 / PRIVACY</div>
+                        <div id="kpi2Val" class="mt-1 text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">100% Isolated &amp; Secure</div>
+                    </div>
+                    <div class="p-4 sm:px-6 sm:py-5">
+                        <div id="kpi3Code" class="font-mono text-[10px] tracking-wider uppercase text-slate-400 dark:text-zinc-500">03 / LATENCY</div>
+                        <div id="kpi3Val" class="mt-1 text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">&lt; 14ms Edge Response</div>
+                    </div>
+                    <div class="p-4 sm:px-6 sm:py-5">
+                        <div id="kpi4Code" class="font-mono text-[10px] tracking-wider uppercase text-slate-400 dark:text-zinc-500">04 / AUTOMATION</div>
+                        <div id="kpi4Val" class="mt-1 text-lg sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white">24/7 Silent Daemons</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 02 // SELECTED WORK (HORIZONTAL SNAP TRACK)               -->
+        <!-- ================================================================= -->
+        <section id="work" class="scroll-mt-20 space-y-4">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-900/[0.08] dark:border-white/[0.08] pb-3">
+                <div>
+                    <span class="font-mono text-[11px] font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+                        02 // SELECTED WORK
+                    </span>
+                    <h2 class="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Selected Work &amp; Architectures
+                    </h2>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2.5 no-print">
+                    <div role="tablist" aria-label="Project Categories" class="inline-flex items-center p-1 rounded-lg border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.02] font-mono text-[11px]">
+                        <button type="button" data-filter="All" onclick="filterProjects('All')" class="filter-tab px-2.5 py-1 rounded-md bg-slate-900 dark:bg-white text-white dark:text-obsidian font-medium transition">All</button>
+                        <button type="button" data-filter="Agents" onclick="filterProjects('Agents')" class="filter-tab px-2.5 py-1 rounded-md text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition">Agents</button>
+                        <button type="button" data-filter="Knowledge" onclick="filterProjects('Knowledge')" class="filter-tab px-2.5 py-1 rounded-md text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition">Knowledge</button>
+                        <button type="button" data-filter="Automation" onclick="filterProjects('Automation')" class="filter-tab px-2.5 py-1 rounded-md text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition">Automation</button>
+                    </div>
+
+                    <div class="inline-flex items-center gap-1">
+                        <button type="button" onclick="scrollTrack('workTrack', -1)" aria-label="Scroll Left" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            ←
+                        </button>
+                        <button type="button" onclick="scrollTrack('workTrack', 1)" aria-label="Scroll Right" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Progress Bar -->
+            <div class="w-full h-[2px] rounded-full bg-slate-900/[0.07] dark:bg-white/[0.07] overflow-hidden no-print">
+                <div id="workProgress" class="h-full bg-indigo-600 dark:bg-indigo-400 rounded-full transition-[width] duration-150 ease-out" style="width: 35%;"></div>
+            </div>
+
+            <!-- Horizontal Carousel -->
+            <div id="workTrack" data-progress="workProgress" class="horizontal-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 03 // CORE CAPABILITIES                                   -->
+        <!-- ================================================================= -->
+        <section id="capabilities" class="scroll-mt-20 space-y-4">
+            <div class="flex items-end justify-between gap-4 border-b border-slate-900/[0.08] dark:border-white/[0.08] pb-3">
+                <div>
+                    <span class="font-mono text-[11px] font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+                        03 // CORE CAPABILITIES
+                    </span>
+                    <h2 class="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Specialized Systems Capabilities
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-3 no-print">
+                    <span class="hidden sm:inline font-mono text-[11px] text-slate-400 dark:text-zinc-500">04 DISCIPLINES</span>
+                    <div class="inline-flex items-center gap-1">
+                        <button type="button" onclick="scrollTrack('capTrack', -1)" aria-label="Scroll Left" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            ←
+                        </button>
+                        <button type="button" onclick="scrollTrack('capTrack', 1)" aria-label="Scroll Right" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-[2px] rounded-full bg-slate-900/[0.07] dark:bg-white/[0.07] overflow-hidden no-print">
+                <div id="capProgress" class="h-full bg-indigo-600 dark:bg-indigo-400 rounded-full transition-[width] duration-150 ease-out" style="width: 40%;"></div>
+            </div>
+
+            <div id="capTrack" data-progress="capProgress" class="horizontal-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2">
+                
+                <!-- CAP-01 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between font-mono text-[11px]">
+                            <span class="tracking-wider uppercase text-indigo-600 dark:text-indigo-400 font-semibold">CAP-01</span>
+                            <span class="text-slate-400 dark:text-zinc-500">AUTONOMY</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Multi-Agent Swarm Topologies</h3>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400">
+                            Designing deterministic multi-agent architectures using reactive wake-up dispatching, shared message boards, and self-healing verifier loops.
+                        </p>
+                    </div>
+                    <ul class="border-t border-slate-900/[0.08] dark:border-white/[0.08] divide-y divide-slate-900/[0.08] dark:divide-white/[0.08] text-xs">
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Reactive Event Loops</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">ASYNC</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Subagent Sandbox Enclaves</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">ISOLATION</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Automated Verifiers</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">GUARDRAILS</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- CAP-02 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between font-mono text-[11px]">
+                            <span class="tracking-wider uppercase text-indigo-600 dark:text-indigo-400 font-semibold">CAP-02</span>
+                            <span class="text-slate-400 dark:text-zinc-500">KNOWLEDGE</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">First-Principles Cognitive Vaults</h3>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400">
+                            4-Lens structural deconstruction (Core, Map, Boundary, Execution) compiling complex domains into atomic, bidirectional local Markdown graphs.
+                        </p>
+                    </div>
+                    <ul class="border-t border-slate-900/[0.08] dark:border-white/[0.08] divide-y divide-slate-900/[0.08] dark:divide-white/[0.08] text-xs">
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Obsidian IPC Protocol</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">LOCAL</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Atomic Graph Navigation</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">ZERO-LOCKIN</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Domain Concept Mapping</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">4-LENS</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- CAP-03 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between font-mono text-[11px]">
+                            <span class="tracking-wider uppercase text-indigo-600 dark:text-indigo-400 font-semibold">CAP-03</span>
+                            <span class="text-slate-400 dark:text-zinc-500">SECURITY</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Zero-Leak Privacy &amp; Enclaves</h3>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400">
+                            Hardened boundaries preventing credential exposure, private Git noreply proxy masking, and silent cloud synchronization without UI interruption.
+                        </p>
+                    </div>
+                    <ul class="border-t border-slate-900/[0.08] dark:border-white/[0.08] divide-y divide-slate-900/[0.08] dark:divide-white/[0.08] text-xs">
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Masked Commit Remotes</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">NOREPLY</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Silent VBS/PowerShell Daemons</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">0MS IMPACT</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Encrypted Cloud Archives</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">TAR DEFLATE</span>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- CAP-04 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-between font-mono text-[11px]">
+                            <span class="tracking-wider uppercase text-indigo-600 dark:text-indigo-400 font-semibold">CAP-04</span>
+                            <span class="text-slate-400 dark:text-zinc-500">INTERFACES</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">Precision Modern Web Systems</h3>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400">
+                            High-clarity, ultra-lightweight client interfaces designed with Swiss typographic discipline, sub-100ms load speeds, and zero runtime bloat.
+                        </p>
+                    </div>
+                    <ul class="border-t border-slate-900/[0.08] dark:border-white/[0.08] divide-y divide-slate-900/[0.08] dark:divide-white/[0.08] text-xs">
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Sub-100ms Load Budget</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">PURE WEB</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Fluid Swiss Typography</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">CLAMP()</span>
+                        </li>
+                        <li class="py-2.5 flex items-center justify-between text-slate-700 dark:text-zinc-300">
+                            <span>Zero-Bloat Engineering</span>
+                            <span class="font-mono text-[10px] text-slate-400 dark:text-zinc-500">PERFORMANCE</span>
+                        </li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 04 // CAREER & CREDENTIALS                                -->
+        <!-- ================================================================= -->
+        <section id="ledger" class="scroll-mt-20 space-y-4">
+            <div class="flex items-end justify-between gap-4 border-b border-slate-900/[0.08] dark:border-white/[0.08] pb-3">
+                <div>
+                    <span class="font-mono text-[11px] font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+                        04 // RECORD &amp; ARCHITECTURAL LEDGER
+                    </span>
+                    <h2 class="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Milestones &amp; Track Record
+                    </h2>
+                </div>
+
+                <div class="flex items-center gap-3 no-print">
+                    <span class="hidden sm:inline font-mono text-[11px] text-slate-400 dark:text-zinc-500">ACTIVE // 2026</span>
+                    <div class="inline-flex items-center gap-1">
+                        <button type="button" onclick="scrollTrack('ledgerTrack', -1)" aria-label="Scroll Left" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            ←
+                        </button>
+                        <button type="button" onclick="scrollTrack('ledgerTrack', 1)" aria-label="Scroll Right" class="w-8 h-8 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] bg-white/70 dark:bg-white/[0.03] hover:bg-slate-900/[0.05] dark:hover:bg-white/[0.08] text-slate-700 dark:text-zinc-200 font-mono text-xs flex items-center justify-center transition">
+                            →
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full h-[2px] rounded-full bg-slate-900/[0.07] dark:bg-white/[0.07] overflow-hidden no-print">
+                <div id="ledgerProgress" class="h-full bg-indigo-600 dark:bg-indigo-400 rounded-full transition-[width] duration-150 ease-out" style="width: 40%;"></div>
+            </div>
+
+            <div id="ledgerTrack" data-progress="ledgerProgress" class="horizontal-track flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2">
+                
+                <!-- LEDGER 01 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2 font-mono text-[11px]">
+                            <span class="font-semibold text-indigo-600 dark:text-indigo-400">LEDGER-01</span>
+                            <span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20 text-[10px]">
+                                CURRENT
+                            </span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">The Aether Labs Studio</h3>
+                            <div class="mt-0.5 text-xs font-medium text-slate-500 dark:text-zinc-400">Independent Research &amp; Systems</div>
+                        </div>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-300">
+                            Spearheading 22+ active projects spanning autonomous multi-agent swarms, cognitive knowledge deconstruction, and disaster-recovery cloud pipelines.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.08] flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-500 dark:text-zinc-400">
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">22+ Repos</span>
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">Zero-Leak Protocol</span>
+                    </div>
+                </article>
+
+                <!-- LEDGER 02 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2 font-mono text-[11px]">
+                            <span class="font-semibold text-indigo-600 dark:text-indigo-400">LEDGER-02</span>
+                            <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08] text-slate-500 dark:text-zinc-400 text-[10px]">
+                                INFRASTRUCTURE
+                            </span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">Cloud &amp; Desktop Daemon Architecture</h3>
+                            <div class="mt-0.5 text-xs font-medium text-slate-500 dark:text-zinc-400">Windows &amp; Linux Subsystems</div>
+                        </div>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-300">
+                            Engineered silent background VBScript and PowerShell daemons automating daily 16,000+ cognitive node backups directly to encrypted Google Drive.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.08] flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-500 dark:text-zinc-400">
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">Windows Scheduler</span>
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">1-Click Restore</span>
+                    </div>
+                </article>
+
+                <!-- LEDGER 03 -->
+                <article class="swiss-panel swiss-card-interactive min-w-[300px] md:min-w-[350px] max-w-[350px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between gap-2 font-mono text-[11px]">
+                            <span class="font-semibold text-indigo-600 dark:text-indigo-400">LEDGER-03</span>
+                            <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08] text-slate-500 dark:text-zinc-400 text-[10px]">
+                                KNOWLEDGE
+                            </span>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 dark:text-white">First-Principles Knowledge Engines</h3>
+                            <div class="mt-0.5 text-xs font-medium text-slate-500 dark:text-zinc-400">Obsidian &amp; Cognitive Architecture</div>
+                        </div>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-300">
+                            Formulated the 4-Lens Concept Mastery methodology, bridging hyper-specialist mental models directly into automated, bidirectionally linked markdown vaults.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.08] flex flex-wrap gap-1.5 font-mono text-[10px] text-slate-500 dark:text-zinc-400">
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">4-Lens Model</span>
+                        <span class="px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08]">Obsidian IPC</span>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- ================================================================= -->
+        <!-- SECTION 05 // DIRECT CHANNEL (2-COLUMN SPLIT)                     -->
+        <!-- ================================================================= -->
+        <section id="contact" class="scroll-mt-20 space-y-5">
+            <div class="flex items-end justify-between border-b border-slate-900/[0.08] dark:border-white/[0.08] pb-3">
+                <div>
+                    <span class="font-mono text-[11px] font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400">
+                        05 // DIRECT CHANNEL
+                    </span>
+                    <h2 class="mt-1 text-xl sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white">
+                        Direct Channel &amp; Inquiries
+                    </h2>
+                </div>
+                <span class="font-mono text-[11px] text-slate-400 dark:text-zinc-500">RESPONSE &lt; 24H</span>
+            </div>
+
+            <div class="swiss-panel rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-slate-900/[0.08] dark:divide-white/[0.08]">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-5 p-6 sm:p-8 flex flex-col justify-between gap-6">
+                    <div class="space-y-3">
+                        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 font-mono text-[10px] tracking-wider uppercase text-emerald-700 dark:text-emerald-300">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span>OPEN FOR ARCHITECTURAL CONSULTING &amp; ADVISORY</span>
+                        </div>
+                        <h3 class="text-base font-bold text-slate-900 dark:text-white">
+                            Initiate an Architectural Briefing
+                        </h3>
+                        <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400">
+                            Available for autonomous AI agent architectures, technical due diligence, high-speed web apps, and resilient background automations.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4 no-print">
+                        <div class="p-3 rounded-lg border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.02] flex items-center justify-between gap-2">
+                            <span id="contactEmailDisplay" class="font-mono text-xs text-slate-800 dark:text-zinc-200 truncate">the-aether-labs (GitHub)</span>
+                            <button type="button" onclick="copyEmailAddress()" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-slate-900 dark:bg-white text-white dark:text-obsidian font-mono text-[11px] font-medium hover:opacity-90 transition shrink-0">
+                                <span id="copyEmailLabel">Copy Channel</span>
+                                <span id="copiedBadge" class="hidden text-emerald-400 dark:text-emerald-600 font-semibold">✓</span>
+                            </button>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-md border border-slate-900/[0.08] dark:border-white/[0.08] text-xs font-medium text-center text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-900/[0.03] dark:hover:bg-white/[0.04] transition">
+                                GitHub Hub ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Inquiry Form -->
+                <div class="lg:col-span-7 p-6 sm:p-8 no-print">
+                    <form id="inquiryForm" onsubmit="handleInquirySubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="inquiryName" class="block font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-zinc-400 mb-1.5">01 / Your Name</label>
+                                <input id="inquiryName" type="text" required placeholder="Founder / Lead"
+                                       class="w-full px-3 py-2 rounded-md bg-white/80 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-indigo-500 transition">
+                            </div>
+                            <div>
+                                <label for="inquiryEmail" class="block font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-zinc-400 mb-1.5">02 / Contact Email</label>
+                                <input id="inquiryEmail" type="email" required placeholder="contact@organization.com"
+                                       class="w-full px-3 py-2 rounded-md bg-white/80 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-indigo-500 transition">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="inquiryMessage" class="block font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-zinc-400 mb-1.5">03 / Project / Inquiry Brief</label>
+                            <textarea id="inquiryMessage" rows="3" required placeholder="Outline your requirements, scope, or automation objectives..."
+                                      class="w-full px-3 py-2 rounded-md bg-white/80 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-xs text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-zinc-600 focus:outline-none focus:border-indigo-500 transition"></textarea>
+                        </div>
+
+                        <div class="flex flex-wrap items-center justify-between gap-3 pt-1">
+                            <button type="submit" class="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition">
+                                <span>Transmit Inquiry</span>
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+
+                            <div id="inquiryConfirmation" class="hidden inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-medium text-emerald-700 dark:text-emerald-300">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                <span>Transmission logged. Expect response within 24 hours.</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-slate-900/[0.08] dark:border-white/[0.08] py-7">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-[11px] text-slate-400 dark:text-zinc-500">
+            <div>
+                © 2026 <span id="footerName" class="text-slate-700 dark:text-zinc-300">The Aether Labs</span> · AUTONOMOUS SYSTEMS ARCHITECTURE DOSSIER
+            </div>
+            <div class="flex items-center gap-4 no-print">
+                <span>SWISS-SPEC v4.0</span>
+                <button type="button" onclick="openEditModal()" class="text-indigo-600 dark:text-indigo-400 hover:underline">
+                    Edit Info
+                </button>
             </div>
         </div>
     </footer>
+
+    <!-- PROJECT SPECIFICATION MODAL -->
+    <div id="specModal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 no-print" onclick="if(event.target === this) closeSpecModal()">
+        <div role="dialog" aria-modal="true" aria-labelledby="specModalTitle" class="w-full max-w-xl rounded-xl bg-white dark:bg-[#0D0F14] border border-slate-900/[0.12] dark:border-white/[0.12] shadow-2xl overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-900/[0.08] dark:border-white/[0.08] flex items-center justify-between bg-slate-900/[0.02] dark:bg-white/[0.02]">
+                <div class="flex items-center gap-2.5 font-mono text-[11px]">
+                    <span id="specCode" class="px-2 py-0.5 rounded bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 font-semibold">PRJ-01</span>
+                    <span id="specCategory" class="text-slate-500 dark:text-zinc-400 uppercase">SYSTEMS</span>
+                    <span class="text-slate-300 dark:text-zinc-700">/</span>
+                    <span id="specStatus" class="text-emerald-600 dark:text-emerald-400">PRODUCTION</span>
+                </div>
+                <button type="button" onclick="closeSpecModal()" class="p-1 rounded text-slate-400 hover:text-slate-900 dark:hover:text-white transition" aria-label="Close specification">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="p-6 space-y-5 max-h-[80vh] overflow-y-auto">
+                <div>
+                    <h3 id="specModalTitle" class="text-xl font-bold text-slate-900 dark:text-white">Project Title</h3>
+                    <p id="specSummary" class="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-zinc-300"></p>
+                </div>
+
+                <div class="p-4 rounded-lg border border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-white/[0.02] space-y-1.5">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">01 // SYSTEM ARCHITECTURE</div>
+                    <p id="specArchitecture" class="text-xs leading-relaxed text-slate-700 dark:text-zinc-300"></p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">02 // KEY OUTCOMES</div>
+                    <ul id="specOutcomes" class="space-y-1.5 text-xs text-slate-700 dark:text-zinc-300"></ul>
+                </div>
+
+                <div class="space-y-2 pt-2 border-t border-slate-900/[0.08] dark:border-white/[0.08]">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">03 // TECH STACK</div>
+                    <div id="specTags" class="flex flex-wrap gap-1.5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFILE CUSTOMIZER MODAL -->
+    <div id="editModal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4 no-print" onclick="if(event.target === this) closeEditModal()">
+        <div role="dialog" aria-modal="true" aria-labelledby="editModalTitle" class="w-full max-w-lg rounded-xl bg-white dark:bg-[#0D0F14] border border-slate-900/[0.12] dark:border-white/[0.12] shadow-2xl overflow-hidden">
+            <div class="px-6 py-4 border-b border-slate-900/[0.08] dark:border-white/[0.08] flex items-center justify-between bg-slate-900/[0.02] dark:bg-white/[0.02]">
+                <div>
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-indigo-600 dark:text-indigo-400">PROFILE CONFIGURATION</div>
+                    <h3 id="editModalTitle" class="text-sm font-bold text-slate-900 dark:text-white">Edit Profile Specification</h3>
+                </div>
+                <button type="button" onclick="closeEditModal()" class="p-1 rounded text-slate-400 hover:text-slate-900 dark:hover:text-white transition" aria-label="Close editor">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </div>
+
+            <form onsubmit="saveProfileEdits(event)" class="p-6 space-y-4 text-xs max-h-[78vh] overflow-y-auto">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Display Name</label>
+                        <input id="editName" type="text" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Studio / Brand</label>
+                        <input id="editOrg" type="text" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Role / Specialization</label>
+                    <input id="editRole" type="text" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Location</label>
+                        <input id="editLocation" type="text" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Contact Handle</label>
+                        <input id="editEmail" type="text" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-mono text-[10px] uppercase text-slate-500 dark:text-zinc-400 mb-1">Bio / Overview</label>
+                    <textarea id="editBio" rows="3" required class="w-full px-3 py-2 rounded-md bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white focus:outline-none focus:border-indigo-500"></textarea>
+                </div>
+
+                <div class="pt-2 border-t border-slate-900/[0.08] dark:border-white/[0.08] space-y-2">
+                    <div class="font-mono text-[10px] uppercase tracking-wider text-slate-400 dark:text-zinc-500">Tabular KPI Ledger</div>
+                    <div class="grid grid-cols-2 gap-2.5">
+                        <input id="editKpi1Code" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] font-mono text-[11px] text-slate-900 dark:text-white">
+                        <input id="editKpi1Val" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white">
+
+                        <input id="editKpi2Code" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] font-mono text-[11px] text-slate-900 dark:text-white">
+                        <input id="editKpi2Val" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white">
+
+                        <input id="editKpi3Code" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] font-mono text-[11px] text-slate-900 dark:text-white">
+                        <input id="editKpi3Val" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white">
+
+                        <input id="editKpi4Code" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] font-mono text-[11px] text-slate-900 dark:text-white">
+                        <input id="editKpi4Val" type="text" class="px-2.5 py-1.5 rounded bg-slate-50 dark:bg-[#08090C] border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-900 dark:text-white">
+                    </div>
+                </div>
+
+                <div class="pt-3 border-t border-slate-900/[0.08] dark:border-white/[0.08] flex items-center justify-between gap-3">
+                    <button type="button" onclick="resetProfileDefaults()" class="px-3 py-1.5 rounded-md border border-slate-900/[0.1] dark:border-white/[0.1] text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition">
+                        Reset Defaults
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <button type="button" onclick="closeEditModal()" class="px-3 py-1.5 rounded-md text-slate-500 hover:text-slate-900 dark:hover:text-white transition">
+                            Cancel
+                        </button>
+                        <button type="submit" class="px-4 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition">
+                            Save Changes
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- STATUS TOAST -->
+    <div id="statusToast" class="fixed bottom-5 right-5 z-50 hidden px-3.5 py-2 rounded-lg bg-slate-900 dark:bg-white text-white dark:text-obsidian font-mono text-[11px] font-medium shadow-xl border border-white/10 dark:border-slate-900/10 flex items-center gap-2 no-print">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+        <span id="statusToastMsg">Updated</span>
+    </div>
+
+    <!-- APPLICATION LOGIC -->
+    <script>
+        const DEFAULT_PROFILE = {
+            name: 'Dev',
+            role: 'Principal AI Systems Architect',
+            org: 'The Aether Labs',
+            location: 'Remote · Worldwide',
+            email: 'the-aether-labs (GitHub)',
+            portrait: "data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cdefs%3E%3ClinearGradient id='aetherGrad' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%234F46E5'/%3E%3Cstop offset='50%25' stop-color='%230F172A'/%3E%3Cstop offset='100%25' stop-color='%23020617'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='240' height='240' rx='12' fill='url(%23aetherGrad)'/%3E%3Cpath d='M120 45 L185 175 L55 175 Z' fill='none' stroke='%2338BDF8' stroke-width='3' stroke-opacity='0.6'/%3E%3Ccircle cx='120' cy='120' r='38' fill='none' stroke='%23818CF8' stroke-width='2.5' stroke-dasharray='4 4'/%3E%3Ccircle cx='120' cy='120' r='6' fill='%2338BDF8'/%3E%3Ctext x='120' y='210' text-anchor='middle' fill='%23F8FAFC' font-family='Inter, sans-serif' font-weight='800' font-size='16' letter-spacing='2'%3EAETHER%3C/text%3E%3C/svg%3E",
+            bio: 'Architecting deterministic multi-agent swarms, cognitive knowledge graphs, and zero-leak automation infrastructure for high-velocity engineering organizations.',
+            kpis: [
+                { code: '01 / PRODUCTION', val: '22+ Systems Built' },
+                { code: '02 / PRIVACY', val: '100% Isolated & Secure' },
+                { code: '03 / LATENCY', val: '< 14ms Edge Response' },
+                { code: '04 / AUTOMATION', val: '24/7 Silent Daemons' }
+            ]
+        };
+
+        const STORAGE_KEY = 'aether_swiss_dossier_v1';
+        let currentProfile = loadProfile();
+        let activeFilter = 'All';
+
+        const PROJECTS = [
+            {
+                id: 'PRJ-01',
+                category: 'Agents',
+                status: 'DETERMINISTIC',
+                title: 'Autonomous Swarm Orchestrator',
+                summary: 'Deterministic multi-agent execution framework with reactive wake-up loops and isolated sandboxes.',
+                tags: ['TypeScript', 'Multi-Agent', 'Reactive Loops'],
+                architecture: 'Hierarchical coordinator-dispatcher topology utilizing stateful event emitters, persistent memory caches, and automated verifier gates.',
+                outcomes: [
+                    'Eliminated busy-polling overhead with 99.4% token optimization.',
+                    'Guaranteed deterministic task completion across multi-step pipelines.',
+                    'Zero human babysitting required for complex code analysis.'
+                ],
+                wireframeSvg: `
+                    <svg class="w-full h-24" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="24" y="18" width="76" height="24" rx="4" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+                        <rect x="142" y="18" width="76" height="24" rx="4" stroke="#6366F1" stroke-width="1.2"/>
+                        <rect x="260" y="18" width="76" height="24" rx="4" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+                        <line x1="100" y1="30" x2="142" y2="30" stroke="#6366F1" stroke-width="1" stroke-dasharray="3 3"/>
+                        <line x1="218" y1="30" x2="260" y2="30" stroke="#6366F1" stroke-width="1" stroke-dasharray="3 3"/>
+                        <rect x="82" y="60" width="196" height="20" rx="4" stroke="currentColor" stroke-opacity="0.25" stroke-width="1"/>
+                        <line x1="180" y1="42" x2="180" y2="60" stroke="#6366F1" stroke-width="1"/>
+                        <circle cx="180" cy="30" r="3" fill="#6366F1"/>
+                    </svg>`
+            },
+            {
+                id: 'PRJ-02',
+                category: 'Knowledge',
+                status: 'ATOMIC GRAPH',
+                title: 'Cognitive Knowledge Vaults',
+                summary: 'First-principles 4-Lens conceptual deconstruction compiling dense mental models into local Markdown graphs.',
+                tags: ['Obsidian IPC', '4-Lens Model', 'Graph RAG'],
+                architecture: 'Local bidirectional linking pipeline with atomic note synthesis, automated boundary checking, and zero proprietary cloud lock-in.',
+                outcomes: [
+                    'Synthesizes complex conceptual domains into 4 lenses: Core, Map, Boundary, Execution.',
+                    'Zero-latency local graph traversal across thousands of atomic notes.',
+                    '100% data sovereignty with plain offline Markdown.'
+                ],
+                wireframeSvg: `
+                    <svg class="w-full h-24" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="24" y="14" width="96" height="68" rx="4" stroke="currentColor" stroke-opacity="0.3" stroke-width="1"/>
+                        <line x1="24" y1="30" x2="120" y2="30" stroke="currentColor" stroke-opacity="0.25" stroke-width="1"/>
+                        <rect x="34" y="38" width="52" height="6" rx="2" fill="#6366F1" fill-opacity="0.6"/>
+                        <rect x="34" y="50" width="72" height="6" rx="2" fill="currentColor" fill-opacity="0.18"/>
+                        <rect x="34" y="62" width="60" height="6" rx="2" fill="currentColor" fill-opacity="0.18"/>
+                        <rect x="132" y="14" width="204" height="30" rx="4" stroke="#6366F1" stroke-width="1.2"/>
+                        <rect x="132" y="52" width="98" height="30" rx="4" stroke="currentColor" stroke-opacity="0.3" stroke-width="1"/>
+                        <rect x="238" y="52" width="98" height="30" rx="4" stroke="currentColor" stroke-opacity="0.3" stroke-width="1"/>
+                    </svg>`
+            },
+            {
+                id: 'PRJ-03',
+                category: 'Automation',
+                status: '0MS UI IMPACT',
+                title: 'Silent Cloud Disaster Daemon',
+                summary: 'Concealed Windows VBScript and PowerShell pipelines archiving 16,000+ cognitive nodes to Google Drive.',
+                tags: ['PowerShell', 'VBScript', 'tar Deflate'],
+                architecture: 'Headless background runner operating at below-normal CPU priority, native Windows tar compression, and 7-day rolling cloud retention.',
+                outcomes: [
+                    'Completely eliminates black console popups during background tasks.',
+                    'Compacts 16,000+ conversation files into a 266 MB atomic cloud archive.',
+                    '1-click instant disaster recovery utility for new machines.'
+                ],
+                wireframeSvg: `
+                    <svg class="w-full h-24" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="48" cy="48" r="14" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+                        <rect x="104" y="34" width="64" height="28" rx="4" stroke="#6366F1" stroke-width="1.2"/>
+                        <rect x="208" y="34" width="64" height="28" rx="4" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+                        <circle cx="316" cy="48" r="14" stroke="#10B981" stroke-width="1.2"/>
+                        <line x1="62" y1="48" x2="104" y2="48" stroke="#6366F1" stroke-width="1"/>
+                        <line x1="168" y1="48" x2="208" y2="48" stroke="currentColor" stroke-opacity="0.35" stroke-width="1"/>
+                        <line x1="272" y1="48" x2="302" y2="48" stroke="#10B981" stroke-width="1"/>
+                        <circle cx="316" cy="48" r="3" fill="#10B981"/>
+                    </svg>`
+            },
+            {
+                id: 'PRJ-04',
+                category: 'Automation',
+                status: '100% PRIVATE',
+                title: 'Zero-Leak Credential Shield',
+                summary: 'Enforcing anonymous Git remotes, hardware boundary locks, and blocking command line email leaks.',
+                tags: ['Git Protocol', 'Hardware Locks', 'No-Reply'],
+                architecture: 'Automated policy-driven guardrail system intercepting unvetted scripts, isolating heavy workloads to Google Colab, and enforcing private repo creation.',
+                outcomes: [
+                    'Guarantees 0.00% personal data or email exposure in public Git commits.',
+                    'Protects laptop hardware from runaway processes and memory leaks.',
+                    'Fully automated backup without requiring manual user reminders.'
+                ],
+                wireframeSvg: `
+                    <svg class="w-full h-24" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="28" y1="74" x2="332" y2="74" stroke="currentColor" stroke-opacity="0.25" stroke-width="1"/>
+                        <line x1="28" y1="22" x2="28" y2="74" stroke="currentColor" stroke-opacity="0.25" stroke-width="1"/>
+                        <polyline points="36,64 84,56 128,60 172,30 218,44 268,26 324,34" stroke="#6366F1" stroke-width="1.5" fill="none"/>
+                        <circle cx="172" cy="30" r="3" fill="#6366F1"/>
+                        <circle cx="268" cy="26" r="3" fill="#6366F1"/>
+                        <line x1="172" y1="22" x2="172" y2="74" stroke="#6366F1" stroke-opacity="0.35" stroke-width="1" stroke-dasharray="2 3"/>
+                    </svg>`
+            }
+        ];
+
+        function renderProjects() {
+            const track = document.getElementById('workTrack');
+            const filtered = activeFilter === 'All'
+                ? PROJECTS
+                : PROJECTS.filter(item => item.category === activeFilter);
+
+            track.innerHTML = filtered.map(proj => `
+                <article class="swiss-panel swiss-card-interactive min-w-[320px] md:min-w-[380px] max-w-[380px] shrink-0 snap-start rounded-xl border border-slate-900/[0.08] dark:border-white/[0.08] flex flex-col justify-between overflow-hidden">
+                    <div>
+                        <div class="px-5 py-3 border-b border-slate-900/[0.08] dark:border-white/[0.08] flex items-center justify-between gap-2 bg-slate-900/[0.015] dark:bg-white/[0.015]">
+                            <div class="flex items-center gap-2 font-mono text-[11px]">
+                                <span class="font-semibold text-indigo-600 dark:text-indigo-400">${proj.id}</span>
+                                <span class="text-slate-300 dark:text-zinc-700">/</span>
+                                <span class="text-slate-500 dark:text-zinc-400 uppercase">${proj.category}</span>
+                            </div>
+                            <span class="font-mono text-[10px] px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 border border-emerald-500/20">
+                                ${proj.status}
+                            </span>
+                        </div>
+
+                        <div class="px-5 py-3 border-b border-slate-900/[0.08] dark:border-white/[0.08] bg-slate-900/[0.02] dark:bg-[#08090C]/60 text-slate-600 dark:text-zinc-400">
+                            ${proj.wireframeSvg}
+                        </div>
+
+                        <div class="p-5 space-y-2">
+                            <h3 class="text-base font-bold tracking-tight text-slate-900 dark:text-white">
+                                ${proj.title}
+                            </h3>
+                            <p class="text-xs leading-relaxed text-slate-600 dark:text-zinc-400 line-clamp-2">
+                                ${proj.summary}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3">
+                        <div class="flex flex-wrap items-center gap-1.5">
+                            ${proj.tags.map(tag => `
+                                <span class="font-mono text-[10px] px-2 py-0.5 rounded border border-slate-900/[0.08] dark:border-white/[0.08] text-slate-600 dark:text-zinc-300 bg-slate-900/[0.02] dark:bg-white/[0.02]">
+                                    ${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+
+                        <button type="button" onclick="openSpecModal('${proj.id}')" class="shrink-0 font-mono text-[11px] font-medium text-indigo-600 dark:text-indigo-400 hover:underline inline-flex items-center gap-1 no-print">
+                            <span>Inspect Spec</span>
+                            <span>→</span>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+
+            track.scrollLeft = 0;
+            updateTrackProgress(track);
+        }
+
+        function filterProjects(category) {
+            activeFilter = category;
+            document.querySelectorAll('.filter-tab').forEach(btn => {
+                const isSelected = btn.getAttribute('data-filter') === category;
+                if (isSelected) {
+                    btn.className = 'filter-tab px-2.5 py-1 rounded-md bg-slate-900 dark:bg-white text-white dark:text-obsidian font-medium transition';
+                } else {
+                    btn.className = 'filter-tab px-2.5 py-1 rounded-md text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white transition';
+                }
+            });
+            renderProjects();
+        }
+
+        function scrollTrack(trackId, direction) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            const firstCard = track.firstElementChild;
+            const step = firstCard ? firstCard.getBoundingClientRect().width + 20 : 360;
+            track.scrollBy({ left: direction * step, behavior: 'smooth' });
+        }
+
+        function updateTrackProgress(track) {
+            if (!track) return;
+            const progressId = track.getAttribute('data-progress');
+            const bar = progressId ? document.getElementById(progressId) : null;
+            if (!bar) return;
+
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            if (maxScroll <= 2) {
+                bar.style.width = '100%';
+                return;
+            }
+            const visibleRatio = Math.max(0.18, Math.min(1, track.clientWidth / track.scrollWidth));
+            const scrollRatio = Math.max(0, Math.min(1, track.scrollLeft / maxScroll));
+            const progressPct = (visibleRatio + (1 - visibleRatio) * scrollRatio) * 100;
+            bar.style.width = `${progressPct.toFixed(1)}%`;
+        }
+
+        function initHorizontalCarousels() {
+            document.querySelectorAll('.horizontal-track').forEach(track => {
+                let isPointerDown = false;
+                let hasDragged = false;
+                let startX = 0;
+                let startScrollLeft = 0;
+
+                track.addEventListener('scroll', () => updateTrackProgress(track), { passive: true });
+
+                track.addEventListener('mousedown', (e) => {
+                    if (e.button !== 0) return;
+                    if (e.target.closest('button, a, input, textarea')) return;
+                    isPointerDown = true;
+                    hasDragged = false;
+                    startX = e.pageX;
+                    startScrollLeft = track.scrollLeft;
+                    track.classList.add('is-dragging');
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!isPointerDown) return;
+                    const deltaX = e.pageX - startX;
+                    if (Math.abs(deltaX) > 4) {
+                        hasDragged = true;
+                    }
+                    if (hasDragged) {
+                        e.preventDefault();
+                        track.scrollLeft = startScrollLeft - deltaX * 1.25;
+                    }
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (!isPointerDown) return;
+                    isPointerDown = false;
+                    track.classList.remove('is-dragging');
+                    if (hasDragged) {
+                        const suppressClick = (ev) => {
+                            ev.stopPropagation();
+                            ev.preventDefault();
+                        };
+                        track.addEventListener('click', suppressClick, { capture: true, once: true });
+                        setTimeout(() => {
+                            track.removeEventListener('click', suppressClick, { capture: true });
+                        }, 50);
+                    }
+                });
+
+                updateTrackProgress(track);
+            });
+
+            window.addEventListener('resize', () => {
+                document.querySelectorAll('.horizontal-track').forEach(updateTrackProgress);
+            }, { passive: true });
+        }
+
+        function loadProfile() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return structuredClone(DEFAULT_PROFILE);
+                const parsed = JSON.parse(raw);
+                return {
+                    ...structuredClone(DEFAULT_PROFILE),
+                    ...parsed,
+                    kpis: Array.isArray(parsed.kpis) && parsed.kpis.length === 4
+                        ? parsed.kpis
+                        : structuredClone(DEFAULT_PROFILE.kpis)
+                };
+            } catch (e) {
+                return structuredClone(DEFAULT_PROFILE);
+            }
+        }
+
+        function saveProfileToStorage(profile) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+            } catch (e) {}
+        }
+
+        function renderProfile() {
+            const p = currentProfile;
+            document.getElementById('headerName').textContent = p.name;
+            document.getElementById('heroName').textContent = p.name;
+            document.getElementById('footerName').textContent = p.org;
+
+            document.getElementById('metaRole').textContent = p.role;
+            document.getElementById('metaOrg').textContent = p.org;
+            document.getElementById('metaLocation').textContent = p.location;
+            document.getElementById('metaEmail').textContent = p.email;
+            document.getElementById('contactEmailDisplay').textContent = p.email;
+
+            document.getElementById('heroRole').innerHTML = `${escapeHtml(p.role)} · <span class="text-slate-900 dark:text-white">${escapeHtml(p.org)}</span>`;
+            document.getElementById('heroBio').textContent = p.bio;
+
+            const portraitEl = document.getElementById('profilePortrait');
+            if (portraitEl && portraitEl.src !== p.portrait) {
+                portraitEl.src = p.portrait;
+            }
+
+            p.kpis.forEach((kpi, idx) => {
+                const num = idx + 1;
+                document.getElementById(`kpi${num}Code`).textContent = kpi.code;
+                document.getElementById(`kpi${num}Val`).textContent = kpi.val;
+            });
+
+            document.title = `${p.name} // ${p.org} — Systems Architect`;
+            updateThemeLabel();
+        }
+
+        function openSpecModal(projectId) {
+            const proj = PROJECTS.find(p => p.id === projectId);
+            if (!proj) return;
+
+            document.getElementById('specCode').textContent = proj.id;
+            document.getElementById('specCategory').textContent = proj.category;
+            document.getElementById('specStatus').textContent = proj.status;
+            document.getElementById('specModalTitle').textContent = proj.title;
+            document.getElementById('specSummary').textContent = proj.summary;
+            document.getElementById('specArchitecture').textContent = proj.architecture;
+
+            document.getElementById('specOutcomes').innerHTML = proj.outcomes.map(item => `
+                <li class="flex items-start gap-2">
+                    <span class="font-mono text-indigo-500 mt-0.5">▪</span>
+                    <span>${item}</span>
+                </li>
+            `).join('');
+
+            document.getElementById('specTags').innerHTML = proj.tags.map(tag => `
+                <span class="font-mono text-[11px] px-2.5 py-1 rounded border border-slate-900/[0.08] dark:border-white/[0.08] text-slate-700 dark:text-zinc-200 bg-slate-900/[0.02] dark:bg-white/[0.03]">
+                    ${tag}
+                </span>
+            `).join('');
+
+            document.getElementById('specModal').classList.remove('hidden');
+        }
+
+        function closeSpecModal() {
+            document.getElementById('specModal').classList.add('hidden');
+        }
+
+        function openEditModal() {
+            const p = currentProfile;
+            document.getElementById('editName').value = p.name;
+            document.getElementById('editOrg').value = p.org;
+            document.getElementById('editRole').value = p.role;
+            document.getElementById('editLocation').value = p.location;
+            document.getElementById('editEmail').value = p.email;
+            document.getElementById('editBio').value = p.bio;
+
+            p.kpis.forEach((kpi, idx) => {
+                const num = idx + 1;
+                document.getElementById(`editKpi${num}Code`).value = kpi.code;
+                document.getElementById(`editKpi${num}Val`).value = kpi.val;
+            });
+
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+
+        function saveProfileEdits(event) {
+            event.preventDefault();
+            currentProfile = {
+                ...currentProfile,
+                name: document.getElementById('editName').value.trim() || DEFAULT_PROFILE.name,
+                org: document.getElementById('editOrg').value.trim() || DEFAULT_PROFILE.org,
+                role: document.getElementById('editRole').value.trim() || DEFAULT_PROFILE.role,
+                location: document.getElementById('editLocation').value.trim() || DEFAULT_PROFILE.location,
+                email: document.getElementById('editEmail').value.trim() || DEFAULT_PROFILE.email,
+                bio: document.getElementById('editBio').value.trim() || DEFAULT_PROFILE.bio,
+                kpis: [
+                    {
+                        code: document.getElementById('editKpi1Code').value.trim() || '01 / PRODUCTION',
+                        val: document.getElementById('editKpi1Val').value.trim() || '22+ Systems Built'
+                    },
+                    {
+                        code: document.getElementById('editKpi2Code').value.trim() || '02 / PRIVACY',
+                        val: document.getElementById('editKpi2Val').value.trim() || '100% Isolated & Secure'
+                    },
+                    {
+                        code: document.getElementById('editKpi3Code').value.trim() || '03 / LATENCY',
+                        val: document.getElementById('editKpi3Val').value.trim() || '< 14ms Edge Response'
+                    },
+                    {
+                        code: document.getElementById('editKpi4Code').value.trim() || '04 / AUTOMATION',
+                        val: document.getElementById('editKpi4Val').value.trim() || '24/7 Silent Daemons'
+                    }
+                ]
+            };
+
+            saveProfileToStorage(currentProfile);
+            renderProfile();
+            closeEditModal();
+            showToast('Profile specification saved');
+        }
+
+        function resetProfileDefaults() {
+            currentProfile = structuredClone(DEFAULT_PROFILE);
+            saveProfileToStorage(currentProfile);
+            renderProfile();
+            closeEditModal();
+            showToast('Reset to executive defaults');
+        }
+
+        function applyPortraitFallback(imgEl) {
+            imgEl.onerror = null;
+            imgEl.src = DEFAULT_PROFILE.portrait;
+        }
+
+        function downloadVCard() {
+            const p = currentProfile;
+            const vcardLines = [
+                'BEGIN:VCARD',
+                'VERSION:3.0',
+                `FN:${p.name} - ${p.org}`,
+                `ORG:${p.org}`,
+                `TITLE:${p.role}`,
+                `URL:https://the-aether-labs.github.io/`,
+                `ADR;TYPE=WORK:;;${p.location};;;;`,
+                'END:VCARD'
+            ].join('\r\n');
+
+            const blob = new Blob([vcardLines], { type: 'text/vcard;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `Aether_Labs_Profile.vcf`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            showToast('Exported Profile vCard');
+        }
+
+        function copyEmailAddress() {
+            const channel = 'https://github.com/the-aether-labs';
+            const textarea = document.createElement('textarea');
+            textarea.value = channel;
+            textarea.setAttribute('readonly', '');
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            const label = document.getElementById('copyEmailLabel');
+            const badge = document.getElementById('copiedBadge');
+            label.textContent = 'Copied Link';
+            badge.classList.remove('hidden');
+            showToast('Copied GitHub Hub URL');
+
+            setTimeout(() => {
+                label.textContent = 'Copy Channel';
+                badge.classList.add('hidden');
+            }, 2200);
+        }
+
+        function handleInquirySubmit(event) {
+            event.preventDefault();
+            const confirmation = document.getElementById('inquiryConfirmation');
+            confirmation.classList.remove('hidden');
+            event.target.reset();
+            showToast('Inquiry transmission logged');
+            setTimeout(() => {
+                confirmation.classList.add('hidden');
+            }, 4500);
+        }
+
+        function toggleTheme() {
+            const isDark = document.documentElement.classList.toggle('dark');
+            try {
+                localStorage.setItem('aether_profile_theme', isDark ? 'dark' : 'light');
+            } catch (e) {}
+            updateThemeLabel();
+        }
+
+        function updateThemeLabel() {
+            const isDark = document.documentElement.classList.contains('dark');
+            const label = document.getElementById('themeLabel');
+            if (label) label.textContent = isDark ? 'Dark' : 'Light';
+        }
+
+        function escapeHtml(str) {
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('statusToast');
+            document.getElementById('statusToastMsg').textContent = msg;
+            toast.classList.remove('hidden');
+            clearTimeout(window.__toastTimer);
+            window.__toastTimer = setTimeout(() => toast.classList.add('hidden'), 2200);
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSpecModal();
+                closeEditModal();
+            }
+        });
+
+        const spotlight = document.getElementById('cursorSpotlight');
+        window.addEventListener('pointermove', (e) => {
+            if (!spotlight) return;
+            spotlight.style.opacity = '1';
+            spotlight.style.left = `${e.clientX}px`;
+            spotlight.style.top = `${e.clientY}px`;
+        }, { passive: true });
+
+        renderProfile();
+        renderProjects();
+        initHorizontalCarousels();
+    </script>
 </body>
 </html>
