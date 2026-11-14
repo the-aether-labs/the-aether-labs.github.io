@@ -54,7 +54,7 @@
             background-color: #08080C;
         }
         html:not(.dark) {
-            background-color: #F4F6FB;
+            background-color: #F7F9FC;
         }
         body {
             background: transparent;
@@ -63,8 +63,8 @@
             -moz-osx-font-smoothing: grayscale;
         }
 
-        /* The Optical Fluted Glass Shader (Fixed living backdrop) */
-        .nh-glass {
+        /* The Living Aether Dynamic Vector Canvas */
+        .aether-canvas {
             position: fixed;
             inset: 0;
             z-index: 0;
@@ -75,18 +75,18 @@
             pointer-events: none;
         }
 
-        /* Signature Atmospheric Film Grain Overlay */
-        .sc-grain {
+        /* Tactile Atmospheric Film Grain Overlay */
+        .aether-grain {
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 1;
-            opacity: 0.038;
+            opacity: 0.035;
         }
-        .dark .sc-grain {
-            opacity: 0.046;
+        .dark .aether-grain {
+            opacity: 0.045;
         }
-        .sc-grain::before {
+        .aether-grain::before {
             content: "";
             position: absolute;
             inset: -50%;
@@ -108,7 +108,7 @@
                         opacity 0.4s ease !important;
         }
 
-        /* Glassmorphic Studio Surface Panels (Living backdrop shines through with optical blur) */
+        /* Glassmorphic Studio Surface Panels */
         .studio-panel {
             contain: layout style;
             backface-visibility: hidden;
@@ -116,17 +116,17 @@
         }
 
         .dark .studio-panel {
-            background: linear-gradient(180deg, rgba(20, 20, 26, 0.76) 0%, rgba(13, 13, 17, 0.86) 100%);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: linear-gradient(180deg, rgba(20, 20, 27, 0.78) 0%, rgba(13, 13, 18, 0.88) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset, 0 20px 44px -20px rgba(0, 0, 0, 0.88);
         }
 
         html:not(.dark) .studio-panel {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(248, 250, 253, 0.88) 100%);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.82) 0%, rgba(248, 250, 253, 0.90) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(24, 24, 27, 0.08);
             box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 12px 32px -12px rgba(24, 24, 27, 0.075);
         }
@@ -138,13 +138,13 @@
 
         .dark .studio-card-interactive:hover {
             border-color: rgba(129, 140, 248, 0.38);
-            background: linear-gradient(180deg, rgba(26, 26, 35, 0.86) 0%, rgba(17, 17, 23, 0.94) 100%);
+            background: linear-gradient(180deg, rgba(26, 26, 35, 0.88) 0%, rgba(17, 17, 23, 0.95) 100%);
             box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12) inset, 0 24px 48px -18px rgba(0, 0, 0, 0.94);
         }
 
         html:not(.dark) .studio-card-interactive:hover {
             border-color: rgba(79, 70, 229, 0.3);
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(245, 248, 253, 0.96) 100%);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 248, 253, 0.98) 100%);
             box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 16px 36px -12px rgba(24, 24, 27, 0.11), 0 3px 8px -2px rgba(79, 70, 229, 0.06);
         }
 
@@ -213,11 +213,11 @@
 </head>
 <body class="text-zinc-900 dark:text-zinc-100 min-h-screen relative selection:bg-indigo-500 selection:text-white overflow-x-hidden">
 
-    <!-- THE GLASS (One continuous WebGL fluted pane behind everything, from hero to footer) -->
-    <canvas id="glass" class="nh-glass" aria-hidden="true"></canvas>
+    <!-- THE AETHER CANVAS (Original Topographic Vector Lattice & Ambient Auroras) -->
+    <canvas id="aetherCanvas" class="aether-canvas" aria-hidden="true"></canvas>
 
-    <!-- ATMOSPHERIC ORGANIC GRAIN (Keeps background deep and tactile without banding) -->
-    <div class="sc-grain" aria-hidden="true"></div>
+    <!-- ATMOSPHERIC ORGANIC GRAIN (Eliminates color banding and provides tactile paper depth) -->
+    <div class="aether-grain" aria-hidden="true"></div>
 
     <!-- FLOATING PILL NAVIGATION HEADER (Streamlined & Clean) -->
     <header class="sticky top-0 z-40 pt-3 sm:pt-4 px-3 sm:px-6 no-print">
@@ -668,8 +668,8 @@
         <span id="toastMessage">Copied to clipboard</span>
     </div>
 
-    <!-- NATE HERK-STYLE FLUTED GLASS SHADER MODULE -->
-    <script src="glass.js"></script>
+    <!-- THE AETHER BESPOKE VECTOR ENGINE -->
+    <script src="aether-field.js"></script>
 
     <!-- APPLICATION LOGIC -->
     <script>
@@ -750,6 +750,7 @@
 
         let currentProfile = Object.assign({}, DEFAULT_PROFILE);
         let activeFilter = 'All';
+        let aetherFieldInstance = null;
 
         function applyPortraitFallback(imgEl) {
             imgEl.onerror = null;
@@ -1021,105 +1022,6 @@
             }, 2600);
         }
 
-        /* -------------------------------------------------------------------
-           FLUTED GLASS ENGINE (Inspired by Nate Herk / Paper Shaders WebGL)
-           ------------------------------------------------------------------- */
-        const GLASS_CONFIG = {
-            dark: {
-                colors: ['#08080C', '#0E101A', '#181C2E', '#31375E', '#6366F1', '#818CF8'],
-                shadeBase: 0.74,
-                shadeHighlight: 0.38,
-                shadeShadow: 0.16,
-                intensity: 0.20,
-                paramA: 0.32,
-                scale: 1.15
-            },
-            light: {
-                colors: ['#EEF3F9', '#F9FBFD', '#D8EBFD', '#7FC2FF', '#A5B4FC'],
-                shadeBase: 0.92,
-                shadeHighlight: 0.13,
-                shadeShadow: 0.06,
-                intensity: 0.18,
-                paramA: 0.34,
-                scale: 1.18
-            }
-        };
-
-        let glassInstance = null;
-
-        function initFlutedGlass() {
-            const canvas = document.getElementById('glass');
-            if (!canvas || !window.NHGlass) return;
-
-            const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const isFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-            const isCoarse = window.matchMedia('(pointer: coarse)').matches;
-            const isDark = document.documentElement.classList.contains('dark');
-            const cfg = isDark ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
-
-            glassInstance = NHGlass.mount(canvas, {
-                colors: cfg.colors,
-                scale: cfg.scale,
-                intensity: cfg.intensity,
-                paramA: cfg.paramA,
-                detail: 1.824,
-                contrast: 1.0,
-                brightness: 0.0,
-                saturation: 1.0,
-                grain: 0.034,
-                seed: 3.0,
-                oklab: 1.0,
-                shadeBase: cfg.shadeBase,
-                shadeHighlight: cfg.shadeHighlight,
-                shadeShadow: cfg.shadeShadow,
-                cursorEnabled: isFine && !isReduced,
-                cursorEffect: 1.0,
-                cursorStrength: 0.42,
-                cursorRadius: 0.5,
-                timeScale: (isReduced || isCoarse) ? 0 : 0.22,
-                maxPixels: isCoarse ? 380000 : 1000000,
-                maxDpr: isCoarse ? 1 : 1.25
-            });
-
-            // Scroll Velocity & Optical Refraction Physics
-            let lastY = window.scrollY;
-            let lastT = performance.now();
-            let vel = 0;
-            const vh = window.innerHeight || 800;
-
-            window.addEventListener('scroll', () => {
-                if (!glassInstance) return;
-                const now = performance.now();
-                const dt = Math.max(1, now - lastT) / 1000;
-                const dy = window.scrollY - lastY;
-                const v = Math.abs(dy) / vh / dt;
-                vel += (v - vel) * 0.32;
-                lastY = window.scrollY;
-                lastT = now;
-
-                const offY = (-window.scrollY / vh * 0.20);
-                const offX = (window.scrollY / vh * 0.025);
-                const currentCfg = document.documentElement.classList.contains('dark') ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
-                const targetInten = currentCfg.intensity + Math.min(0.09, vel * 0.06);
-
-                glassInstance.set('offsetY', +offY.toFixed(4));
-                glassInstance.set('offsetX', +offX.toFixed(4));
-                glassInstance.set('intensity', +targetInten.toFixed(4));
-            }, { passive: true });
-        }
-
-        function applyGlassTheme(isDark) {
-            if (!glassInstance) return;
-            const cfg = isDark ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
-            glassInstance.set('colors', cfg.colors);
-            glassInstance.set('shadeBase', cfg.shadeBase);
-            glassInstance.set('shadeHighlight', cfg.shadeHighlight);
-            glassInstance.set('shadeShadow', cfg.shadeShadow);
-            glassInstance.set('intensity', cfg.intensity);
-            glassInstance.set('scale', cfg.scale);
-            glassInstance.set('paramA', cfg.paramA);
-        }
-
         function toggleTheme() {
             const root = document.documentElement;
             root.classList.add('theme-transitioning');
@@ -1128,7 +1030,9 @@
                 localStorage.setItem('aether_profile_theme', isDark ? 'dark' : 'light');
             } catch (e) {}
 
-            applyGlassTheme(isDark);
+            if (aetherFieldInstance) {
+                aetherFieldInstance.setTheme(isDark);
+            }
 
             clearTimeout(window.__themeAnimTimer);
             window.__themeAnimTimer = setTimeout(() => {
@@ -1168,11 +1072,18 @@
             }
         });
 
+        function initField() {
+            const canvas = document.getElementById('aetherCanvas');
+            if (canvas && window.AetherField) {
+                aetherFieldInstance = window.AetherField.mount(canvas);
+            }
+        }
+
         renderProfile();
         renderProjects();
         initHorizontalCarousels();
         initScrollSpy();
-        initFlutedGlass();
+        initField();
     </script>
 </body>
 </html>
