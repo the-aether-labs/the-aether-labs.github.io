@@ -3,40 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Aether Labs</title>
-    <meta name="description" content="Autonomous AI Research & Systems Studio.">
+    <title>Dev // The Aether Labs — AI Systems Engineer & Builder</title>
+    <meta name="description" content="AI Systems Engineer & Full-Stack Builder. I build autonomous agents, intelligent automations, and modern web applications.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
 
-    <!-- Inter Font -->
+    <!-- Google Font: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            /* Deep Midnight Sapphire & Slate Palette (Rich, Non-Tiring, Luxury Tech) */
-            --bg-deep: #060911;
-            --bg-surface: #0B1120;
-            --bg-card: rgba(15, 23, 42, 0.65);
-            --bg-card-hover: rgba(20, 30, 55, 0.85);
+            /* Calm Midnight Navy & Slate (Client-Grade Luxury) */
+            --bg-page: #080C14;
+            --bg-card: rgba(15, 23, 42, 0.7);
+            --bg-card-hover: rgba(23, 33, 58, 0.85);
+            --bg-tag: rgba(255, 255, 255, 0.05);
 
-            --border-line: rgba(148, 163, 184, 0.12);
+            --border-subtle: rgba(148, 163, 184, 0.14);
             --border-hover: rgba(59, 130, 246, 0.4);
 
-            --text-lead: #F8FAFC;
+            --text-heading: #F8FAFC;
             --text-body: #94A3B8;
             --text-muted: #64748B;
 
             --primary: #3B82F6;
-            --primary-glow: rgba(59, 130, 246, 0.25);
             --emerald: #10B981;
 
-            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-mono: 'JetBrains Mono', monospace;
 
-            --radius: 14px;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
         }
 
         *, *::before, *::after {
@@ -46,10 +47,10 @@
         }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--text-lead);
+            background-color: var(--bg-page);
+            color: var(--text-heading);
             font-family: var(--font-sans);
-            line-height: 1.5;
+            line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             min-height: 100vh;
             display: flex;
@@ -57,118 +58,81 @@
             justify-content: space-between;
         }
 
-        /* Ambient Lighting */
-        .ambient-radial {
+        /* Subtle Ambient Radial Glow */
+        .ambient-glow {
             position: fixed;
-            top: -200px;
+            top: -220px;
             left: 50%;
             transform: translateX(-50%);
-            width: 1000px;
-            height: 700px;
-            background: radial-gradient(50% 50% at 50% 50%, rgba(37, 99, 235, 0.12) 0%, rgba(6, 9, 17, 0) 100%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Container */
         .container {
             width: 100%;
-            max-width: 980px;
+            max-width: 820px;
             margin: 0 auto;
             padding: 0 24px;
             position: relative;
             z-index: 1;
         }
 
-        /* Navbar */
-        nav {
+        /* Top Minimal Header */
+        header {
             padding: 24px 0;
         }
 
-        .nav-inner {
+        .header-inner {
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
-        .brand {
-            display: flex;
+        .brand-pill {
+            display: inline-flex;
             align-items: center;
             gap: 10px;
             text-decoration: none;
-            color: var(--text-lead);
+            color: var(--text-heading);
         }
 
-        .brand-icon {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
+        .avatar-box {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             background: linear-gradient(135deg, #3B82F6, #1D4ED8);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 16px var(--primary-glow);
+            font-weight: 800;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            box-shadow: 0 0 16px rgba(59, 130, 246, 0.3);
         }
 
-        .brand-icon svg {
-            width: 16px;
-            height: 16px;
-            fill: #FFFFFF;
-        }
-
-        .brand-name {
-            font-size: 1rem;
+        .brand-text {
+            font-size: 0.98rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.01em;
         }
 
-        .nav-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 7px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--border-line);
-            border-radius: 8px;
-            color: var(--text-lead);
-            text-decoration: none;
-            font-size: 0.82rem;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--border-hover);
-        }
-
-        .nav-btn svg {
-            width: 14px;
-            height: 14px;
-            fill: currentColor;
-        }
-
-        /* Hero */
-        .hero {
-            padding: 60px 0 50px 0;
-            text-align: center;
-        }
-
-        .badge {
+        .status-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 5px 14px;
             border-radius: 9999px;
-            background: rgba(59, 130, 246, 0.1);
-            border: 1px solid rgba(59, 130, 246, 0.25);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.25);
             font-family: var(--font-mono);
             font-size: 0.72rem;
-            color: #93C5FD;
-            margin-bottom: 24px;
+            color: #A7F3D0;
         }
 
-        .dot {
+        .status-dot {
             width: 6px;
             height: 6px;
             border-radius: 50%;
@@ -176,156 +140,243 @@
             box-shadow: 0 0 8px var(--emerald);
         }
 
-        .hero h1 {
-            font-size: clamp(2.2rem, 5.5vw, 3.8rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -0.035em;
-            color: #FFFFFF;
-            margin-bottom: 18px;
+        /* Profile Hero Section */
+        .profile-hero {
+            padding: 50px 0 35px 0;
         }
 
-        .hero h1 span {
+        .profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 38px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .role-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: #60A5FA;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .profile-title {
+            font-size: clamp(1.9rem, 4.5vw, 2.6rem);
+            font-weight: 800;
+            letter-spacing: -0.035em;
+            line-height: 1.2;
+            color: #FFFFFF;
+            margin-bottom: 16px;
+        }
+
+        .profile-title span {
             background: linear-gradient(135deg, #FFFFFF 30%, #93C5FD 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.15rem);
+        .profile-bio {
             color: var(--text-body);
-            max-width: 580px;
-            margin: 0 auto 32px auto;
-            line-height: 1.6;
+            font-size: 1.05rem;
+            line-height: 1.65;
+            margin-bottom: 28px;
+            max-width: 680px;
         }
 
-        .actions {
+        .action-row {
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
         }
 
-        .btn-fill {
+        .btn-hire {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 11px 24px;
-            border-radius: 8px;
+            border-radius: var(--radius-sm);
             background: #FFFFFF;
-            color: #060911;
+            color: #080C14;
             font-weight: 600;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
-        .btn-fill:hover {
+        .btn-hire:hover {
             background: #E2E8F0;
             transform: translateY(-1px);
         }
 
-        .btn-outline {
+        .btn-gh {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 11px 22px;
-            border-radius: 8px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-line);
-            color: var(--text-lead);
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-heading);
             font-weight: 500;
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
-        .btn-outline:hover {
-            background: rgba(15, 23, 42, 0.9);
+        .btn-gh:hover {
+            background: rgba(255, 255, 255, 0.08);
             border-color: var(--border-hover);
         }
 
-        /* 3 Minimal Pillars (No Clutter, 1 Sentence Each) */
-        .cards {
+        .btn-gh svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* Proof of Work Metrics Strip */
+        .proof-strip {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin: 40px 0;
-        }
-
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-line);
-            border-radius: var(--radius);
-            padding: 24px;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            transition: all 0.25s ease;
-        }
-
-        .card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        .card-tag {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            color: #60A5FA;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .card-title {
-            font-size: 1.08rem;
-            font-weight: 700;
-            color: #FFFFFF;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-
-        .card-desc {
-            color: var(--text-body);
-            font-size: 0.88rem;
-            line-height: 1.55;
-        }
-
-        /* Stats Strip */
-        .stats {
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-            padding: 20px 24px;
-            background: rgba(15, 23, 42, 0.4);
-            border: 1px solid var(--border-line);
-            border-radius: var(--radius);
-            margin: 30px 0 50px 0;
+            gap: 14px;
+            margin: 24px 0 45px 0;
             text-align: center;
-            flex-wrap: wrap;
-            gap: 16px;
         }
 
-        .stat-num {
+        .proof-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 18px 16px;
+        }
+
+        .proof-val {
             font-family: var(--font-mono);
-            font-size: 1.4rem;
+            font-size: 1.45rem;
             font-weight: 700;
             color: #FFFFFF;
         }
 
-        .stat-lbl {
+        .proof-lbl {
             font-size: 0.75rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* What I Do Section */
+        .section-heading {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-heading span {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: #60A5FA;
+            font-weight: 600;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .service-row {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .service-row:hover {
+            border-color: var(--border-hover);
+            background: var(--bg-card-hover);
+            transform: translateY(-1px);
+        }
+
+        .service-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #60A5FA;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 4px 8px;
+            border-radius: 6px;
             margin-top: 2px;
+        }
+
+        .service-info h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+            letter-spacing: -0.01em;
+        }
+
+        .service-info p {
+            font-size: 0.92rem;
+            color: var(--text-body);
+            line-height: 1.55;
+        }
+
+        /* Tech Stack Pills */
+        .stack-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            margin-bottom: 50px;
+        }
+
+        .stack-title {
+            font-size: 0.82rem;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+
+        .stack-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-pill {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            padding: 5px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-tag);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-heading);
         }
 
         /* Footer */
         footer {
-            border-top: 1px solid var(--border-line);
-            padding: 30px 0;
+            border-top: 1px solid var(--border-subtle);
+            padding: 28px 0;
+            margin-top: 30px;
         }
 
         .footer-inner {
@@ -345,133 +396,134 @@
         }
 
         .footer-inner a:hover {
-            color: var(--text-lead);
+            color: var(--text-heading);
         }
 
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .cards {
-                grid-template-columns: 1fr;
-            }
-            .hero {
-                padding: 40px 0 30px 0;
-            }
-            .stats {
-                flex-direction: column;
-                gap: 18px;
-            }
-            .footer-inner {
-                flex-direction: column;
-                text-align: center;
-            }
+        /* Mobile Viewport */
+        @media (max-width: 640px) {
+            .profile-card { padding: 26px 20px; }
+            .proof-strip { grid-template-columns: 1fr; gap: 10px; }
+            .service-row { flex-direction: column; gap: 10px; }
+            .footer-inner { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <div class="ambient-radial"></div>
+    <div class="ambient-glow"></div>
 
     <div class="container">
         <!-- Header -->
-        <nav>
-            <div class="nav-inner">
-                <a href="#" class="brand">
-                    <div class="brand-icon">
+        <header>
+            <div class="header-inner">
+                <a href="#" class="brand-pill">
+                    <div class="avatar-box">A</div>
+                    <span class="brand-text">The Aether Labs</span>
+                </a>
+
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Available For Projects</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Profile Hero (Client View) -->
+        <section class="profile-hero">
+            <div class="profile-card">
+                <div class="role-tag">// LEAD AI SYSTEMS ENGINEER & BUILDER</div>
+                <h1 class="profile-title">
+                    Hi, I'm Dev. <br>
+                    <span>I Build Autonomous AI Systems & Modern Software.</span>
+                </h1>
+
+                <p class="profile-bio">
+                    I help clients, founders, and companies turn complex ideas into lightning-fast web apps, custom autonomous AI agents, and silent automation pipelines that run reliably 24/7.
+                </p>
+
+                <div class="action-row">
+                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-hire">
+                        <span>Get In Touch</span>
+                        &rarr;
+                    </a>
+                    <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-gh">
                         <svg viewBox="0 0 24 24">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
                         </svg>
+                        <span>GitHub Profile (22+ Repos)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Track Record Metrics -->
+        <section class="proof-strip">
+            <div class="proof-box">
+                <div class="proof-val">22+</div>
+                <div class="proof-lbl">Projects Built</div>
+            </div>
+            <div class="proof-box">
+                <div class="proof-val">100%</div>
+                <div class="proof-lbl">Privacy & NDA-Safe</div>
+            </div>
+            <div class="proof-box">
+                <div class="proof-val">24/7</div>
+                <div class="proof-lbl">Silent Automation</div>
+            </div>
+        </section>
+
+        <!-- What I Deliver For Clients -->
+        <section>
+            <h2 class="section-heading">
+                <span>// 01</span> What I Build For Clients
+            </h2>
+
+            <div class="services-grid">
+                <div class="service-row">
+                    <div class="service-num">01</div>
+                    <div class="service-info">
+                        <h3>Custom Autonomous AI Agents & Workflows</h3>
+                        <p>Multi-agent systems tailored to research, scrape, process data, and automate repetitive tasks without human babysitting.</p>
                     </div>
-                    <span class="brand-name">The Aether Labs</span>
-                </a>
+                </div>
 
-                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="nav-btn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"></path>
-                    </svg>
-                    <span>GitHub</span>
-                </a>
-            </div>
-        </nav>
+                <div class="service-row">
+                    <div class="service-num">02</div>
+                    <div class="service-info">
+                        <h3>High-Performance Web Applications & Tools</h3>
+                        <p>Modern, responsive, ultra-fast websites and custom web utilities designed with clean aesthetics and sub-100ms load times.</p>
+                    </div>
+                </div>
 
-        <!-- Hero: Radically Brief & Clear -->
-        <section class="hero">
-            <div class="badge">
-                <span class="dot"></span>
-                <span>AUTONOMOUS SYSTEMS // ACTIVE</span>
-            </div>
-
-            <h1>
-                Exploring Infinite Possibilities <br>
-                <span>Through Pure Technology.</span>
-            </h1>
-
-            <p>
-                An independent research studio engineering autonomous multi-agent architectures, cognitive knowledge vaults, and resilient systems.
-            </p>
-
-            <div class="actions">
-                <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="btn-fill">
-                    <span>Explore Repositories</span>
-                    &rarr;
-                </a>
-                <a href="#focus" class="btn-outline">
-                    <span>Core Focus</span>
-                </a>
+                <div class="service-row">
+                    <div class="service-num">03</div>
+                    <div class="service-info">
+                        <h3>Automated Cloud & Desktop Pipelines</h3>
+                        <p>Reliable background syncs, zero-leak credential management, and disaster recovery workflows that run quietly on autopilot.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- 3 Clean Cards: Just 1-2 Sentences Each -->
-        <section class="cards" id="focus">
-            <div class="card">
-                <div class="card-tag">01 // AUTONOMY</div>
-                <h3 class="card-title">Multi-Agent Swarms</h3>
-                <p class="card-desc">
-                    Self-coordinating agent teams with reactive wake-up loops and isolated execution boundaries.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag">02 // KNOWLEDGE</div>
-                <h3 class="card-title">Cognitive Vaults</h3>
-                <p class="card-desc">
-                    First-principles deconstruction compiling dense mental models into local Markdown graphs.
-                </p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag">03 // PRIVACY</div>
-                <h3 class="card-title">Zero-Leak Enclaves</h3>
-                <p class="card-desc">
-                    Hardware boundary locks, masked Git remotes, and silent background cloud synchronization.
-                </p>
+        <!-- Core Stack -->
+        <section class="stack-box">
+            <div class="stack-title">Core Technology Stack</div>
+            <div class="stack-pills">
+                <span class="tech-pill">Python</span>
+                <span class="tech-pill">TypeScript</span>
+                <span class="tech-pill">Autonomous Multi-Agent AI</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">PowerShell / Windows Automation</span>
+                <span class="tech-pill">Cloud & Git Enclaves</span>
+                <span class="tech-pill">Obsidian Architecture</span>
             </div>
         </section>
-
-        <!-- Minimal Metrics Strip -->
-        <div class="stats">
-            <div>
-                <div class="stat-num">22</div>
-                <div class="stat-lbl">Active Projects</div>
-            </div>
-            <div>
-                <div class="stat-num">100%</div>
-                <div class="stat-lbl">Private Enclaves</div>
-            </div>
-            <div>
-                <div class="stat-num">&lt; 14ms</div>
-                <div class="stat-lbl">Edge Latency</div>
-            </div>
-            <div>
-                <div class="stat-num">Zero-Loss</div>
-                <div class="stat-lbl">Disaster Recovery</div>
-            </div>
-        </div>
     </div>
 
     <!-- Minimal Footer -->
     <footer>
         <div class="container">
             <div class="footer-inner">
-                <div>&copy; 2026 The Aether Labs. Autonomous Systems Engineering.</div>
+                <div>&copy; 2026 The Aether Labs &bull; Engineered by Dev</div>
                 <div>
                     <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer">github.com/the-aether-labs</a>
                 </div>
