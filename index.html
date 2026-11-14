@@ -49,18 +49,54 @@
         })();
     </script>
     <style>
-        /* Crisp Typographic Rendering */
+        /* Base Canvas Ground */
+        html.dark {
+            background-color: #08080C;
+        }
+        html:not(.dark) {
+            background-color: #F4F6FB;
+        }
         body {
+            background: transparent;
             font-feature-settings: "cv02", "cv03", "cv04", "cv11";
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* The Optical Fluted Glass Shader (Fixed living backdrop) */
+        .nh-glass {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            width: 100vw;
+            height: 100vh;
+            height: 100lvh;
+            display: block;
+            pointer-events: none;
+        }
+
+        /* Signature Atmospheric Film Grain Overlay */
+        .sc-grain {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.038;
+        }
+        .dark .sc-grain {
+            opacity: 0.046;
+        }
+        .sc-grain::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='140' height='140' filter='url(%23n)'/></svg>");
         }
 
         /* Silky-Smooth Dark / Light Mode Transition (Zero Lag) */
         html.theme-transitioning body,
         html.theme-transitioning header > div,
         html.theme-transitioning .studio-panel,
-        html.theme-transitioning .studio-backdrop-layer,
         html.theme-transitioning a,
         html.theme-transitioning button,
         html.theme-transitioning input,
@@ -72,51 +108,27 @@
                         opacity 0.4s ease !important;
         }
 
-        /* Overhead Studio Focal Light — Draws Attention Automatically to Core Profile */
-        .studio-focal-wash {
-            background: radial-gradient(ellipse 68% 46% at 50% 8%, rgba(99, 102, 241, 0.11) 0%, rgba(99, 102, 241, 0.025) 48%, transparent 78%);
-        }
-
-        html:not(.dark) .studio-focal-wash {
-            background: radial-gradient(ellipse 72% 48% at 50% 8%, rgba(79, 70, 229, 0.075) 0%, rgba(16, 185, 129, 0.025) 48%, transparent 78%);
-        }
-
-        /* Optical Edge Vignette Framing the Center Column */
-        .studio-focus-vignette {
-            background: radial-gradient(ellipse 78% 72% at 50% 36%, transparent 45%, rgba(0, 0, 0, 0.48) 100%);
-        }
-
-        html:not(.dark) .studio-focus-vignette {
-            background: radial-gradient(ellipse 82% 76% at 50% 36%, rgba(255, 255, 255, 0.55) 35%, rgba(228, 228, 231, 0.42) 100%);
-        }
-
-        /* Subtle Micro-Dot Matrix with Radial Fade */
-        .studio-dot-field {
-            background-image: radial-gradient(rgba(161, 161, 170, 0.14) 1px, transparent 1px);
-            background-size: 28px 28px;
-            mask-image: radial-gradient(ellipse 72% 56% at 50% 18%, #000 22%, transparent 82%);
-            -webkit-mask-image: radial-gradient(ellipse 72% 56% at 50% 18%, #000 22%, transparent 82%);
-        }
-
-        html:not(.dark) .studio-dot-field {
-            background-image: radial-gradient(rgba(24, 24, 27, 0.09) 1px, transparent 1px);
-        }
-
-        /* Matte Studio Surface Panels */
+        /* Glassmorphic Studio Surface Panels (Living backdrop shines through with optical blur) */
         .studio-panel {
             contain: layout style;
             backface-visibility: hidden;
-            transition: border-color 0.24s ease, background-color 0.24s ease, box-shadow 0.24s ease;
+            transition: border-color 0.28s ease, background-color 0.28s ease, box-shadow 0.28s ease;
         }
 
         .dark .studio-panel {
-            background: linear-gradient(180deg, rgba(26, 26, 31, 0.92) 0%, rgba(18, 18, 22, 0.96) 100%);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.07) inset, 0 20px 44px -20px rgba(0, 0, 0, 0.88);
+            background: linear-gradient(180deg, rgba(20, 20, 26, 0.76) 0%, rgba(13, 13, 17, 0.86) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.08) inset, 0 20px 44px -20px rgba(0, 0, 0, 0.88);
         }
 
         html:not(.dark) .studio-panel {
-            background: linear-gradient(180deg, #FFFFFF 0%, #FCFCFD 100%);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 12px 32px -12px rgba(24, 24, 27, 0.075), 0 2px 6px -1px rgba(24, 24, 27, 0.04);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78) 0%, rgba(248, 250, 253, 0.88) 100%);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(24, 24, 27, 0.08);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 12px 32px -12px rgba(24, 24, 27, 0.075);
         }
 
         /* 100% Flat Hover State (Zero Vertical Bounce During Scroll) */
@@ -125,13 +137,14 @@
         }
 
         .dark .studio-card-interactive:hover {
-            border-color: rgba(129, 140, 248, 0.34);
-            background: linear-gradient(180deg, rgba(30, 30, 37, 0.96) 0%, rgba(21, 21, 26, 0.98) 100%);
-            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.11) inset, 0 22px 46px -18px rgba(0, 0, 0, 0.94);
+            border-color: rgba(129, 140, 248, 0.38);
+            background: linear-gradient(180deg, rgba(26, 26, 35, 0.86) 0%, rgba(17, 17, 23, 0.94) 100%);
+            box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.12) inset, 0 24px 48px -18px rgba(0, 0, 0, 0.94);
         }
 
         html:not(.dark) .studio-card-interactive:hover {
-            border-color: rgba(79, 70, 229, 0.26);
+            border-color: rgba(79, 70, 229, 0.3);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(245, 248, 253, 0.96) 100%);
             box-shadow: 0 1px 0 0 rgba(255, 255, 255, 1) inset, 0 16px 36px -12px rgba(24, 24, 27, 0.11), 0 3px 8px -2px rgba(79, 70, 229, 0.06);
         }
 
@@ -198,19 +211,17 @@
         }
     </style>
 </head>
-<body class="bg-[#F4F4F6] text-zinc-900 dark:bg-[#0B0B0E] dark:text-zinc-100 min-h-screen relative selection:bg-indigo-500 selection:text-white overflow-x-hidden">
+<body class="text-zinc-900 dark:text-zinc-100 min-h-screen relative selection:bg-indigo-500 selection:text-white overflow-x-hidden">
 
-    <!-- CALM STUDIO BACKDROP WITH AUTOMATIC CENTER VISUAL FOCUS -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden no-print" aria-hidden="true">
-        <div class="studio-backdrop-layer studio-focal-wash absolute inset-0"></div>
-        <div class="studio-backdrop-layer studio-dot-field absolute inset-0"></div>
-        <div class="studio-backdrop-layer studio-focus-vignette absolute inset-0"></div>
-        <div id="cursorSpotlight" class="fixed top-0 left-0 w-[440px] h-[440px] rounded-full opacity-0 transition-opacity duration-300 will-change-transform hidden sm:block" style="background: radial-gradient(circle, rgba(99, 102, 241, 0.065) 0%, transparent 70%);"></div>
-    </div>
+    <!-- THE GLASS (One continuous WebGL fluted pane behind everything, from hero to footer) -->
+    <canvas id="glass" class="nh-glass" aria-hidden="true"></canvas>
+
+    <!-- ATMOSPHERIC ORGANIC GRAIN (Keeps background deep and tactile without banding) -->
+    <div class="sc-grain" aria-hidden="true"></div>
 
     <!-- FLOATING PILL NAVIGATION HEADER (Streamlined & Clean) -->
     <header class="sticky top-0 z-40 pt-3 sm:pt-4 px-3 sm:px-6 no-print">
-        <div class="max-w-5xl mx-auto h-13 sm:h-14 px-3.5 sm:px-5 rounded-2xl backdrop-blur-md bg-white/90 dark:bg-[#141418]/90 border border-zinc-900/[0.08] dark:border-white/[0.08] shadow-sm dark:shadow-[0_14px_34px_-14px_rgba(0,0,0,0.85)] flex items-center justify-between gap-3">
+        <div class="max-w-5xl mx-auto h-13 sm:h-14 px-3.5 sm:px-5 rounded-2xl backdrop-blur-xl bg-white/80 dark:bg-[#141418]/80 border border-zinc-900/[0.08] dark:border-white/[0.08] shadow-sm dark:shadow-[0_14px_34px_-14px_rgba(0,0,0,0.85)] flex items-center justify-between gap-3">
             <!-- Brand Identity -->
             <a href="#overview" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
                 <div id="navMonogram" class="w-8 h-8 rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold text-xs flex items-center justify-center shrink-0 tracking-tight">
@@ -249,9 +260,9 @@
     <!-- MAIN EXECUTIVE PROFILE CONTAINER -->
     <main class="relative z-10 max-w-5xl mx-auto px-3.5 sm:px-6 pt-5 sm:pt-8 pb-24 space-y-12 sm:space-y-16">
 
-        <!-- SECTION 01 // EXECUTIVE HERO IDENTITY CARD (Mobile-Optimized & Cross-Device Pristine) -->
+        <!-- SECTION 01 // EXECUTIVE HERO IDENTITY CARD -->
         <section id="overview" class="scroll-mt-24">
-            <div class="studio-panel rounded-2xl sm:rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-8 md:p-9">
+            <div class="studio-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-9">
                 <!-- Top Row: Portrait, Identity, and Primary Actions -->
                 <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 sm:gap-6">
                     <!-- Left: Framed Portrait + Core Details -->
@@ -267,10 +278,10 @@
                                 <span class="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-white dark:ring-[#16161B]" title="Available for Select Projects"></span>
                             </div>
 
-                            <!-- Mobile-Only Quick Badge (Shown right beside portrait on mobile for compact perfection) -->
+                            <!-- Mobile-Only Quick Badge -->
                             <div class="sm:hidden space-y-1 min-w-0">
                                 <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span>Available for Select Projects</span>
                                 </span>
                                 <div class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 pt-0.5">
@@ -329,7 +340,7 @@
                             </svg>
                             <span>Get in Touch</span>
                         </a>
-                        <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.07] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors text-center w-full sm:w-auto">
+                        <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white/40 dark:bg-white/[0.03] hover:bg-white/70 dark:hover:bg-white/[0.07] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors text-center w-full sm:w-auto">
                             <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                             <span id="heroEmailText" class="truncate">github.com/the-aether-labs</span>
                         </a>
@@ -368,10 +379,10 @@
                         <button type="button" data-filter="Infrastructure" onclick="setWorkFilter('Infrastructure')" class="filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">Infrastructure</button>
                     </div>
                     <div class="flex items-center gap-1.5 shrink-0 pl-1">
-                        <button type="button" onclick="scrollCarousel('workTrack', -1)" aria-label="Scroll Case Studies Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                        <button type="button" onclick="scrollCarousel('workTrack', -1)" aria-label="Scroll Case Studies Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
-                        <button type="button" onclick="scrollCarousel('workTrack', 1)" aria-label="Scroll Case Studies Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                        <button type="button" onclick="scrollCarousel('workTrack', 1)" aria-label="Scroll Case Studies Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                     </div>
@@ -397,10 +408,10 @@
                     <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Core Expertise</h2>
                 </div>
                 <div class="flex items-center gap-1.5 no-print">
-                    <button type="button" onclick="scrollCarousel('capTrack', -1)" aria-label="Scroll Expertise Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                    <button type="button" onclick="scrollCarousel('capTrack', -1)" aria-label="Scroll Expertise Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
-                    <button type="button" onclick="scrollCarousel('capTrack', 1)" aria-label="Scroll Expertise Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                    <button type="button" onclick="scrollCarousel('capTrack', 1)" aria-label="Scroll Expertise Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
@@ -412,7 +423,7 @@
 
             <div id="capTrack" data-progress="capProgress" class="horizontal-track flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar pb-2">
                 <!-- CAP-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400">01 // ARCHITECTURE</span>
@@ -427,7 +438,7 @@
                 </article>
 
                 <!-- CAP-02 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">02 // APPLIED AI</span>
@@ -442,7 +453,7 @@
                 </article>
 
                 <!-- CAP-03 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400">03 // INTERFACE</span>
@@ -457,7 +468,7 @@
                 </article>
 
                 <!-- CAP-04 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400">04 // CLOUD &amp; EDGE</span>
@@ -481,10 +492,10 @@
                     <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Experience &amp; Milestones</h2>
                 </div>
                 <div class="flex items-center gap-1.5 no-print">
-                    <button type="button" onclick="scrollCarousel('ledgerTrack', -1)" aria-label="Scroll Experience Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                    <button type="button" onclick="scrollCarousel('ledgerTrack', -1)" aria-label="Scroll Experience Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
-                    <button type="button" onclick="scrollCarousel('ledgerTrack', 1)" aria-label="Scroll Experience Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
+                    <button type="button" onclick="scrollCarousel('ledgerTrack', 1)" aria-label="Scroll Experience Right" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/80 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
@@ -496,7 +507,7 @@
 
             <div id="ledgerTrack" data-progress="ledgerProgress" class="horizontal-track flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar pb-2">
                 <!-- EXP-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-indigo-600 dark:text-indigo-400 font-medium">CURRENT // 2026</span>
@@ -512,7 +523,7 @@
                 </article>
 
                 <!-- EXP-02 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-zinc-600 dark:text-zinc-300 font-medium">INFRASTRUCTURE</span>
@@ -528,7 +539,7 @@
                 </article>
 
                 <!-- EXP-03 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-zinc-600 dark:text-zinc-300 font-medium">KNOWLEDGE</span>
@@ -544,7 +555,7 @@
                 </article>
 
                 <!-- EDU-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-indigo-600 dark:text-indigo-400 font-medium">SPECIALIZATION</span>
@@ -563,7 +574,7 @@
 
         <!-- SECTION 05 // DIRECT CONTACT -->
         <section id="contact" class="scroll-mt-24">
-            <div class="studio-panel rounded-2xl sm:rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-8 md:p-9">
+            <div class="studio-panel rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-9">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
                     <!-- Left Column -->
                     <div class="lg:col-span-5 space-y-4 sm:space-y-5">
@@ -576,7 +587,7 @@
                         </div>
 
                         <div class="space-y-2.5 pt-1">
-                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between px-3.5 sm:px-4 py-3 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-left transition-colors">
+                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between px-3.5 sm:px-4 py-3 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/40 dark:bg-white/[0.03] hover:bg-white/70 dark:hover:bg-white/[0.06] text-left transition-colors">
                                 <div class="min-w-0">
                                     <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Direct GitHub Hub</div>
                                     <div id="contactEmailDisplay" class="text-xs font-mono text-zinc-900 dark:text-zinc-100 mt-0.5 truncate">github.com/the-aether-labs</div>
@@ -585,10 +596,10 @@
                             </a>
 
                             <div class="grid grid-cols-2 gap-2 sm:gap-2.5 no-print">
-                                <button type="button" onclick="downloadVCard()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
+                                <button type="button" onclick="downloadVCard()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/40 dark:bg-white/[0.03] hover:bg-white/70 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
                                     <span>Save vCard</span>
                                 </button>
-                                <button type="button" onclick="window.print()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
+                                <button type="button" onclick="window.print()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white/40 dark:bg-white/[0.03] hover:bg-white/70 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
                                     <span>Print / PDF CV</span>
                                 </button>
                             </div>
@@ -600,16 +611,16 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div>
                                 <label for="senderName" class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">Your Name</label>
-                                <input id="senderName" type="text" required placeholder="Founder / Lead" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500">
+                                <input id="senderName" type="text" required placeholder="Founder / Lead" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white/60 dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500">
                             </div>
                             <div>
                                 <label for="senderEmail" class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">Work Email</label>
-                                <input id="senderEmail" type="email" required placeholder="contact@organization.com" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500">
+                                <input id="senderEmail" type="email" required placeholder="contact@organization.com" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white/60 dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500">
                             </div>
                         </div>
                         <div>
                             <label for="senderBrief" class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">Project Scope or Inquiry</label>
-                            <textarea id="senderBrief" rows="3" required placeholder="Briefly share your timeline, technical goals, or automation scope..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
+                            <textarea id="senderBrief" rows="3" required placeholder="Briefly share your timeline, technical goals, or automation scope..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white/60 dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
                         </div>
                         <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 pt-1">
                             <span class="text-[11px] font-mono text-zinc-400">Typical response within 24 hours</span>
@@ -656,6 +667,9 @@
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
         <span id="toastMessage">Copied to clipboard</span>
     </div>
+
+    <!-- NATE HERK-STYLE FLUTED GLASS SHADER MODULE -->
+    <script src="glass.js"></script>
 
     <!-- APPLICATION LOGIC -->
     <script>
@@ -787,7 +801,7 @@
                 : CASE_STUDIES.filter(p => p.category === activeFilter);
 
             track.innerHTML = filtered.map(proj => `
-                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[340px] md:min-w-[385px] max-w-[385px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex flex-col justify-between overflow-hidden relative">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[340px] md:min-w-[385px] max-w-[385px] shrink-0 rounded-2xl flex flex-col justify-between overflow-hidden relative">
                     <div class="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b ${proj.tint} pointer-events-none"></div>
                     <div class="relative p-5 sm:p-6 space-y-3 sm:space-y-4">
                         <div class="flex items-center justify-between gap-2">
@@ -1007,6 +1021,105 @@
             }, 2600);
         }
 
+        /* -------------------------------------------------------------------
+           FLUTED GLASS ENGINE (Inspired by Nate Herk / Paper Shaders WebGL)
+           ------------------------------------------------------------------- */
+        const GLASS_CONFIG = {
+            dark: {
+                colors: ['#08080C', '#0E101A', '#181C2E', '#31375E', '#6366F1', '#818CF8'],
+                shadeBase: 0.74,
+                shadeHighlight: 0.38,
+                shadeShadow: 0.16,
+                intensity: 0.20,
+                paramA: 0.32,
+                scale: 1.15
+            },
+            light: {
+                colors: ['#EEF3F9', '#F9FBFD', '#D8EBFD', '#7FC2FF', '#A5B4FC'],
+                shadeBase: 0.92,
+                shadeHighlight: 0.13,
+                shadeShadow: 0.06,
+                intensity: 0.18,
+                paramA: 0.34,
+                scale: 1.18
+            }
+        };
+
+        let glassInstance = null;
+
+        function initFlutedGlass() {
+            const canvas = document.getElementById('glass');
+            if (!canvas || !window.NHGlass) return;
+
+            const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const isFine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+            const isCoarse = window.matchMedia('(pointer: coarse)').matches;
+            const isDark = document.documentElement.classList.contains('dark');
+            const cfg = isDark ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
+
+            glassInstance = NHGlass.mount(canvas, {
+                colors: cfg.colors,
+                scale: cfg.scale,
+                intensity: cfg.intensity,
+                paramA: cfg.paramA,
+                detail: 1.824,
+                contrast: 1.0,
+                brightness: 0.0,
+                saturation: 1.0,
+                grain: 0.034,
+                seed: 3.0,
+                oklab: 1.0,
+                shadeBase: cfg.shadeBase,
+                shadeHighlight: cfg.shadeHighlight,
+                shadeShadow: cfg.shadeShadow,
+                cursorEnabled: isFine && !isReduced,
+                cursorEffect: 1.0,
+                cursorStrength: 0.42,
+                cursorRadius: 0.5,
+                timeScale: (isReduced || isCoarse) ? 0 : 0.22,
+                maxPixels: isCoarse ? 380000 : 1000000,
+                maxDpr: isCoarse ? 1 : 1.25
+            });
+
+            // Scroll Velocity & Optical Refraction Physics
+            let lastY = window.scrollY;
+            let lastT = performance.now();
+            let vel = 0;
+            const vh = window.innerHeight || 800;
+
+            window.addEventListener('scroll', () => {
+                if (!glassInstance) return;
+                const now = performance.now();
+                const dt = Math.max(1, now - lastT) / 1000;
+                const dy = window.scrollY - lastY;
+                const v = Math.abs(dy) / vh / dt;
+                vel += (v - vel) * 0.32;
+                lastY = window.scrollY;
+                lastT = now;
+
+                const offY = (-window.scrollY / vh * 0.20);
+                const offX = (window.scrollY / vh * 0.025);
+                const currentCfg = document.documentElement.classList.contains('dark') ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
+                const targetInten = currentCfg.intensity + Math.min(0.09, vel * 0.06);
+
+                glassInstance.set('offsetY', +offY.toFixed(4));
+                glassInstance.set('offsetX', +offX.toFixed(4));
+                glassInstance.set('intensity', +targetInten.toFixed(4));
+            }, { passive: true });
+        }
+
+        function applyGlassTheme(isDark) {
+            if (!glassInstance) return;
+            const cfg = isDark ? GLASS_CONFIG.dark : GLASS_CONFIG.light;
+            glassInstance.set('colors', cfg.colors);
+            glassInstance.set('shadeBase', cfg.shadeBase);
+            glassInstance.set('shadeHighlight', cfg.shadeHighlight);
+            glassInstance.set('shadeShadow', cfg.shadeShadow);
+            glassInstance.set('intensity', cfg.intensity);
+            glassInstance.set('scale', cfg.scale);
+            glassInstance.set('paramA', cfg.paramA);
+        }
+
         function toggleTheme() {
             const root = document.documentElement;
             root.classList.add('theme-transitioning');
@@ -1014,6 +1127,9 @@
             try {
                 localStorage.setItem('aether_profile_theme', isDark ? 'dark' : 'light');
             } catch (e) {}
+
+            applyGlassTheme(isDark);
+
             clearTimeout(window.__themeAnimTimer);
             window.__themeAnimTimer = setTimeout(() => {
                 root.classList.remove('theme-transitioning');
@@ -1052,27 +1168,11 @@
             }
         });
 
-        const spotlight = document.getElementById('cursorSpotlight');
-        let pointerRaf = null;
-        let latestPointerX = 0;
-        let latestPointerY = 0;
-
-        window.addEventListener('pointermove', (e) => {
-            if (!spotlight || e.pointerType === 'touch') return;
-            latestPointerX = e.clientX;
-            latestPointerY = e.clientY;
-            if (pointerRaf) return;
-            pointerRaf = requestAnimationFrame(() => {
-                spotlight.style.opacity = '1';
-                spotlight.style.transform = `translate3d(${latestPointerX - 220}px, ${latestPointerY - 220}px, 0)`;
-                pointerRaf = null;
-            });
-        }, { passive: true });
-
         renderProfile();
         renderProjects();
         initHorizontalCarousels();
         initScrollSpy();
+        initFlutedGlass();
     </script>
 </body>
 </html>
