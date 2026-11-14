@@ -2,7 +2,7 @@
 <html lang="en" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Dev // The Aether Labs — Senior Systems Architect & Autonomous AI Engineer</title>
     <meta name="description" content="Senior Systems Architect & Autonomous AI Engineer at The Aether Labs. Engineering deterministic multi-agent swarms, cognitive knowledge graphs, and resilient cloud architectures.">
 
@@ -25,6 +25,9 @@
                     fontFamily: {
                         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    screens: {
+                        'xs': '420px',
                     }
                 }
             }
@@ -202,24 +205,24 @@
         <div class="studio-backdrop-layer studio-focal-wash absolute inset-0"></div>
         <div class="studio-backdrop-layer studio-dot-field absolute inset-0"></div>
         <div class="studio-backdrop-layer studio-focus-vignette absolute inset-0"></div>
-        <div id="cursorSpotlight" class="fixed top-0 left-0 w-[440px] h-[440px] rounded-full opacity-0 transition-opacity duration-300 will-change-transform" style="background: radial-gradient(circle, rgba(99, 102, 241, 0.065) 0%, transparent 70%);"></div>
+        <div id="cursorSpotlight" class="fixed top-0 left-0 w-[440px] h-[440px] rounded-full opacity-0 transition-opacity duration-300 will-change-transform hidden sm:block" style="background: radial-gradient(circle, rgba(99, 102, 241, 0.065) 0%, transparent 70%);"></div>
     </div>
 
-    <!-- FLOATING PILL NAVIGATION HEADER -->
-    <header class="sticky top-0 z-40 pt-4 px-4 sm:px-6 no-print">
-        <div class="max-w-5xl mx-auto h-14 px-4 sm:px-5 rounded-2xl backdrop-blur-md bg-white/90 dark:bg-[#141418]/90 border border-zinc-900/[0.08] dark:border-white/[0.08] shadow-sm dark:shadow-[0_14px_34px_-14px_rgba(0,0,0,0.85)] flex items-center justify-between gap-4">
+    <!-- FLOATING PILL NAVIGATION HEADER (Streamlined & Clean) -->
+    <header class="sticky top-0 z-40 pt-3 sm:pt-4 px-3 sm:px-6 no-print">
+        <div class="max-w-5xl mx-auto h-13 sm:h-14 px-3.5 sm:px-5 rounded-2xl backdrop-blur-md bg-white/90 dark:bg-[#141418]/90 border border-zinc-900/[0.08] dark:border-white/[0.08] shadow-sm dark:shadow-[0_14px_34px_-14px_rgba(0,0,0,0.85)] flex items-center justify-between gap-3">
             <!-- Brand Identity -->
-            <a href="#overview" class="flex items-center gap-3 group min-w-0">
+            <a href="#overview" class="flex items-center gap-2.5 sm:gap-3 group min-w-0">
                 <div id="navMonogram" class="w-8 h-8 rounded-full bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 font-semibold text-xs flex items-center justify-center shrink-0 tracking-tight">
                     AL
                 </div>
                 <div class="truncate">
-                    <div id="navName" class="text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight truncate">The Aether Labs</div>
-                    <div class="text-[10px] font-mono tracking-wider uppercase text-zinc-500 dark:text-zinc-400 leading-tight">STUDIO DOSSIER // 2026</div>
+                    <div id="navName" class="text-xs sm:text-sm font-semibold text-zinc-900 dark:text-zinc-100 leading-tight truncate">The Aether Labs</div>
+                    <div class="text-[9px] sm:text-[10px] font-mono tracking-wider uppercase text-zinc-500 dark:text-zinc-400 leading-tight">STUDIO DOSSIER // 2026</div>
                 </div>
             </a>
 
-            <!-- Center Section Links -->
+            <!-- Center Section Links (Desktop & Tablet) -->
             <nav class="hidden md:flex items-center gap-6 text-xs font-medium text-zinc-600 dark:text-zinc-400" aria-label="Primary Navigation">
                 <a href="#overview" data-nav="overview" class="nav-link hover:text-zinc-900 dark:hover:text-white transition-colors">Overview</a>
                 <a href="#work" data-nav="work" class="nav-link hover:text-zinc-900 dark:hover:text-white transition-colors">Selected Work</a>
@@ -228,7 +231,7 @@
                 <a href="#contact" data-nav="contact" class="nav-link hover:text-zinc-900 dark:hover:text-white transition-colors">Contact</a>
             </nav>
 
-            <!-- Right Actions -->
+            <!-- Right Actions: Theme Toggle (Clean, Minimal, Non-Intrusive) -->
             <div class="flex items-center gap-2 shrink-0">
                 <button type="button" onclick="toggleTheme()" aria-label="Toggle Light or Dark Mode" class="w-9 h-9 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.09] bg-zinc-100/80 dark:bg-white/[0.04] hover:bg-zinc-200/70 dark:hover:bg-white/[0.09] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                     <svg class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
@@ -239,57 +242,68 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
                     </svg>
                 </button>
-
-                <button type="button" onclick="openEditModal()" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-zinc-900 text-white dark:bg-zinc-100 dark:text-zinc-950 hover:opacity-90 text-xs font-semibold transition-opacity shadow-sm">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h10M4 18h16M17 10v4m-2-2h4"></path>
-                    </svg>
-                    <span>Edit Profile Info</span>
-                </button>
             </div>
         </div>
     </header>
 
     <!-- MAIN EXECUTIVE PROFILE CONTAINER -->
-    <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-24 space-y-16">
+    <main class="relative z-10 max-w-5xl mx-auto px-3.5 sm:px-6 pt-5 sm:pt-8 pb-24 space-y-12 sm:space-y-16">
 
-        <!-- SECTION 01 // EXECUTIVE HERO IDENTITY CARD -->
+        <!-- SECTION 01 // EXECUTIVE HERO IDENTITY CARD (Mobile-Optimized & Cross-Device Pristine) -->
         <section id="overview" class="scroll-mt-24">
-            <div class="studio-panel rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 sm:p-9">
+            <div class="studio-panel rounded-2xl sm:rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-8 md:p-9">
                 <!-- Top Row: Portrait, Identity, and Primary Actions -->
-                <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+                <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-5 sm:gap-6">
                     <!-- Left: Framed Portrait + Core Details -->
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-6 min-w-0">
-                        <div class="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-2xl p-[2px] portrait-rim shadow-lg">
-                            <img id="profilePortrait"
-                                 src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85"
-                                 alt="Dev // The Aether Labs — Senior Systems Architect & Autonomous AI Engineer"
-                                 class="w-full h-full rounded-[14px] object-cover object-top bg-zinc-900"
-                                 onerror="applyPortraitFallback(this)">
-                            <span class="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-white dark:ring-[#16161B]" title="Available for Select Projects"></span>
+                    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 min-w-0">
+                        <!-- Portrait with Availability Beacon -->
+                        <div class="flex items-center gap-3.5 sm:block shrink-0">
+                            <div class="relative shrink-0 w-20 h-20 sm:w-28 sm:h-28 rounded-2xl p-[2px] portrait-rim shadow-md sm:shadow-lg">
+                                <img id="profilePortrait"
+                                     src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85"
+                                     alt="Dev // The Aether Labs — Senior Systems Architect & Autonomous AI Engineer"
+                                     class="w-full h-full rounded-[14px] object-cover object-top bg-zinc-900"
+                                     onerror="applyPortraitFallback(this)">
+                                <span class="absolute bottom-1 right-1 sm:bottom-1.5 sm:right-1.5 w-3.5 h-3.5 rounded-full bg-emerald-400 ring-2 ring-white dark:ring-[#16161B]" title="Available for Select Projects"></span>
+                            </div>
+
+                            <!-- Mobile-Only Quick Badge (Shown right beside portrait on mobile for compact perfection) -->
+                            <div class="sm:hidden space-y-1 min-w-0">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span>Available for Select Projects</span>
+                                </span>
+                                <div class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 pt-0.5">
+                                    <svg class="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"></path>
+                                        <circle cx="12" cy="11" r="2"></circle>
+                                    </svg>
+                                    <span>Remote · Global</span>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- Name, Verification, Status & Meta -->
-                        <div class="space-y-2.5 min-w-0">
-                            <div class="flex flex-wrap items-center gap-2.5">
-                                <h1 id="heroName" class="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">Dev // The Aether Labs</h1>
-                                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400" title="Verified System Architect">
+                        <div class="space-y-2 sm:space-y-2.5 min-w-0 w-full sm:w-auto">
+                            <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                                <h1 id="heroName" class="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">Dev // The Aether Labs</h1>
+                                <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 shrink-0" title="Verified System Architect">
                                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
                                     </svg>
                                 </span>
-                                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
+                                <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20">
                                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                                     <span>Available for Select Projects</span>
                                 </span>
                             </div>
 
-                            <p id="heroRole" class="text-sm sm:text-base font-medium text-zinc-600 dark:text-zinc-300">
+                            <p id="heroRole" class="text-xs sm:text-sm md:text-base font-medium text-zinc-600 dark:text-zinc-300 leading-snug">
                                 Senior Systems Architect · Autonomous AI &amp; Full-Stack Engineer
                             </p>
 
-                            <div class="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400 pt-0.5">
-                                <span class="inline-flex items-center gap-1.5">
+                            <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-5 gap-y-1.5 text-xs font-mono text-zinc-500 dark:text-zinc-400 pt-0.5">
+                                <span class="hidden sm:inline-flex items-center gap-1.5">
                                     <svg class="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400 shrink-0" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-5.686-6-10a6 6 0 1112 0c0 4.314-6 10-6 10z"></path>
                                         <circle cx="12" cy="11" r="2"></circle>
@@ -307,53 +321,53 @@
                         </div>
                     </div>
 
-                    <!-- Right: Stacked Action Buttons -->
-                    <div class="flex flex-row sm:flex-col gap-2.5 shrink-0 no-print">
-                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition-colors">
+                    <!-- Right: Stacked Action Buttons (Full-Width on Mobile, Clean on Desktop) -->
+                    <div class="flex flex-col sm:flex-row lg:flex-col gap-2.5 w-full sm:w-auto shrink-0 pt-2 sm:pt-0 no-print">
+                        <a href="#contact" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-sm transition-colors text-center w-full sm:w-auto">
                             <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"></path>
                             </svg>
                             <span>Get in Touch</span>
                         </a>
-                        <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.07] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors">
-                            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-                            <span id="heroEmailText">github.com/the-aether-labs</span>
+                        <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.07] text-zinc-700 dark:text-zinc-300 text-xs font-mono transition-colors text-center w-full sm:w-auto">
+                            <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+                            <span id="heroEmailText" class="truncate">github.com/the-aether-labs</span>
                         </a>
                     </div>
                 </div>
 
                 <!-- Executive Summary Paragraph -->
-                <p id="heroBio" class="mt-6 text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-3xl">
+                <p id="heroBio" class="mt-5 sm:mt-6 text-xs sm:text-sm md:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300 max-w-3xl">
                     Product-focused engineer and systems architect engineering autonomous AI agent workflows, deterministic multi-agent swarms, cognitive knowledge graphs, and zero-compromise automated systems.
                 </p>
 
                 <!-- Hairline Divider -->
-                <div class="my-7 h-px w-full bg-zinc-900/[0.08] dark:bg-white/[0.08]"></div>
+                <div class="my-5 sm:my-7 h-px w-full bg-zinc-900/[0.08] dark:bg-white/[0.08]"></div>
 
-                <!-- 4-Column Key Metrics Strip -->
-                <div id="kpiGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <!-- 4-Column Key Metrics Strip (Refined Modular Cards) -->
+                <div id="kpiGrid" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4 md:gap-6">
                     <!-- Populated via JS -->
                 </div>
             </div>
         </section>
 
         <!-- SECTION 02 // SELECTED CASE STUDIES -->
-        <section id="work" class="scroll-mt-24 space-y-5">
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <section id="work" class="scroll-mt-24 space-y-4 sm:space-y-5">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 sm:gap-4">
                 <div>
                     <div class="text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400">PORTFOLIO</div>
-                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Selected Case Studies</h2>
+                    <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Selected Case Studies</h2>
                 </div>
 
-                <!-- Filter Pills + Left/Right Controls -->
-                <div class="flex flex-wrap items-center gap-2 no-print">
-                    <div id="workFilters" class="flex items-center gap-1.5 mr-1">
-                        <button type="button" data-filter="All" onclick="setWorkFilter('All')" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 transition-colors">All</button>
-                        <button type="button" data-filter="AI Platform" onclick="setWorkFilter('AI Platform')" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">AI Platform</button>
-                        <button type="button" data-filter="Design System" onclick="setWorkFilter('Design System')" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">Design System</button>
-                        <button type="button" data-filter="Infrastructure" onclick="setWorkFilter('Infrastructure')" class="filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">Infrastructure</button>
+                <!-- Filter Pills + Left/Right Controls (Scrolls horizontally on mobile) -->
+                <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto no-print">
+                    <div id="workFilters" class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5">
+                        <button type="button" data-filter="All" onclick="setWorkFilter('All')" class="filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 transition-colors">All</button>
+                        <button type="button" data-filter="AI Platform" onclick="setWorkFilter('AI Platform')" class="filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">AI Platform</button>
+                        <button type="button" data-filter="Design System" onclick="setWorkFilter('Design System')" class="filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">Design System</button>
+                        <button type="button" data-filter="Infrastructure" onclick="setWorkFilter('Infrastructure')" class="filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors">Infrastructure</button>
                     </div>
-                    <div class="flex items-center gap-1.5">
+                    <div class="flex items-center gap-1.5 shrink-0 pl-1">
                         <button type="button" onclick="scrollCarousel('workTrack', -1)" aria-label="Scroll Case Studies Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
@@ -370,17 +384,17 @@
             </div>
 
             <!-- Left-Right Flat Smooth Horizontal Track -->
-            <div id="workTrack" data-progress="workProgress" class="horizontal-track flex gap-5 overflow-x-auto no-scrollbar pb-2">
+            <div id="workTrack" data-progress="workProgress" class="horizontal-track flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar pb-2">
                 <!-- Populated via JS -->
             </div>
         </section>
 
         <!-- SECTION 03 // CORE EXPERTISE -->
-        <section id="expertise" class="scroll-mt-24 space-y-5">
+        <section id="expertise" class="scroll-mt-24 space-y-4 sm:space-y-5">
             <div class="flex items-end justify-between gap-4">
                 <div>
                     <div class="text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400">CAPABILITIES</div>
-                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Core Expertise</h2>
+                    <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Core Expertise</h2>
                 </div>
                 <div class="flex items-center gap-1.5 no-print">
                     <button type="button" onclick="scrollCarousel('capTrack', -1)" aria-label="Scroll Expertise Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
@@ -396,15 +410,15 @@
                 <div id="capProgress" class="h-full bg-indigo-500 dark:bg-indigo-400 rounded-full transition-[width] duration-150 ease-out" style="width: 40%;"></div>
             </div>
 
-            <div id="capTrack" data-progress="capProgress" class="horizontal-track flex gap-5 overflow-x-auto no-scrollbar pb-2">
+            <div id="capTrack" data-progress="capProgress" class="horizontal-track flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar pb-2">
                 <!-- CAP-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400">01 // ARCHITECTURE</span>
                             <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-zinc-900/[0.05] dark:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">Distributed</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Distributed Systems &amp; APIs</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Distributed Systems &amp; APIs</h3>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Fault-tolerant event pipelines, multi-region edge caching, and sub-50ms GraphQL / REST service meshes.</p>
                     </div>
                     <div class="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-900/[0.06] dark:border-white/[0.06] text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
@@ -413,13 +427,13 @@
                 </article>
 
                 <!-- CAP-02 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-emerald-600 dark:text-emerald-400">02 // APPLIED AI</span>
                             <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-zinc-900/[0.05] dark:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">Production</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Autonomous AI Orchestration</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Autonomous AI Orchestration</h3>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Deterministic multi-agent pipelines, hybrid vector retrieval (RAG), structured tool calling, and automated eval harnesses.</p>
                     </div>
                     <div class="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-900/[0.06] dark:border-white/[0.06] text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
@@ -428,13 +442,13 @@
                 </article>
 
                 <!-- CAP-03 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-sky-600 dark:text-sky-400">03 // INTERFACE</span>
                             <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-zinc-900/[0.05] dark:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">60 FPS</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Design Systems &amp; Product UI</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Design Systems &amp; Product UI</h3>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Accessible token-driven component libraries, real-time collaborative workspaces, and crisp micro-interactions.</p>
                     </div>
                     <div class="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-900/[0.06] dark:border-white/[0.06] text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
@@ -443,13 +457,13 @@
                 </article>
 
                 <!-- CAP-04 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-3">
                         <div class="flex items-center justify-between">
                             <span class="text-[11px] font-mono text-amber-600 dark:text-amber-400">04 // CLOUD &amp; EDGE</span>
                             <span class="px-2 py-0.5 rounded-md text-[10px] font-mono bg-zinc-900/[0.05] dark:bg-white/[0.05] text-zinc-500 dark:text-zinc-400">99.9% SLA</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Zero-Downtime Infrastructure</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Zero-Downtime Infrastructure</h3>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">Declarative Terraform deployments, OpenTelemetry observability, and automated canary rollbacks across global clusters.</p>
                     </div>
                     <div class="flex flex-wrap gap-1.5 pt-2 border-t border-zinc-900/[0.06] dark:border-white/[0.06] text-[11px] font-mono text-zinc-500 dark:text-zinc-400">
@@ -460,11 +474,11 @@
         </section>
 
         <!-- SECTION 04 // EXPERIENCE & CREDENTIALS -->
-        <section id="experience" class="scroll-mt-24 space-y-5">
+        <section id="experience" class="scroll-mt-24 space-y-4 sm:space-y-5">
             <div class="flex items-end justify-between gap-4">
                 <div>
                     <div class="text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400">TRACK RECORD</div>
-                    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Experience &amp; Milestones</h2>
+                    <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Experience &amp; Milestones</h2>
                 </div>
                 <div class="flex items-center gap-1.5 no-print">
                     <button type="button" onclick="scrollCarousel('ledgerTrack', -1)" aria-label="Scroll Experience Left" class="w-8 h-8 rounded-lg border border-zinc-900/[0.08] dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.08] flex items-center justify-center text-zinc-700 dark:text-zinc-300 transition-colors">
@@ -480,15 +494,15 @@
                 <div id="ledgerProgress" class="h-full bg-indigo-500 dark:bg-indigo-400 rounded-full transition-[width] duration-150 ease-out" style="width: 40%;"></div>
             </div>
 
-            <div id="ledgerTrack" data-progress="ledgerProgress" class="horizontal-track flex gap-5 overflow-x-auto no-scrollbar pb-2">
+            <div id="ledgerTrack" data-progress="ledgerProgress" class="horizontal-track flex gap-4 sm:gap-5 overflow-x-auto no-scrollbar pb-2">
                 <!-- EXP-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-indigo-600 dark:text-indigo-400 font-medium">CURRENT // 2026</span>
                             <span class="text-zinc-500 dark:text-zinc-400">Global</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Principal Systems Architect</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Principal Systems Architect</h3>
                         <div class="text-xs font-medium text-zinc-500 dark:text-zinc-400">The Aether Labs</div>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pt-1">Directing autonomous multi-agent swarm architecture, cognitive knowledge graphs, and zero-leak automation enclaves across 22+ active repositories.</p>
                     </div>
@@ -498,13 +512,13 @@
                 </article>
 
                 <!-- EXP-02 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-zinc-600 dark:text-zinc-300 font-medium">INFRASTRUCTURE</span>
                             <span class="text-zinc-500 dark:text-zinc-400">Daemons</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Cloud &amp; Desktop Daemon Systems</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Cloud &amp; Desktop Daemon Systems</h3>
                         <div class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Windows &amp; Linux Automation</div>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pt-1">Architected silent background VBScript and PowerShell daemons automating daily 16,000+ node backups with 1-click disaster recovery.</p>
                     </div>
@@ -514,13 +528,13 @@
                 </article>
 
                 <!-- EXP-03 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-zinc-600 dark:text-zinc-300 font-medium">KNOWLEDGE</span>
                             <span class="text-zinc-500 dark:text-zinc-400">4-Lens</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">First-Principles Knowledge Engines</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">First-Principles Knowledge Engines</h3>
                         <div class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Obsidian &amp; Cognitive Architecture</div>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pt-1">Formulated the 4-Lens Concept Mastery methodology, synthesizing dense mental models into atomic local Markdown graphs.</p>
                     </div>
@@ -530,13 +544,13 @@
                 </article>
 
                 <!-- EDU-01 -->
-                <article class="studio-panel studio-card-interactive min-w-[300px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 flex flex-col justify-between gap-5">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[320px] md:min-w-[345px] max-w-[345px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-6 flex flex-col justify-between gap-5">
                     <div class="space-y-2.5">
                         <div class="flex items-center justify-between text-[11px] font-mono">
                             <span class="text-indigo-600 dark:text-indigo-400 font-medium">SPECIALIZATION</span>
                             <span class="text-zinc-500 dark:text-zinc-400">Architecture</span>
                         </div>
-                        <h3 class="text-base font-semibold text-zinc-900 dark:text-white">Advanced Distributed Systems</h3>
+                        <h3 class="text-sm sm:text-base font-semibold text-zinc-900 dark:text-white">Advanced Distributed Systems</h3>
                         <div class="text-xs font-medium text-zinc-500 dark:text-zinc-400">Autonomous Computing &amp; Human-AI Interfaces</div>
                         <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 pt-1">Deep specialization in deterministic agent workflows, cryptographic credential isolation, and resilient cloud automation.</p>
                     </div>
@@ -549,32 +563,32 @@
 
         <!-- SECTION 05 // DIRECT CONTACT -->
         <section id="contact" class="scroll-mt-24">
-            <div class="studio-panel rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-6 sm:p-9">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div class="studio-panel rounded-2xl sm:rounded-3xl border border-zinc-900/[0.08] dark:border-white/[0.08] p-5 sm:p-8 md:p-9">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
                     <!-- Left Column -->
-                    <div class="lg:col-span-5 space-y-5">
+                    <div class="lg:col-span-5 space-y-4 sm:space-y-5">
                         <div>
                             <div class="text-[11px] font-mono font-medium uppercase tracking-[0.14em] text-indigo-600 dark:text-indigo-400">DIRECT CHANNEL</div>
-                            <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Initiate a Conversation</h2>
+                            <h2 class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white mt-1">Initiate a Conversation</h2>
                             <p class="text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 mt-2">
                                 Available for autonomous AI agent architectures, technical due diligence, high-speed web systems, and resilient background automations.
                             </p>
                         </div>
 
                         <div class="space-y-2.5 pt-1">
-                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between px-4 py-3 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-left transition-colors">
-                                <div>
+                            <a href="https://github.com/the-aether-labs" target="_blank" rel="noopener noreferrer" class="w-full flex items-center justify-between px-3.5 sm:px-4 py-3 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-left transition-colors">
+                                <div class="min-w-0">
                                     <div class="text-[10px] font-mono uppercase tracking-wider text-zinc-400">Direct GitHub Hub</div>
-                                    <div id="contactEmailDisplay" class="text-xs font-mono text-zinc-900 dark:text-zinc-100 mt-0.5">github.com/the-aether-labs</div>
+                                    <div id="contactEmailDisplay" class="text-xs font-mono text-zinc-900 dark:text-zinc-100 mt-0.5 truncate">github.com/the-aether-labs</div>
                                 </div>
-                                <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400">Open ↗</span>
+                                <span class="text-[11px] font-mono text-indigo-600 dark:text-indigo-400 shrink-0 ml-2">Open ↗</span>
                             </a>
 
-                            <div class="grid grid-cols-2 gap-2.5 no-print">
-                                <button type="button" onclick="downloadVCard()" class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
+                            <div class="grid grid-cols-2 gap-2 sm:gap-2.5 no-print">
+                                <button type="button" onclick="downloadVCard()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
                                     <span>Save vCard</span>
                                 </button>
-                                <button type="button" onclick="window.print()" class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
+                                <button type="button" onclick="window.print()" class="flex items-center justify-center gap-2 px-3 sm:px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] bg-zinc-50 dark:bg-white/[0.03] hover:bg-zinc-100 dark:hover:bg-white/[0.06] text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors">
                                     <span>Print / PDF CV</span>
                                 </button>
                             </div>
@@ -582,8 +596,8 @@
                     </div>
 
                     <!-- Right Column: Clean Minimal Inquiry Form -->
-                    <form onsubmit="handleContactSubmit(event)" class="lg:col-span-7 space-y-4 no-print">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <form onsubmit="handleContactSubmit(event)" class="lg:col-span-7 space-y-3.5 sm:space-y-4 no-print w-full">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                             <div>
                                 <label for="senderName" class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">Your Name</label>
                                 <input id="senderName" type="text" required placeholder="Founder / Lead" class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500">
@@ -597,9 +611,9 @@
                             <label for="senderBrief" class="block text-[11px] font-mono uppercase tracking-wider text-zinc-500 dark:text-zinc-400 mb-1.5">Project Scope or Inquiry</label>
                             <textarea id="senderBrief" rows="3" required placeholder="Briefly share your timeline, technical goals, or automation scope..." class="w-full px-3.5 py-2.5 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.03] text-sm text-zinc-900 dark:text-white placeholder-zinc-400 focus:outline-none focus:border-indigo-500 resize-none"></textarea>
                         </div>
-                        <div class="flex items-center justify-between gap-4 pt-1">
+                        <div class="flex flex-col xs:flex-row items-start xs:items-center justify-between gap-3 pt-1">
                             <span class="text-[11px] font-mono text-zinc-400">Typical response within 24 hours</span>
-                            <button type="submit" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors shadow-sm">
+                            <button type="submit" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold transition-colors shadow-sm w-full xs:w-auto">
                                 <span>Send Briefing</span>
                                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6l6 6-6 6"></path></svg>
                             </button>
@@ -610,92 +624,30 @@
         </section>
 
         <!-- Clean Minimal Footer -->
-        <footer class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-500 border-t border-zinc-900/[0.07] dark:border-white/[0.07]">
+        <footer class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-zinc-500 dark:text-zinc-500 border-t border-zinc-900/[0.07] dark:border-white/[0.07] text-center sm:text-left">
             <div id="footerCopyright">© 2026 The Aether Labs · Executive Architecture Dossier</div>
             <div>Designed with Precision &amp; Clarity</div>
         </footer>
     </main>
 
     <!-- CASE STUDY SPECIFICATION MODAL -->
-    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm no-print" onclick="if (event.target === this) closeProjectModal()">
-        <div class="studio-panel w-full max-w-xl rounded-3xl border border-zinc-900/[0.12] dark:border-white/[0.12] p-6 sm:p-8 space-y-5 shadow-2xl">
+    <div id="projectModal" class="fixed inset-0 z-50 hidden items-center justify-center p-3.5 sm:p-4 bg-black/60 backdrop-blur-sm no-print" onclick="if (event.target === this) closeProjectModal()">
+        <div class="studio-panel w-full max-w-xl rounded-2xl sm:rounded-3xl border border-zinc-900/[0.12] dark:border-white/[0.12] p-5 sm:p-8 space-y-4 sm:space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
             <div class="flex items-start justify-between gap-4">
                 <div>
                     <div id="modalCategory" class="text-[11px] font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400">AI PLATFORM · 2026</div>
-                    <h3 id="modalTitle" class="text-xl font-bold text-zinc-900 dark:text-white mt-1">Case Study Title</h3>
+                    <h3 id="modalTitle" class="text-lg sm:text-xl font-bold text-zinc-900 dark:text-white mt-1">Case Study Title</h3>
                 </div>
-                <button type="button" onclick="closeProjectModal()" aria-label="Close Case Study Modal" class="w-8 h-8 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
+                <button type="button" onclick="closeProjectModal()" aria-label="Close Case Study Modal" class="w-8 h-8 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-white shrink-0">
                     ✕
                 </button>
             </div>
-            <p id="modalSummary" class="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"></p>
-            <div class="p-4 rounded-2xl bg-zinc-900/[0.03] dark:bg-white/[0.03] border border-zinc-900/[0.06] dark:border-white/[0.06] space-y-2">
+            <p id="modalSummary" class="text-xs sm:text-sm leading-relaxed text-zinc-600 dark:text-zinc-300"></p>
+            <div class="p-3.5 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-900/[0.03] dark:bg-white/[0.03] border border-zinc-900/[0.06] dark:border-white/[0.06] space-y-2">
                 <div class="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Key Architectural Outcomes</div>
                 <ul id="modalOutcomes" class="space-y-1.5 text-xs text-zinc-700 dark:text-zinc-300 list-disc pl-4"></ul>
             </div>
             <div id="modalTags" class="flex flex-wrap gap-1.5"></div>
-        </div>
-    </div>
-
-    <!-- EDIT DUMMY PROFILE MODAL -->
-    <div id="editModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/60 backdrop-blur-sm no-print" onclick="if (event.target === this) closeEditModal()">
-        <div class="studio-panel w-full max-w-lg rounded-3xl border border-zinc-900/[0.12] dark:border-white/[0.12] p-6 sm:p-7 space-y-5 shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div class="flex items-center justify-between">
-                <div>
-                    <div class="text-[11px] font-mono uppercase tracking-wider text-indigo-600 dark:text-indigo-400">PROFILE STUDIO</div>
-                    <h3 class="text-lg font-bold text-zinc-900 dark:text-white">Customize Profile Details</h3>
-                </div>
-                <button type="button" onclick="closeEditModal()" aria-label="Close Editor Modal" class="w-8 h-8 rounded-xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex items-center justify-center text-zinc-500 hover:text-zinc-900 dark:hover:text-white">
-                    ✕
-                </button>
-            </div>
-
-            <form onsubmit="saveProfileEdits(event)" class="space-y-3.5">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div>
-                        <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Display Name</label>
-                        <input id="editName" type="text" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Direct Handle</label>
-                        <input id="editEmail" type="text" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Headline / Role</label>
-                    <input id="editRole" type="text" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                    <div>
-                        <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Location</label>
-                        <input id="editLocation" type="text" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                    </div>
-                    <div>
-                        <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Website / Domain</label>
-                        <input id="editDomain" type="text" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Portrait Image URL</label>
-                    <input id="editPortrait" type="url" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white">
-                </div>
-
-                <div>
-                    <label class="block text-[11px] font-mono text-zinc-500 dark:text-zinc-400 mb-1">Executive Bio</label>
-                    <textarea id="editBio" rows="3" required class="w-full px-3 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] bg-white dark:bg-white/[0.04] text-xs text-zinc-900 dark:text-white resize-none"></textarea>
-                </div>
-
-                <div class="flex items-center justify-between pt-2">
-                    <button type="button" onclick="resetProfileDefaults()" class="text-xs font-mono text-zinc-500 hover:text-zinc-900 dark:hover:text-white">Reset Defaults</button>
-                    <div class="flex items-center gap-2">
-                        <button type="button" onclick="closeEditModal()" class="px-4 py-2 rounded-xl border border-zinc-900/[0.1] dark:border-white/[0.1] text-xs font-medium text-zinc-600 dark:text-zinc-300">Cancel</button>
-                        <button type="submit" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold">Save Changes</button>
-                    </div>
-                </div>
-            </form>
         </div>
     </div>
 
@@ -712,7 +664,7 @@
             role: 'Senior Systems Architect · Autonomous AI & Full-Stack Engineer',
             location: 'Remote · Worldwide',
             domain: 'the-aether-labs.github.io',
-            email: 'the-aether-labs (GitHub)',
+            email: 'github.com/the-aether-labs',
             portrait: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=85',
             bio: 'Product-focused engineer and systems architect engineering autonomous AI agent workflows, deterministic multi-agent swarms, cognitive knowledge graphs, and zero-compromise automated systems.',
             kpis: [
@@ -782,26 +734,8 @@
             }
         ];
 
-        const STORAGE_KEY = 'exec_studio_profile_v6';
-        let currentProfile = loadProfile();
+        let currentProfile = Object.assign({}, DEFAULT_PROFILE);
         let activeFilter = 'All';
-
-        function loadProfile() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    return Object.assign({}, DEFAULT_PROFILE, parsed);
-                }
-            } catch (e) {}
-            return Object.assign({}, DEFAULT_PROFILE);
-        }
-
-        function saveProfileToStorage() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(currentProfile));
-            } catch (e) {}
-        }
 
         function applyPortraitFallback(imgEl) {
             imgEl.onerror = null;
@@ -815,7 +749,8 @@
             document.getElementById('navName').textContent = 'The Aether Labs';
             document.getElementById('heroName').textContent = currentProfile.name;
             document.getElementById('heroRole').textContent = currentProfile.role;
-            document.getElementById('heroLocation').textContent = currentProfile.location;
+            const heroLocationEl = document.getElementById('heroLocation');
+            if (heroLocationEl) heroLocationEl.textContent = currentProfile.location;
             document.getElementById('heroDomain').textContent = currentProfile.domain;
             document.getElementById('heroEmailText').textContent = currentProfile.email;
             document.getElementById('contactEmailDisplay').textContent = currentProfile.email;
@@ -829,9 +764,9 @@
 
             const kpiGrid = document.getElementById('kpiGrid');
             kpiGrid.innerHTML = currentProfile.kpis.map(item => `
-                <div>
-                    <div class="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${escapeHtml(item.val)}</div>
-                    <div class="text-xs text-zinc-500 dark:text-zinc-400 mt-1">${escapeHtml(item.label)}</div>
+                <div class="p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-zinc-900/[0.025] dark:bg-white/[0.03] border border-zinc-900/[0.06] dark:border-white/[0.06] flex flex-col justify-between">
+                    <div class="text-lg sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">${escapeHtml(item.val)}</div>
+                    <div class="text-[10px] sm:text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-mono">${escapeHtml(item.label)}</div>
                 </div>
             `).join('');
         }
@@ -852,9 +787,9 @@
                 : CASE_STUDIES.filter(p => p.category === activeFilter);
 
             track.innerHTML = filtered.map(proj => `
-                <article class="studio-panel studio-card-interactive min-w-[310px] md:min-w-[385px] max-w-[385px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex flex-col justify-between overflow-hidden relative">
-                    <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b ${proj.tint} pointer-events-none"></div>
-                    <div class="relative p-6 space-y-4">
+                <article class="studio-panel studio-card-interactive min-w-[280px] sm:min-w-[340px] md:min-w-[385px] max-w-[385px] shrink-0 rounded-2xl border border-zinc-900/[0.08] dark:border-white/[0.08] flex flex-col justify-between overflow-hidden relative">
+                    <div class="absolute inset-x-0 top-0 h-24 sm:h-28 bg-gradient-to-b ${proj.tint} pointer-events-none"></div>
+                    <div class="relative p-5 sm:p-6 space-y-3 sm:space-y-4">
                         <div class="flex items-center justify-between gap-2">
                             <span class="px-2.5 py-1 rounded-md text-[10px] font-mono uppercase tracking-wider bg-zinc-900/[0.06] dark:bg-white/[0.06] text-zinc-700 dark:text-zinc-300 border border-zinc-900/[0.06] dark:border-white/[0.06]">
                                 ${escapeHtml(proj.category)}
@@ -862,19 +797,19 @@
                             <span class="text-xs font-mono text-zinc-500 dark:text-zinc-400">${escapeHtml(proj.year)}</span>
                         </div>
 
-                        <div class="space-y-2">
-                            <h3 class="text-base sm:text-lg font-semibold text-zinc-900 dark:text-white leading-snug">
+                        <div class="space-y-1.5 sm:space-y-2">
+                            <h3 class="text-sm sm:text-lg font-semibold text-zinc-900 dark:text-white leading-snug">
                                 ${escapeHtml(proj.title)}
                             </h3>
-                            <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+                            <p class="text-xs leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-3 sm:line-clamp-none">
                                 ${escapeHtml(proj.summary)}
                             </p>
                         </div>
                     </div>
 
-                    <div class="relative px-6 pb-6 pt-3 border-t border-zinc-900/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3">
+                    <div class="relative px-5 sm:px-6 pb-5 sm:pb-6 pt-3 border-t border-zinc-900/[0.06] dark:border-white/[0.06] flex items-center justify-between gap-3">
                         <div class="flex flex-wrap gap-1.5">
-                            ${proj.tags.slice(0, 3).map(tag => `<span class="text-[11px] font-mono text-zinc-500 dark:text-zinc-400">${escapeHtml(tag)}</span>`).join('<span class="text-zinc-400">·</span>')}
+                            ${proj.tags.slice(0, 3).map(tag => `<span class="text-[10px] sm:text-[11px] font-mono text-zinc-500 dark:text-zinc-400">${escapeHtml(tag)}</span>`).join('<span class="text-zinc-400">·</span>')}
                         </div>
                         <button type="button" onclick="openProjectModal('${proj.id}')" class="shrink-0 inline-flex items-center gap-1 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline">
                             <span>Inspect</span>
@@ -893,9 +828,9 @@
             document.querySelectorAll('.filter-pill').forEach(btn => {
                 const isSelected = btn.getAttribute('data-filter') === category;
                 if (isSelected) {
-                    btn.className = 'filter-pill px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 transition-colors';
+                    btn.className = 'filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 transition-colors';
                 } else {
-                    btn.className = 'filter-pill px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors';
+                    btn.className = 'filter-pill whitespace-nowrap px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 dark:text-zinc-400 hover:bg-zinc-900/5 dark:hover:bg-white/5 transition-colors';
                 }
             });
             renderProjects();
@@ -904,7 +839,7 @@
         function scrollCarousel(trackId, direction) {
             const track = document.getElementById(trackId);
             if (!track) return;
-            const step = Math.min(400, track.clientWidth * 0.85);
+            const step = Math.min(380, track.clientWidth * 0.85);
             track.scrollBy({
                 left: direction * step,
                 behavior: 'smooth'
@@ -1031,50 +966,6 @@
             modal.classList.remove('flex');
         }
 
-        function openEditModal() {
-            document.getElementById('editName').value = currentProfile.name;
-            document.getElementById('editEmail').value = currentProfile.email;
-            document.getElementById('editRole').value = currentProfile.role;
-            document.getElementById('editLocation').value = currentProfile.location;
-            document.getElementById('editDomain').value = currentProfile.domain;
-            document.getElementById('editPortrait').value = currentProfile.portrait;
-            document.getElementById('editBio').value = currentProfile.bio;
-
-            const modal = document.getElementById('editModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-        }
-
-        function closeEditModal() {
-            const modal = document.getElementById('editModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-        }
-
-        function saveProfileEdits(event) {
-            event.preventDefault();
-            currentProfile.name = document.getElementById('editName').value.trim() || DEFAULT_PROFILE.name;
-            currentProfile.email = document.getElementById('editEmail').value.trim() || DEFAULT_PROFILE.email;
-            currentProfile.role = document.getElementById('editRole').value.trim() || DEFAULT_PROFILE.role;
-            currentProfile.location = document.getElementById('editLocation').value.trim() || DEFAULT_PROFILE.location;
-            currentProfile.domain = document.getElementById('editDomain').value.trim() || DEFAULT_PROFILE.domain;
-            currentProfile.portrait = document.getElementById('editPortrait').value.trim() || DEFAULT_PROFILE.portrait;
-            currentProfile.bio = document.getElementById('editBio').value.trim() || DEFAULT_PROFILE.bio;
-
-            saveProfileToStorage();
-            renderProfile();
-            closeEditModal();
-            showToast('Profile details updated');
-        }
-
-        function resetProfileDefaults() {
-            currentProfile = Object.assign({}, DEFAULT_PROFILE);
-            saveProfileToStorage();
-            renderProfile();
-            closeEditModal();
-            showToast('Restored default profile');
-        }
-
         function downloadVCard() {
             const vcard = [
                 'BEGIN:VCARD',
@@ -1158,7 +1049,6 @@
         window.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeProjectModal();
-                closeEditModal();
             }
         });
 
@@ -1168,7 +1058,7 @@
         let latestPointerY = 0;
 
         window.addEventListener('pointermove', (e) => {
-            if (!spotlight) return;
+            if (!spotlight || e.pointerType === 'touch') return;
             latestPointerX = e.clientX;
             latestPointerY = e.clientY;
             if (pointerRaf) return;
