@@ -193,7 +193,7 @@ main {
   background: var(--bd-hi);
 }
 
-@media (min-width: 861px) and (min-height: 580px) {
+@media (min-width: 861px) {
   html, body {
     height: 100%;
     overflow: hidden;
@@ -202,14 +202,16 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 100dvh;
   }
   main {
     height: 100%;
     max-height: 100dvh;
-    padding: clamp(12px, 2.2vh, 24px) clamp(16px, 2vw, 24px);
+    padding: clamp(10px, 2vh, 20px) clamp(14px, 2vw, 24px);
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
   }
   .shell {
     width: 100%;
@@ -217,11 +219,27 @@ main {
   }
   body[data-v="home"] .shell {
     height: auto;
-    max-height: none;
+    max-height: calc(100dvh - 28px);
+  }
+  body[data-v="home"] .content-viewport {
+    flex: 0 1 auto;
+    min-height: 0;
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 0;
   }
   body:not([data-v="home"]) .shell {
-    height: min(740px, calc(100dvh - 36px));
-    max-height: calc(100dvh - 36px);
+    height: min(720px, calc(100dvh - 28px));
+    max-height: calc(100dvh - 28px);
+  }
+  body:not([data-v="home"]) .content-viewport {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 6px;
+    padding-bottom: 6px;
   }
 }
 .shell::before {
