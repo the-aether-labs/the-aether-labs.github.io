@@ -207,7 +207,7 @@ main {
   main {
     height: 100%;
     max-height: 100dvh;
-    padding: clamp(10px, 2vh, 20px) clamp(14px, 2vw, 24px);
+    padding: clamp(10px, 2.2vh, 24px) clamp(14px, 2vw, 28px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -215,31 +215,24 @@ main {
   }
   .shell {
     width: 100%;
+    height: min(710px, calc(100dvh - 32px));
+    max-height: calc(100dvh - 32px);
     overflow: hidden;
   }
-  body[data-v="home"] .shell {
-    height: auto;
-    max-height: calc(100dvh - 28px);
-  }
-  body[data-v="home"] .content-viewport {
-    flex: 0 1 auto;
-    min-height: 0;
-    max-height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-bottom: 0;
-  }
-  body:not([data-v="home"]) .shell {
-    height: min(720px, calc(100dvh - 28px));
-    max-height: calc(100dvh - 28px);
-  }
-  body:not([data-v="home"]) .content-viewport {
+  .content-viewport {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
     padding-right: 6px;
     padding-bottom: 6px;
+  }
+  body[data-v="home"] #top {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
   }
 }
 .shell::before {
@@ -582,61 +575,46 @@ body:not([data-v="home"]) .topbar { display: flex; }
   margin-top: 16px;
 }
 
-/* Animated Kinetic Ticker: Key Performance Indicators (Right to Left) */
-.stats-marquee-wrap {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
+/* Executive Performance Ledger (Static 4-Card Bento Grid) */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
   margin-top: 14px;
-  padding: 4px 0;
-  mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
 }
-.stats-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeRTL 24s linear infinite;
-  will-change: transform;
-}
-.stats-marquee-wrap:hover .stats-track,
-.stats-marquee-wrap:active .stats-track {
-  animation-play-state: paused;
-}
-@keyframes marqueeRTL {
-  from { transform: translate3d(0, 0, 0); }
-  to { transform: translate3d(-50%, 0, 0); }
-}
-.stats-group {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-right: 10px;
-}
-.stat-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 12px;
+.stat-card {
+  padding: 11px 14px;
+  border-radius: 14px;
   background: var(--surface);
   border: 1px solid var(--bd);
-  white-space: nowrap;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3px;
+  transition: border-color .22s ease, transform .22s ease, background-color .22s ease, box-shadow .22s ease;
 }
-:root[data-theme="light"] .stat-pill {
-  background: rgba(255, 255, 255, .8);
+.stat-card:hover {
+  border-color: var(--bd-hi);
+  background: var(--surface-hi);
+  transform: translateY(-1.5px);
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, .25);
 }
-.stat-pill b {
-  font: 700 14px Sora, sans-serif;
+.stat-val b {
+  font: 700 20px/1.1 Sora, Inter, sans-serif;
   color: var(--fg);
-  letter-spacing: -.02em;
+  letter-spacing: -.03em;
 }
-.stat-pill span {
-  font: 500 10.5px "JetBrains Mono", monospace;
+.stat-lbl {
+  font: 600 10.5px "JetBrains Mono", monospace;
   text-transform: uppercase;
+  color: var(--acc);
+  letter-spacing: .06em;
+  margin-top: 2px;
+}
+.stat-desc {
+  font-size: 11px;
+  line-height: 1.35;
   color: var(--mut);
-  letter-spacing: .05em;
 }
 
 /* Right Column: Structured 01-05 Directory */
@@ -959,51 +937,28 @@ input, textarea {
 input:focus, textarea:focus { outline: 0; border-color: var(--acc); }
 textarea { min-height: 76px; resize: vertical; }
 
-/* Unified Card Footer with Social Marquee */
+/* Unified Card Footer with Static Social Profiles */
 .card-foot {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding-top: 12px;
   border-top: 1px solid var(--bd);
   font-size: 12px;
   color: var(--mut);
 }
 
-/* Animated Kinetic Ticker: Social Platforms (Left to Right) */
-.soc-marquee-wrap {
-  overflow: hidden;
-  position: relative;
-  max-width: 420px;
-  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
-  padding: 2px 0;
-}
-.soc-track {
-  display: flex;
-  width: max-content;
-  animation: marqueeLTR 22s linear infinite;
-  will-change: transform;
-}
-.soc-marquee-wrap:hover .soc-track,
-.soc-marquee-wrap:active .soc-track {
-  animation-play-state: paused;
-}
-@keyframes marqueeLTR {
-  from { transform: translate3d(-50%, 0, 0); }
-  to { transform: translate3d(0, 0, 0); }
-}
-.soc-group {
+.soc-row {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-right: 8px;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 .soc-btn {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   border-radius: 8px;
   border: 1px solid var(--bd);
   background: var(--surface);
@@ -1017,9 +972,9 @@ textarea { min-height: 76px; resize: vertical; }
   color: var(--acc);
   border-color: var(--bd-hi);
   background: var(--hl);
-  transform: translateY(-1px);
+  transform: translateY(-1.5px);
 }
-.soc-btn svg { width: 15px; height: 15px; }
+.soc-btn svg { width: 14px; height: 14px; }
 
 /* Minimalist Case Study Modal */
 dialog {
@@ -1086,27 +1041,6 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
 .toast.on { opacity: 1; transform: translate(-50%, 0); }
 
 :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
-
-/* Professional Executive Fullscreen Ambient Highlight */
-.fs-btn.pro-highlight {
-  position: relative;
-  border-color: rgba(99, 102, 241, .6) !important;
-  color: var(--acc) !important;
-  background: rgba(99, 102, 241, .1) !important;
-  animation: fsAmbientGlow 3s ease-in-out infinite;
-}
-@keyframes fsAmbientGlow {
-  0%, 100% {
-    border-color: rgba(99, 102, 241, .45);
-    background: rgba(99, 102, 241, .08);
-    box-shadow: 0 0 8px -2px rgba(99, 102, 241, .35);
-  }
-  50% {
-    border-color: rgba(129, 140, 248, .85);
-    background: rgba(99, 102, 241, .18);
-    box-shadow: 0 0 14px 0 rgba(99, 102, 241, .55);
-  }
-}
 
 /* Responsive Mobile & Tablet Fallbacks */
 /* Mobile Appbar & Bottom Dock - Hidden on Desktop */
@@ -1308,17 +1242,15 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     justify-content: space-between !important;
   }
   body[data-v="home"] .hero-grid {
-    height: 100% !important;
+    height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
     gap: 6px !important;
   }
   body[data-v="home"] .hero-main {
-    height: 100% !important;
+    height: auto !important;
     display: flex !important;
     flex-direction: column !important;
-    justify-content: space-between !important;
     gap: 6px !important;
   }
 
@@ -1447,21 +1379,29 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     border-radius: 8px;
   }
 
-  /* Compact Stats Marquee on Mobile */
-  .stats-marquee-wrap {
-    margin-top: 0;
-    padding: 2px 0;
-  }
-  .stat-pill {
-    padding: 5px 10px;
-    border-radius: 10px;
+  /* Compact Executive 2x2 Bento Chips on Mobile */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 6px;
+    margin-top: 4px;
   }
-  .stat-pill b {
-    font-size: 13px;
+  .stat-card {
+    padding: 6px 10px;
+    border-radius: 10px;
+    gap: 1px;
   }
-  .stat-pill span {
+  .stat-val b {
+    font-size: 15px;
+    line-height: 1.1;
+  }
+  .stat-lbl {
     font-size: 9px;
+    letter-spacing: .04em;
+    margin-top: 0;
+  }
+  .stat-desc {
+    display: none;
   }
 
   /* Hide Explore directory on mobile - Navigation is cleanly unified in bottom dock */
@@ -1527,8 +1467,8 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 4px;
-    padding-top: 4px;
+    gap: 6px;
+    padding-top: 6px;
     margin-top: 0;
     border-top: 1px solid var(--bd);
     font-size: 10px;
@@ -1536,19 +1476,19 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
   body:not([data-v="home"]) .card-foot {
     display: none !important;
   }
-  .soc-marquee-wrap {
-    padding: 0;
+  .soc-row {
+    justify-content: center;
+    gap: 5px;
     width: 100%;
-    max-width: 100%;
   }
   .soc-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 9px;
+    width: 28px;
+    height: 28px;
+    border-radius: 7px;
   }
   .soc-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 }
 
@@ -1661,40 +1601,43 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
               <button class="btn mono" id="copy" type="button" data-tip="Copy GitHub Profile">github.com/the-aether-labs ⧉</button>
               <button class="btn" type="button" onclick="window.print()" data-tip="Print or Export PDF CV">Save CV</button>
             </div>
-          </div>
-
-          <div class="stats-marquee-wrap no-print" aria-label="Key Performance Indicators">
-            <div class="stats-track">
-              <div class="stats-group">
-                <div class="stat-pill"><b data-c="7" data-s="+">7+</b><span>Years in prod</span></div>
-                <div class="stat-pill"><b data-c="22" data-s="+">22+</b><span>Systems shipped</span></div>
-                <div class="stat-pill"><b data-c="99.98" data-d="2" data-s="%">99.98%</b><span>Uptime SLA</span></div>
-                <div class="stat-pill"><b>Global</b><span>Remote &amp; advisory</span></div>
-                <div class="stat-pill"><b>22+</b><span>Production repos</span></div>
-                <div class="stat-pill"><b>&lt;50ms</b><span>Render loops</span></div>
-              </div>
-              <div class="stats-group" aria-hidden="true">
-                <div class="stat-pill"><b>7+</b><span>Years in prod</span></div>
-                <div class="stat-pill"><b>22+</b><span>Systems shipped</span></div>
-                <div class="stat-pill"><b>99.98%</b><span>Uptime SLA</span></div>
-                <div class="stat-pill"><b>Global</b><span>Remote &amp; advisory</span></div>
-                <div class="stat-pill"><b>22+</b><span>Production repos</span></div>
-                <div class="stat-pill"><b>&lt;50ms</b><span>Render loops</span></div>
-              </div>
             </div>
           </div>
+
+          <nav class="hub" aria-label="Portfolio sections">
+            <div class="eyebrow">Explore</div>
+            <a class="tile" href="#work"><div class="ic"></div><h3>Selected Work</h3><p>Five case studies across systems, product UI &amp; automation.</p><span class="go">→</span></a>
+            <a class="tile" href="#expertise"><div class="ic"></div><h3>Expertise</h3><p>Architecture, product engineering, AI workflows &amp; advisory.</p><span class="go">→</span></a>
+            <a class="tile" href="#experience"><div class="ic"></div><h3>Experience</h3><p>Career timeline, systems track record &amp; credentials.</p><span class="go">→</span></a>
+            <a class="tile" href="#voices"><div class="ic"></div><h3>Testimonials</h3><p>What technical founders and enterprise partners say.</p><span class="go">→</span></a>
+            <a class="tile" href="#contact"><div class="ic"></div><h3>Contact</h3><p>Start a project conversation or connect directly.</p><span class="go">→</span></a>
+          </nav>
         </div>
 
-        <nav class="hub" aria-label="Portfolio sections">
-          <div class="eyebrow">Explore</div>
-          <a class="tile" href="#work"><div class="ic"></div><h3>Selected Work</h3><p>Five case studies across systems, product UI &amp; automation.</p><span class="go">→</span></a>
-          <a class="tile" href="#expertise"><div class="ic"></div><h3>Expertise</h3><p>Architecture, product engineering, AI workflows &amp; advisory.</p><span class="go">→</span></a>
-          <a class="tile" href="#experience"><div class="ic"></div><h3>Experience</h3><p>Career timeline, systems track record &amp; credentials.</p><span class="go">→</span></a>
-          <a class="tile" href="#voices"><div class="ic"></div><h3>Testimonials</h3><p>What technical founders and enterprise partners say.</p><span class="go">→</span></a>
-          <a class="tile" href="#contact"><div class="ic"></div><h3>Contact</h3><p>Start a project conversation or connect directly.</p><span class="go">→</span></a>
-        </nav>
-      </div>
-    </section>
+        <!-- 4-CARD BENTO KPI LEDGER -->
+        <div class="stats-grid no-print" aria-label="Key Performance Indicators">
+          <div class="stat-card">
+            <div class="stat-val"><b data-c="7" data-s="+">7+</b></div>
+            <div class="stat-lbl">Years in prod</div>
+            <div class="stat-desc">Distributed architectures &amp; cloud systems</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val"><b data-c="22" data-s="+">22+</b></div>
+            <div class="stat-lbl">Systems shipped</div>
+            <div class="stat-desc">Autonomous multi-agent swarms &amp; repos</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val"><b data-c="99.98" data-d="2" data-s="%">99.98%</b></div>
+            <div class="stat-lbl">Uptime SLA</div>
+            <div class="stat-desc">Zero credential leaks &amp; verified failover</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-val"><b>&lt;50ms</b></div>
+            <div class="stat-lbl">Render loops</div>
+            <div class="stat-desc">Sub-50ms local recall &amp; 60fps fluidity</div>
+          </div>
+        </div>
+      </section>
 
     <!-- 01 / SELECTED WORK -->
     <section id="work" class="view">
@@ -1832,9 +1775,7 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     <!-- UNIFIED CARD FOOTER -->
     <footer class="card-foot">
       <span>© 2026 The Aether Labs · Executive Architecture Dossier</span>
-      <div class="soc-marquee-wrap no-print" aria-label="Social media profiles">
-        <div class="soc-track" id="homeSocials"></div>
-      </div>
+      <div class="soc-row no-print" id="homeSocials" aria-label="Social media profiles"></div>
     </footer>
   </div>
 </main>
@@ -2026,15 +1967,14 @@ const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const root = document.documentElement;
 
-/* Render Social Media Ticker (Dual groups for seamless infinite loop) */
+/* Render Static Social Profile Icons */
 const homeSocials = $('#homeSocials');
 if (homeSocials) {
-  const renderBtns = () => SOCIALS.map(s => {
+  homeSocials.innerHTML = SOCIALS.map(s => {
     const isHash = s.url.startsWith('#');
     const target = isHash ? '' : 'target="_blank" rel="noopener noreferrer"';
     return `<a class="soc-btn" href="${s.url}" ${target} data-tip="${s.name}" aria-label="${s.name}">${s.svg}</a>`;
   }).join('');
-  homeSocials.innerHTML = `<div class="soc-group">${renderBtns()}</div><div class="soc-group" aria-hidden="true">${renderBtns()}</div>`;
 }
 
 /* Theme Switcher & Dynamic Meta Theme Color */
@@ -2187,17 +2127,7 @@ $$('[data-c]').forEach(el => {
     btns.forEach(b => b.hidden = true);
     return;
   }
-  // Professional executive ambient highlight until user interacts with fullscreen
-  const hasInteracted = sessionStorage.getItem('fs_pro_dismissed') === '1';
-  if (!hasInteracted && !cur()) {
-    btns.forEach(b => b.classList.add('pro-highlight'));
-  }
-  function dismissHighlight() {
-    btns.forEach(b => b.classList.remove('pro-highlight'));
-    sessionStorage.setItem('fs_pro_dismissed', '1');
-  }
   async function tog() {
-    dismissHighlight();
     try {
       if (cur()) await (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       else await (de.requestFullscreen || de.webkitRequestFullscreen).call(de);
@@ -2205,7 +2135,6 @@ $$('[data-c]').forEach(el => {
   }
   const sync = () => {
     const f = !!cur();
-    if (f) dismissHighlight();
     const label = f ? 'Exit Fullscreen (F)' : 'Toggle Fullscreen (F)';
     btns.forEach(b => {
       b.classList.toggle('is-fs', f);
@@ -2217,7 +2146,6 @@ $$('[data-c]').forEach(el => {
   ['fullscreenchange', 'webkitfullscreenchange'].forEach(v => document.addEventListener(v, sync));
   addEventListener('keydown', e => {
     if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
-      dismissHighlight();
       tog();
     }
   });
