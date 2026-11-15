@@ -1006,6 +1006,42 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
 
 :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 
+/* Fullscreen CTA Attention Highlight */
+.fs-btn.highlight-cta {
+  position: relative;
+  border-color: var(--acc) !important;
+  color: var(--acc) !important;
+  background: var(--hl) !important;
+  box-shadow: 0 0 0 1px var(--acc), 0 0 16px rgba(99, 102, 241, .45);
+  animation: fsPulse 2.2s infinite ease-in-out;
+}
+.fs-btn.highlight-cta::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: fsBeacon 1.5s infinite ease-in-out;
+}
+@keyframes fsPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 1px var(--acc), 0 0 12px rgba(99, 102, 241, .3);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 0 2px var(--acc2), 0 0 22px rgba(129, 140, 248, .65);
+    transform: scale(1.06);
+  }
+}
+@keyframes fsBeacon {
+  0%, 100% { transform: scale(0.9); opacity: .8; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
 /* Responsive Mobile & Tablet Fallbacks */
 /* Mobile Appbar & Bottom Dock - Hidden on Desktop */
 .mobile-appbar,
@@ -1024,12 +1060,7 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
   body {
     display: block;
     background: var(--bg);
-  }
-  body[data-v="home"] {
-    padding-top: 52px;
-  }
-  body:not([data-v="home"]) {
-    padding-top: 98px;
+    padding-top: 52px !important;
   }
 
   /* Fixed Frosted Mobile Appbar - Never hides on scroll */
@@ -1160,80 +1191,8 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     stroke: var(--acc);
   }
 
-  /* Fixed Sub-View Horizontal Tabs Bar - Never hides on scroll */
-  body[data-v="home"] .topbar {
-    display: none !important;
-  }
-  body:not([data-v="home"]) .topbar {
-    display: flex !important;
-    position: fixed !important;
-    top: 52px;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 46px;
-    z-index: 95;
-    align-items: center;
-    padding: 0 12px;
-    gap: 8px;
-    background: rgba(14, 18, 28, .92);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--bd);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, .18);
-  }
-  :root[data-theme="light"] body:not([data-v="home"]) .topbar {
-    background: rgba(255, 255, 255, .94);
-    box-shadow: 0 4px 16px rgba(15, 23, 42, .05);
-  }
-  body:not([data-v="home"]) .topbar .back {
-    height: 28px;
-    padding: 0 10px;
-    font-size: 11.5px;
-    border-radius: 8px;
-    flex-shrink: 0;
-    background: var(--surface);
-    border: 1px solid var(--bd);
-    color: var(--fg);
-    display: inline-flex;
-    align-items: center;
-  }
-  body:not([data-v="home"]) .topbar .tabs {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex: 1;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding: 2px 0;
-  }
-  body:not([data-v="home"]) .topbar .tabs::-webkit-scrollbar {
-    display: none;
-  }
-  body:not([data-v="home"]) .topbar .tabs a {
-    flex-shrink: 0;
-    white-space: nowrap;
-    font-size: 11.5px;
-    padding: 5px 11px;
-    border-radius: 8px;
-    background: var(--surface);
-    border: 1px solid var(--bd);
-    color: var(--mut);
-    transition: color .2s, background .2s, border-color .2s;
-    text-decoration: none;
-  }
-  body:not([data-v="home"]) .topbar .tabs a.on {
-    background: var(--hl);
-    border-color: var(--bd-hi);
-    color: var(--acc);
-    font-weight: 600;
-  }
-  body:not([data-v="home"]) .topbar .util-group {
-    display: none !important;
-  }
-
-  /* Hide redundant desktop home-bar */
+  /* Hide Desktop redundant bars on mobile - Unified bottom dock navigation */
+  .topbar,
   .home-bar {
     display: none !important;
   }
@@ -1250,8 +1209,8 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    padding: 16px 16px calc(76px + env(safe-area-inset-bottom, 12px)) !important;
-    gap: 14px !important;
+    padding: 14px 14px calc(76px + env(safe-area-inset-bottom, 12px)) !important;
+    gap: 12px !important;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
@@ -1268,37 +1227,75 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     padding-bottom: 0 !important;
   }
 
-  /* Mobile Typography & Layout */
+  /* Systematic & Organized Mobile Main Page Architecture */
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .hero-main {
+    gap: 12px;
+  }
+  /* Executive Bio Card Container */
+  .hero-main > div:first-child {
+    background: var(--surface);
+    border: 1px solid var(--bd);
+    border-radius: 18px;
+    padding: 18px 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .14);
+  }
+  :root[data-theme="light"] .hero-main > div:first-child {
+    background: rgba(255, 255, 255, .75);
+    box-shadow: 0 4px 20px rgba(15, 23, 42, .04);
+  }
   .hero-top {
+    display: flex;
     gap: 14px;
     align-items: center;
   }
   .avatar {
-    width: 64px;
-    height: 64px;
-    border-radius: 18px;
-  }
-  .avatar-frame {
+    width: 58px;
+    height: 58px;
     border-radius: 16px;
   }
+  .avatar-frame {
+    border-radius: 14px;
+  }
   .hero-top h1 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 1.15;
+    margin: 0;
   }
   .role {
-    font-size: 13.5px;
+    font-size: 13px;
     line-height: 1.4;
     margin-top: 3px;
+    color: var(--mut);
   }
   .lead {
-    margin: 12px 0 0;
-    font-size: 13.5px;
+    margin: 14px 0 0;
+    padding-top: 12px;
+    border-top: 1px dashed var(--bd);
+    font-size: 13px;
     line-height: 1.55;
+    color: var(--mut);
   }
   .meta {
-    gap: 6px 12px;
-    margin-top: 10px;
-    font-size: 11px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    background: var(--surface-2);
+    border: 1px solid var(--bd);
+    border-radius: 7px;
+    color: var(--mut);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px;
   }
   .cta {
     display: grid;
@@ -1311,6 +1308,7 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     height: 40px;
     font-size: 13.5px;
     border-radius: 12px;
+    font-weight: 600;
   }
   .cta .btn.mono {
     height: 36px;
@@ -1320,48 +1318,111 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
   }
   .cta .btn:last-child {
     height: 36px;
-    font-size: 12.5px;
+    font-size: 12px;
     border-radius: 10px;
   }
+
+  /* Systematic 2x2 Bento Scale Metrics */
   .stats {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    margin-top: 14px;
-    padding-top: 12px;
+    margin-top: 12px;
+    padding-top: 0;
+    border-top: none;
   }
   .stats > div {
-    padding: 10px 12px;
-    border-radius: 12px;
+    padding: 12px 14px;
+    border-radius: 14px;
     background: var(--surface);
     border: 1px solid var(--bd);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+  :root[data-theme="light"] .stats > div {
+    background: rgba(255, 255, 255, .75);
+    box-shadow: 0 2px 8px rgba(15, 23, 42, .03);
   }
   .stats b {
-    font-size: 21px;
+    font-size: 22px;
+    font-family: Sora, Inter, sans-serif;
+    letter-spacing: -.03em;
+    background: linear-gradient(135deg, var(--fg), var(--acc));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
   }
   .stats span {
-    font-size: 9.5px;
+    font-size: 10px;
+    font-family: "JetBrains Mono", monospace;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--mut);
   }
+
+  /* Organized Explore Dossier Directory */
   .hub {
     padding-left: 0;
     border-left: 0;
-    padding-top: 16px;
-    margin-top: 8px;
+    padding-top: 14px;
+    margin-top: 4px;
     border-top: 1px solid var(--bd);
+    display: flex;
+    flex-direction: column;
     gap: 8px;
   }
+  .hub .eyebrow {
+    font-size: 10px;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--mut);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 2px;
+  }
+  .hub .eyebrow::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--bd);
+  }
   .tile {
-    padding: 11px 13px;
+    padding: 12px 14px;
     border-radius: 14px;
-    column-gap: 10px;
+    background: var(--surface);
+    border: 1px solid var(--bd);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
+    column-gap: 12px;
+    align-items: center;
+    transition: transform .15s, border-color .15s, background .15s;
+  }
+  :root[data-theme="light"] .tile {
+    background: rgba(255, 255, 255, .75);
   }
   .tile:active {
     transform: scale(0.985);
+    background: var(--hl);
+    border-color: var(--bd-hi);
+  }
+  .tile .ic {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
   }
   .tile h3 {
     font-size: 14px;
+    font-weight: 600;
   }
   .tile p {
-    font-size: 12px;
+    font-size: 11.5px;
+    color: var(--mut);
+    line-height: 1.35;
   }
   .view-head {
     margin-bottom: 14px;
@@ -2063,7 +2124,17 @@ $$('[data-c]').forEach(el => {
     btns.forEach(b => b.hidden = true);
     return;
   }
+  // Professional pulse highlight until user interacts with fullscreen
+  const hasInteracted = sessionStorage.getItem('fs_cta_dismissed') === '1';
+  if (!hasInteracted && !cur()) {
+    btns.forEach(b => b.classList.add('highlight-cta'));
+  }
+  function dismissHighlight() {
+    btns.forEach(b => b.classList.remove('highlight-cta'));
+    sessionStorage.setItem('fs_cta_dismissed', '1');
+  }
   async function tog() {
+    dismissHighlight();
     try {
       if (cur()) await (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       else await (de.requestFullscreen || de.webkitRequestFullscreen).call(de);
@@ -2071,6 +2142,7 @@ $$('[data-c]').forEach(el => {
   }
   const sync = () => {
     const f = !!cur();
+    if (f) dismissHighlight();
     const label = f ? 'Exit Fullscreen (F)' : 'Toggle Fullscreen (F)';
     btns.forEach(b => {
       b.classList.toggle('is-fs', f);
@@ -2081,7 +2153,10 @@ $$('[data-c]').forEach(el => {
   btns.forEach(b => b.onclick = tog);
   ['fullscreenchange', 'webkitfullscreenchange'].forEach(v => document.addEventListener(v, sync));
   addEventListener('keydown', e => {
-    if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) tog();
+    if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
+      dismissHighlight();
+      tog();
+    }
   });
   sync();
 })();
