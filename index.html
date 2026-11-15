@@ -1006,42 +1006,6 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
 
 :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
 
-/* Fullscreen CTA Attention Highlight */
-.fs-btn.highlight-cta {
-  position: relative;
-  border-color: var(--acc) !important;
-  color: var(--acc) !important;
-  background: var(--hl) !important;
-  box-shadow: 0 0 0 1px var(--acc), 0 0 16px rgba(99, 102, 241, .45);
-  animation: fsPulse 2.2s infinite ease-in-out;
-}
-.fs-btn.highlight-cta::after {
-  content: "";
-  position: absolute;
-  top: -3px;
-  right: -3px;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
-  animation: fsBeacon 1.5s infinite ease-in-out;
-}
-@keyframes fsPulse {
-  0%, 100% {
-    box-shadow: 0 0 0 1px var(--acc), 0 0 12px rgba(99, 102, 241, .3);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 0 0 2px var(--acc2), 0 0 22px rgba(129, 140, 248, .65);
-    transform: scale(1.06);
-  }
-}
-@keyframes fsBeacon {
-  0%, 100% { transform: scale(0.9); opacity: .8; }
-  50% { transform: scale(1.3); opacity: 1; }
-}
-
 /* Responsive Mobile & Tablet Fallbacks */
 /* Mobile Appbar & Bottom Dock - Hidden on Desktop */
 .mobile-appbar,
@@ -1364,65 +1328,9 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     color: var(--mut);
   }
 
-  /* Organized Explore Dossier Directory */
+  /* Hide Explore directory on mobile - Navigation is cleanly unified in bottom dock */
   .hub {
-    padding-left: 0;
-    border-left: 0;
-    padding-top: 14px;
-    margin-top: 4px;
-    border-top: 1px solid var(--bd);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .hub .eyebrow {
-    font-size: 10px;
-    font-family: "JetBrains Mono", monospace;
-    letter-spacing: .12em;
-    text-transform: uppercase;
-    color: var(--mut);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 2px;
-  }
-  .hub .eyebrow::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--bd);
-  }
-  .tile {
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: var(--surface);
-    border: 1px solid var(--bd);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .06);
-    column-gap: 12px;
-    align-items: center;
-    transition: transform .15s, border-color .15s, background .15s;
-  }
-  :root[data-theme="light"] .tile {
-    background: rgba(255, 255, 255, .75);
-  }
-  .tile:active {
-    transform: scale(0.985);
-    background: var(--hl);
-    border-color: var(--bd-hi);
-  }
-  .tile .ic {
-    width: 32px;
-    height: 32px;
-    border-radius: 10px;
-  }
-  .tile h3 {
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .tile p {
-    font-size: 11.5px;
-    color: var(--mut);
-    line-height: 1.35;
+    display: none !important;
   }
   .view-head {
     margin-bottom: 14px;
@@ -2124,17 +2032,7 @@ $$('[data-c]').forEach(el => {
     btns.forEach(b => b.hidden = true);
     return;
   }
-  // Professional pulse highlight until user interacts with fullscreen
-  const hasInteracted = sessionStorage.getItem('fs_cta_dismissed') === '1';
-  if (!hasInteracted && !cur()) {
-    btns.forEach(b => b.classList.add('highlight-cta'));
-  }
-  function dismissHighlight() {
-    btns.forEach(b => b.classList.remove('highlight-cta'));
-    sessionStorage.setItem('fs_cta_dismissed', '1');
-  }
   async function tog() {
-    dismissHighlight();
     try {
       if (cur()) await (document.exitFullscreen || document.webkitExitFullscreen).call(document);
       else await (de.requestFullscreen || de.webkitRequestFullscreen).call(de);
@@ -2142,7 +2040,6 @@ $$('[data-c]').forEach(el => {
   }
   const sync = () => {
     const f = !!cur();
-    if (f) dismissHighlight();
     const label = f ? 'Exit Fullscreen (F)' : 'Toggle Fullscreen (F)';
     btns.forEach(b => {
       b.classList.toggle('is-fs', f);
@@ -2153,10 +2050,7 @@ $$('[data-c]').forEach(el => {
   btns.forEach(b => b.onclick = tog);
   ['fullscreenchange', 'webkitfullscreenchange'].forEach(v => document.addEventListener(v, sync));
   addEventListener('keydown', e => {
-    if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) {
-      dismissHighlight();
-      tog();
-    }
+    if ((e.key === 'f' || e.key === 'F') && !e.ctrlKey && !e.metaKey && !e.altKey && !/INPUT|TEXTAREA/.test(document.activeElement.tagName)) tog();
   });
   sync();
 })();
