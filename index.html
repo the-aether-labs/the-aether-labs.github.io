@@ -194,45 +194,50 @@ main {
 }
 
 @media (min-width: 861px) {
-  html, body {
-    height: 100%;
-    overflow: hidden;
-  }
-  body {
+  body[data-v="home"] {
+    height: 100dvh;
+    overflow: hidden !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh;
   }
-  main {
-    height: 100%;
+  body[data-v="home"] main {
+    height: auto;
     max-height: 100dvh;
-    padding: clamp(10px, 2.2vh, 24px) clamp(14px, 2vw, 28px);
+    padding: clamp(10px, 2vh, 20px) clamp(16px, 2.5vw, 32px);
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-  }
-  .shell {
     width: 100%;
-    height: min(710px, calc(100dvh - 32px));
-    max-height: calc(100dvh - 32px);
-    overflow: hidden;
+    max-width: 1060px;
+    margin: 0 auto;
   }
-  .content-viewport {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding-right: 6px;
-    padding-bottom: 6px;
+  body[data-v="home"] .shell {
+    width: 100%;
+    height: auto !important;
+    max-height: calc(100dvh - 24px);
+    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    padding: clamp(16px, 2.4vh, 22px) clamp(20px, 2.6vw, 30px) clamp(12px, 1.8vh, 16px) !important;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  body[data-v="home"] .content-viewport {
+    flex: 0 1 auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
   }
   body[data-v="home"] #top {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 14px;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
   }
 }
 .shell::before {
@@ -294,30 +299,110 @@ main {
   background: var(--surface-hi);
 }
 
-/* View Visibility */
-.view { display: none; animation: fadeIn .22s ease; }
-body[data-v="home"] #top,
-body[data-v="work"] #work,
-body[data-v="expertise"] #expertise,
-body[data-v="experience"] #experience,
-body[data-v="voices"] #voices,
-body[data-v="contact"] #contact { display: block; }
+/* View Visibility: Home Card vs Smooth-Scrolling Full-Site Document */
+.view { display: none; }
+body[data-v="home"] #top { display: flex !important; }
+
+/* Sub-Views Mode: Open, Full-Height, Smooth-Scrolling Website */
+body:not([data-v="home"]) {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth !important;
+  display: block !important;
+  padding: 0 !important;
+}
+body:not([data-v="home"]) main {
+  max-width: 1060px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 12px 18px 80px 18px !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: block !important;
+}
+body:not([data-v="home"]) .shell {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  display: block !important;
+}
+body:not([data-v="home"]) .shell::before,
+body:not([data-v="home"]) .shell::after {
+  display: none !important;
+}
+body:not([data-v="home"]) .content-viewport {
+  height: auto !important;
+  overflow: visible !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 48px !important;
+}
+body:not([data-v="home"]) #top {
+  display: none !important;
+}
+body:not([data-v="home"]) #work,
+body:not([data-v="home"]) #expertise,
+body:not([data-v="home"]) #experience,
+body:not([data-v="home"]) #voices,
+body:not([data-v="home"]) #contact {
+  display: block !important;
+  scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 76px) !important;
+  position: relative;
+  padding: clamp(20px, 3vh, 32px);
+  border: 1px solid var(--bd);
+  border-radius: 22px;
+  background: var(--card);
+  box-shadow: var(--sh);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
 }
 
-/* Sub-View Top Navigation Bar */
+/* Sub-View Top Navigation Bar - Sticky Frosted Header */
 .topbar {
   display: none;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--bd);
 }
-body:not([data-v="home"]) .topbar { display: flex; }
+body:not([data-v="home"]) .topbar {
+  position: sticky !important;
+  top: calc(env(safe-area-inset-top, 0px) + 10px) !important;
+  z-index: 100 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  padding: 8px 16px !important;
+  border: 1px solid var(--bd) !important;
+  border-radius: 16px !important;
+  background: color-mix(in srgb, var(--bg) 84%, transparent) !important;
+  backdrop-filter: blur(18px) !important;
+  -webkit-backdrop-filter: blur(18px) !important;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, .22) !important;
+  margin-bottom: 28px !important;
+}
+body:not([data-v="home"]) .card-foot {
+  margin-top: 48px !important;
+  padding: 20px 8px !important;
+  border-top: 1px solid var(--bd) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: wrap !important;
+  gap: 14px !important;
+  font-size: 13px !important;
+  color: var(--mut) !important;
+}
 
 .topbar .back {
   display: inline-flex;
@@ -1203,21 +1288,23 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     overflow: hidden !important;
   }
   body[data-v="home"] main {
-    height: calc(100dvh - 52px) !important;
+    height: calc(100dvh - 108px) !important;
+    max-height: calc(100dvh - 108px) !important;
     overflow: hidden !important;
     display: flex !important;
     flex-direction: column !important;
-    padding: 0 !important;
-    max-height: none !important;
+    justify-content: center !important;
+    padding: 0 10px !important;
     width: 100% !important;
     max-width: 100% !important;
   }
   body[data-v="home"] .shell {
-    height: 100% !important;
+    height: auto !important;
+    max-height: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: space-between !important;
-    padding: 6px 12px calc(60px + env(safe-area-inset-bottom, 6px)) 12px !important;
+    padding: 6px 10px !important;
     overflow: hidden !important;
     gap: 6px !important;
     border: none !important;
@@ -1254,29 +1341,51 @@ dialog::backdrop { background: rgba(3, 5, 10, .68); backdrop-filter: blur(5px); 
     gap: 6px !important;
   }
 
-  /* Subviews scroll naturally */
+  /* Subviews scroll naturally on mobile */
+  body:not([data-v="home"]) {
+    padding-top: 52px !important;
+    padding-bottom: 68px !important;
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
   body:not([data-v="home"]) main {
-    padding: 0 !important;
+    padding: 12px 14px 24px 14px !important;
     height: auto !important;
     max-height: none !important;
     width: 100% !important;
+    overflow: visible !important;
+    display: block !important;
   }
   body:not([data-v="home"]) .shell {
     height: auto !important;
     max-height: none !important;
     overflow: visible !important;
-    padding: 14px 14px calc(76px + env(safe-area-inset-bottom, 12px)) !important;
-    gap: 12px !important;
+    padding: 0 !important;
+    gap: 0 !important;
     border: none !important;
     border-radius: 0 !important;
     box-shadow: none !important;
     background: transparent !important;
+    display: block !important;
   }
   body:not([data-v="home"]) .content-viewport {
     overflow: visible !important;
     height: auto !important;
-    padding-right: 0 !important;
-    padding-bottom: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 28px !important;
+  }
+  body:not([data-v="home"]) .card-foot {
+    margin-top: 32px !important;
+    padding: 16px 6px !important;
+    border-top: 1px solid var(--bd) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    text-align: center !important;
   }
 
   .shell::before,
@@ -2090,23 +2199,113 @@ $('#tl').innerHTML = JOBS.map(j => `
     </div>
   </div>`).join('');
 
-/* View Router */
+/* Hybrid Multi-View & Smooth-Scroll Architecture */
 (function () {
   const views = ['home', 'work', 'expertise', 'experience', 'voices', 'contact'];
-  const titles = {home:'Home', work:'Selected Work', expertise:'Expertise', experience:'Experience', voices:'Testimonials', contact:'Contact'};
+  const titles = {
+    home: 'Home',
+    work: 'Selected Work',
+    expertise: 'Expertise',
+    experience: 'Experience',
+    voices: 'Testimonials',
+    contact: 'Contact'
+  };
+
+  function updateActiveNav(activeId) {
+    const target = activeId === 'top' ? 'home' : activeId;
+    $$('.topbar .tabs a').forEach(a => {
+      const on = a.dataset.n === target;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+    $$('.dock-item').forEach(a => {
+      const on = a.dataset.n === target;
+      a.classList.toggle('on', on);
+      if (on) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  }
+
   function go() {
     let h = location.hash.slice(1);
     if (!views.includes(h)) h = 'home';
+    const prev = document.body.dataset.v;
     document.body.dataset.v = h;
-    $$('.topbar .tabs a').forEach(a => a.classList.toggle('on', a.dataset.n === h));
-    $$('.dock-item').forEach(a => a.classList.toggle('on', a.dataset.n === h));
+
+    updateActiveNav(h);
     document.title = (h === 'home' ? '' : titles[h] + ' · ') + 'The Aether Labs — Principal Systems Architect';
-    scrollTo(0, 0);
-    const vp = $('#contentViewport');
-    if (vp) vp.scrollTop = 0;
+
+    if (h === 'home') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      requestAnimationFrame(fitHomeCard);
+    } else {
+      const el = document.getElementById(h);
+      if (el) {
+        const first = !go.ran;
+        if (prev === 'home' || first) {
+          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        }
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            el.scrollIntoView({ behavior: first ? 'instant' : 'smooth', block: 'start' });
+          });
+        });
+      }
+    }
+    go.ran = 1;
   }
-  addEventListener('hashchange', go);
+
+  window.addEventListener('hashchange', go);
   go();
+
+  /* IntersectionObserver Scrollspy for Continuous Sub-View Scrolling */
+  const spy = new IntersectionObserver(entries => {
+    if (document.body.dataset.v === 'home') return;
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const id = entry.target.id;
+      updateActiveNav(id);
+      try {
+        history.replaceState(null, '', '#' + id);
+      } catch (e) {}
+    });
+  }, { rootMargin: '-20% 0px -55% 0px' });
+
+  $$('main section:not(#top)').forEach(s => spy.observe(s));
+
+  /* Keyboard Navigation: 1-5 jump to sections, H for home, F for fullscreen */
+  window.addEventListener('keydown', e => {
+    if (e.ctrlKey || e.metaKey || e.altKey || /INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName) || ($('#dlg') && $('#dlg').open)) return;
+    const k = e.key;
+    if (k >= '1' && k <= '5') {
+      const target = views[+k];
+      if (target) location.hash = target;
+    } else if (k === 'h' || k === 'H') {
+      location.hash = 'home';
+    }
+  });
+
+  /* Auto-Fit Home Card for Zero-Scroll Guarantee on Small Screens */
+  function fitHomeCard() {
+    if (document.body.dataset.v !== 'home') return;
+    const shell = $('.shell');
+    if (!shell) return;
+    shell.style.zoom = '';
+    const avail = window.innerHeight - (window.innerWidth <= 860 ? 64 : 28);
+    let z = 1;
+    let h = shell.getBoundingClientRect().height;
+    for (let i = 0; i < 4 && h > avail + 1; i++) {
+      const h0 = h;
+      z = Math.max(0.72, z * avail / h);
+      shell.style.zoom = z.toFixed(3);
+      h = shell.getBoundingClientRect().height;
+      if (Math.abs(h - h0) < 1) break;
+    }
+  }
+
+  window.addEventListener('resize', fitHomeCard);
+  window.addEventListener('hashchange', () => setTimeout(fitHomeCard, 10));
 })();
 
 /* Animated KPI Counters */
